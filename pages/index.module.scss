@@ -1,14 +1,22 @@
 .container {
   height: 100vh;
-  background-image: linear-gradient(45deg, #11a49ae3, #90fc8ed5),
+  background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
     url("../public/coverPhoto.jpeg");
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   clip-path: ellipse(65% 90% at 52% 10%);
+}
+
+.innerContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .logo {

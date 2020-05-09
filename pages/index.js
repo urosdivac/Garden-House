@@ -1,17 +1,25 @@
-import styles from "./index.module.scss";
 import Head from "next/head";
 import Link from "next/link";
+import styles from "./index.module.scss";
+import Navbar from "../components/Layout/Navbar";
+import FirstBlock from "../components/Homepage/firstBlock";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <img src="/assets/Logo.svg" className={styles.logo} />
+    <div>
+      <div className={styles.container}>
+        <Navbar />
+        <div className={styles.innerContainer}>
+          <img src="/assets/Logo.svg" className={styles.logo} />
 
-      <p className={styles.slogan}>Platform for managing nurseries</p>
+          <p className={styles.slogan}>Platform for managing nurseries</p>
 
-      <Link href="/" className={styles.hoverz}>
-        <a className={styles.register}>Get started</a>
-      </Link>
+          <Link href="/">
+            <a className={styles.register}>Get started</a>
+          </Link>
+        </div>
+      </div>
+      <FirstBlock />
 
       <style jsx global>
         {`
