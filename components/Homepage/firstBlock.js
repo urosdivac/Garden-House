@@ -8,29 +8,33 @@ const firstBlock = () => {
       </h2>
       <div className={styles.innerContainer}>
         <div className={styles.leftSide}>
-          <p className={styles.smallHeader}>
-            Take care of your plants with click of a button
-          </p>
+          <div className={styles.textWrapper}>
+            <p className={styles.smallHeader}>
+              Take care of your plants with click of a button
+            </p>
 
-          <p className={styles.text}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi id
-            voluptates explicabo pariatur temporibus quae quas autem. Soluta,
-            aliquid ipsa.
-          </p>
+            <p className={styles.text}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi id
+              voluptates explicabo pariatur temporibus quae quas autem. Soluta,
+              aliquid ipsa.
+            </p>
+          </div>
 
-          <p className={styles.smallHeader}>
-            Browser our online shop for freshest seeds
-          </p>
+          <div className={styles.textWrapper}>
+            <p className={styles.smallHeader}>
+              Browser our online shop for freshest seeds
+            </p>
 
-          <p className={styles.text}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi id
-            voluptates explicabo pariatur temporibus quae quas autem. Soluta,
-            aliquid ipsa.
-          </p>
+            <p className={styles.text}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi id
+              voluptates explicabo pariatur temporibus quae quas autem. Soluta,
+              aliquid ipsa.
+            </p>
+          </div>
         </div>
 
         <div className={styles.rightSide}>
-          <img src="/assets/adminPage.jpg" alt='adimin page'/>
+          <img src="/assets/adminPage.jpg" alt="adimin page" />
         </div>
       </div>
     </div>
