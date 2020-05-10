@@ -4,7 +4,7 @@ import styles from "./index.module.scss";
 import Navbar from "../components/Layout/Navbar";
 import FirstBlock from "../components/Homepage/firstBlock";
 import SecondBlock from "../components/Homepage/secondBlock";
-
+import Button from "@material-ui/core/Button";
 
 export default function Home() {
   return (
