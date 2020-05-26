@@ -20,15 +20,15 @@ const form = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  // Checks if user is logged in
-  useEffect(() => {
-    const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', (err, user) => {
-      if (user.isaccepted === 'accepted') {
-        Router.push('/');
-      }
-    });
-  }, []);
+  // // Checks if user is logged in
+  // useEffect(() => {
+  //   const cookie = Cookies.get('JWT');
+  //   jwt.verify(cookie, 'secertToken', (err, user) => {
+  //     if (user.isaccepted === 'accepted') {
+  //       Router.push('/');
+  //     }
+  //   });
+  // }, []);
 
   const handleErrors = () => {
     let errors = 0;

@@ -1,15 +1,31 @@
-import Head from "next/head";
-import Link from "next/link";
-import styles from "./index.module.scss";
-import Navbar from "../components/Layout/Navbar";
-import FirstBlock from "../components/Homepage/firstBlock";
-import SecondBlock from "../components/Homepage/secondBlock";
+import {useEffect, useState} from 'react';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import Head from 'next/head';
+import Link from 'next/link';
+import styles from './index.module.scss';
+import Navbar from '../components/Layout/Navbar';
+import FirstBlock from '../components/Homepage/firstBlock';
+import SecondBlock from '../components/Homepage/secondBlock';
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Checks if user is logged in
+  useEffect(() => {
+    const cookie = Cookies.get('JWT');
+    jwt.verify(cookie, 'secertToken', (err, user) => {
+      if (user.isaccepted === 'accepted') {
+        setIsLoggedIn(true);
+      }
+    });
+  }, []);
+
   return (
     <div>
       <div className={styles.container}>
-        <Navbar />
+        {isLoggedIn ? null : <Navbar />}
+
         <div className={styles.innerContainer}>
           <img src="/assets/Logo.svg" className={styles.logo} />
 
@@ -29,7 +45,7 @@ export default function Home() {
           body {
             padding: 0;
             margin: 0;
-            font-family: "Lato", sans-serif;
+            font-family: 'Lato', sans-serif;
           }
         `}
       </style>
