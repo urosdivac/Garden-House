@@ -33,20 +33,20 @@ const form = () => {
   }, []);
 
   const handleErrors = () => {
-    let errors = 0;
+    let errors = false;
     if (validator.isEmpty(email) || !validator.isEmail(email)) {
       setErrors(prevState => [...prevState, 'Please enter a valid email!']);
       setEmailError(true);
-      errors = 1;
+      errors = true;
     }
 
     if (validator.isEmpty(password)) {
       setErrors(prevState => [...prevState, 'Please enter a valid password!!']);
       setPasswordError(true);
-      errors = 1;
+      errors = true;
     }
 
-    setTimeout(() => setErrors([]), 5000);
+    setTimeout(() => setErrors([]), 3000);
     return errors;
   };
 

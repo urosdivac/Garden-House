@@ -1,69 +1,83 @@
 import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import Cookies from 'js-cookie';
 import styles from './form.module.scss';
-import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import EmailIcon from '@material-ui/icons/Email';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import InputLabel from '@material-ui/core/InputLabel';
+import IconButton from '@material-ui/core/IconButton';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 
 const form = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginType, setLoginType] = useState('farmer');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [errors, setErrors] = useState([]);
 
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    if (cookie) {
-      jwt.verify(cookie, 'secertToken', (err, user) => {
-        if (user.isaccepted === 'accepted') {
-          Router.push('/');
-        }
-      });
-    }
+    if (cookie) Router.push('/');
   }, []);
 
+  const goBack = () => {
+    props.changeStep(1);
+  };
+
   const handleErrors = () => {
-    let errors = 0;
-    if (validator.isEmpty(email) || !validator.isEmail(email)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
-      setEmailError(true);
-      errors = 1;
+    let errors = false;
+
+    if (validator.isEmpty(username)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid username!']);
+      setUsernameError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
     }
 
     if (validator.isEmpty(password)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid password!!']);
+      setErrors(prevState => [...prevState, 'Please enter a valid password!']);
       setPasswordError(true);
-      errors = 1;
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
     }
 
-    setTimeout(() => setErrors([]), 5000);
+    if (password !== confirmPassword) {
+      setErrors(prevState => [...prevState, 'Passwords are not matching!']);
+      setConfirmPasswordError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
+    }
+
+    if (validator.isEmpty(email) || !validator.isEmail(email)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
+      setEmailError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
+    }
+
     return errors;
   };
 
-  const handleLogin = async () => {
-    if (handleErrors()) return;
+  const handleRegistration = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/login/user', {
-        email: email,
-        password: password,
-      });
-
-      if (!response.data.status) {
-        setErrors(prevState => [...prevState, response.data.message]);
-        return;
-      }
-
-      Cookies.set('JWT', response.data.token);
+      if (handleErrors()) return;
+      goBack();
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
       console.log(err);
@@ -79,51 +93,53 @@ const form = () => {
         ))}
       </div>
 
-      <TextField
-        id="outlined-basic"
-        label="E-mail"
-        variant="outlined"
-        className={styles.input}
-        error={emailError}
-        value={email}
-        onChange={e => {
-          setEmail(e.target.value);
-          setEmailError(false);
-        }}
-      />
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">
+          First Name
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          error={usernameError}
+          value={username}
+          onChange={e => {
+            setUsernameError(false);
+            setUsername(e.target.value);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <AccountCircle />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={70}
+        />
+      </FormControl>
 
-      <TextField
-        id="outlined-basic"
-        label="Password"
-        variant="outlined"
-        type="password"
-        className={styles.input}
-        error={passwordError}
-        value={password}
-        onChange={e => {
-          setPassword(e.target.value);
-          setPasswordError(false);
-        }}
-      />
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Last Name</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          error={usernameError}
+          value={username}
+          onChange={e => {
+            setUsernameError(false);
+            setUsername(e.target.value);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <AccountCircle />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={70}
+        />
+      </FormControl>
 
-      <div className={styles.radio}>
-        <p>Login as</p>
-
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender1"
-          value={loginType}
-          onChange={e => setLoginType(e.target.value)}
-        >
-          <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
-          <FormControlLabel
-            value="company"
-            control={<Radio />}
-            label="Company"
-          />
-        </RadioGroup>
-      </div>
+     
 
       <Button
         variant="contained"
@@ -132,7 +148,7 @@ const form = () => {
         size="large"
         onClick={handleLogin}
       >
-        Login
+        Continue
       </Button>
     </div>
   );

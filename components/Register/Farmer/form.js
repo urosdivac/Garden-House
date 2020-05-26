@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import Cookies from 'js-cookie';
 import styles from './form.module.scss';
@@ -13,63 +12,72 @@ import IconButton from '@material-ui/core/IconButton';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
-
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 
-const form = () => {
+const form = props => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [loginType, setLoginType] = useState('farmer');
+  const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  const goForward = () => {
+    props.changeStep(2);
+  };
 
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    if (cookie) {
-      jwt.verify(cookie, 'secertToken', (err, user) => {
-        if (user.isaccepted === 'accepted') {
-          Router.push('/');
-        }
-      });
-    }
+    if (cookie) Router.push('/');
   }, []);
 
   const handleErrors = () => {
-    let errors = 0;
-    if (validator.isEmpty(email) || !validator.isEmail(email)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
-      setEmailError(true);
-      errors = 1;
+    let errors = false;
+
+    if (validator.isEmpty(username)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid username!']);
+      setUsernameError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
     }
 
     if (validator.isEmpty(password)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid password!!']);
+      setErrors(prevState => [...prevState, 'Please enter a valid password!']);
       setPasswordError(true);
-      errors = 1;
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
     }
 
-    setTimeout(() => setErrors([]), 5000);
+    if (password !== confirmPassword) {
+      setErrors(prevState => [...prevState, 'Passwords are not matching!']);
+      setConfirmPasswordError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
+    }
+
+    if (validator.isEmpty(email) || !validator.isEmail(email)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
+      setEmailError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
+    }
+
     return errors;
   };
 
-  const handleLogin = async () => {
-    if (handleErrors()) return;
+  const handleRegistration = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/login/user', {
-        email: email,
-        password: password,
-      });
-
-      if (!response.data.status) {
-        setErrors(prevState => [...prevState, response.data.message]);
-        return;
-      }
-
-      Cookies.set('JWT', response.data.token);
+      if (handleErrors()) return;
+      goForward();
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
       console.log(err);
@@ -90,6 +98,12 @@ const form = () => {
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
+          error={usernameError}
+          value={username}
+          onChange={e => {
+            setUsernameError(false);
+            setUsername(e.target.value);
+          }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton edge="end">
@@ -106,6 +120,12 @@ const form = () => {
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
+          error={passwordError}
+          value={password}
+          onChange={e => {
+            setPasswordError(false);
+            setPassword(e.target.value);
+          }}
           type="password"
           endAdornment={
             <InputAdornment position="end">
@@ -125,6 +145,12 @@ const form = () => {
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
+          error={confirmPasswordError}
+          value={confirmPassword}
+          onChange={e => {
+            setConfirmPasswordError(false);
+            setConfirmPassword(e.target.value);
+          }}
           type="password"
           endAdornment={
             <InputAdornment position="end">
@@ -142,7 +168,12 @@ const form = () => {
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          type="password"
+          error={emailError}
+          value={email}
+          onChange={e => {
+            setEmailError(false);
+            setEmail(e.target.value);
+          }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton edge="end">
@@ -159,7 +190,7 @@ const form = () => {
         color="primary"
         className={styles.button}
         size="large"
-        onClick={handleLogin}
+        onClick={handleRegistration}
       >
         Continue
       </Button>
