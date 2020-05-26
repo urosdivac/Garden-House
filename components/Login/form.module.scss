@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  width: 35rem;
+  padding: 2rem 5rem;
+  border-radius: 10px;
+  background-color: #ededed;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 20rem;
+  font-size: 2rem !important;
+  margin-bottom: 2rem !important;
+  background-color: #fff;
+}
+
+.radio {
+  display: flex;
+}
+
+.radio p {
+  font-size: 1.1rem;
+  margin-right: 1.5rem;
+  color: #777;
+}
+
+.button {
+  background-color: #30c47e !important;
+  margin-top: 2rem !important;
+}
