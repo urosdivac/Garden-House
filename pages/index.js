@@ -14,11 +14,13 @@ export default function Home() {
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', (err, user) => {
-      if (user.isaccepted === 'accepted') {
-        setIsLoggedIn(true);
-      }
-    });
+    if (cookie) {
+      jwt.verify(cookie, 'secertToken', (err, user) => {
+        if (user.isaccepted === 'accepted') {
+          setIsLoggedIn(true);
+        }
+      });
+    }
   }, []);
 
   return (

@@ -23,11 +23,13 @@ const form = () => {
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', (err, user) => {
-      if (user.isaccepted === 'accepted') {
-        Router.push('/');
-      }
-    });
+    if (cookie) {
+      jwt.verify(cookie, 'secertToken', (err, user) => {
+        if (user.isaccepted === 'accepted') {
+          Router.push('/');
+        }
+      });
+    }
   }, []);
 
   const handleErrors = () => {
