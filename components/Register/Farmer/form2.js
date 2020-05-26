@@ -3,27 +3,37 @@ import Router from 'next/router';
 import axios from 'axios';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from './form.module.scss';
-import EmailIcon from '@material-ui/icons/Email';
+import styles from './form2.module.scss';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputLabel from '@material-ui/core/InputLabel';
 import IconButton from '@material-ui/core/IconButton';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
+import PhoneIcon from '@material-ui/icons/Phone';
 import Alert from '@material-ui/lab/Alert';
 
-const form = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [usernameError, setUsernameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+const form = props => {
+  const {
+    firstName,
+    lastName,
+    phone,
+    street,
+    birthday,
+    setFirstName,
+    setLastName,
+    setPhone,
+    setStreet,
+    setBirthday,
+  } = props;
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setLastNameError] = useState(false);
+  const [birthdayError, setBirthdayError] = useState(false);
+  const [streetError, setStreetError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
   const [errors, setErrors] = useState([]);
 
   // Checks if user is logged in
@@ -39,33 +49,47 @@ const form = () => {
   const handleErrors = () => {
     let errors = false;
 
-    if (validator.isEmpty(username)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid username!']);
-      setUsernameError(true);
+    if (validator.isEmpty(firstName)) {
+      setErrors(prevState => [
+        ...prevState,
+        'Please enter a valid first name!',
+      ]);
+      setFirstNameError(true);
       errors = true;
       setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
-    if (validator.isEmpty(password)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid password!']);
-      setPasswordError(true);
+    if (validator.isEmpty(lastName)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid last name!']);
+      setLastNameError(true);
       errors = true;
       setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
-    if (password !== confirmPassword) {
-      setErrors(prevState => [...prevState, 'Passwords are not matching!']);
-      setConfirmPasswordError(true);
+    if (validator.isEmpty(birthday)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid birthday!']);
+      setBirthdayError(true);
       errors = true;
       setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
-    if (validator.isEmpty(email) || !validator.isEmail(email)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
-      setEmailError(true);
+    if (validator.isEmpty(phone)) {
+      setErrors(prevState => [
+        ...prevState,
+        'Please enter a valid phone number!',
+      ]);
+      setPhoneError(true);
+      errors = true;
+      setTimeout(() => setErrors([]), 3000);
+      return errors;
+    }
+
+    if (validator.isEmpty(street)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid street!']);
+      setStreetError(true);
       errors = true;
       setTimeout(() => setErrors([]), 3000);
       return errors;
@@ -77,7 +101,6 @@ const form = () => {
   const handleRegistration = async () => {
     try {
       if (handleErrors()) return;
-      goBack();
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
       console.log(err);
@@ -100,11 +123,11 @@ const form = () => {
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={usernameError}
-          value={username}
+          error={firstNameError}
+          value={firstName}
           onChange={e => {
-            setUsernameError(false);
-            setUsername(e.target.value);
+            setFirstNameError(false);
+            setFirstName(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
@@ -113,7 +136,7 @@ const form = () => {
               </IconButton>
             </InputAdornment>
           }
-          labelWidth={70}
+          labelWidth={80}
         />
       </FormControl>
 
@@ -122,11 +145,11 @@ const form = () => {
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={usernameError}
-          value={username}
+          error={lastNameError}
+          value={lastName}
           onChange={e => {
-            setUsernameError(false);
-            setUsername(e.target.value);
+            setLastNameError(false);
+            setLastName(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
@@ -135,21 +158,94 @@ const form = () => {
               </IconButton>
             </InputAdornment>
           }
-          labelWidth={70}
+          labelWidth={80}
         />
       </FormControl>
 
-     
+      <TextField
+        id="date"
+        className={styles.input}
+        label="Birthday"
+        value={birthday}
+        error={birthdayError}
+        onChange={e => {
+          setBirthdayError(false);
+          setBirthday(e.target.value);
+        }}
+        type="date"
+        variant="outlined"
+        defaultValue="2020-05-24"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
 
-      <Button
-        variant="contained"
-        color="primary"
-        className={styles.button}
-        size="large"
-        onClick={handleLogin}
-      >
-        Continue
-      </Button>
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Street</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          error={streetError}
+          value={street}
+          onChange={e => {
+            setStreetError(false);
+            setStreet(e.target.value);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <HomeIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={42}
+        />
+      </FormControl>
+
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">
+          Phone Number
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          error={phoneError}
+          value={phone}
+          onChange={e => {
+            setPhoneError(false);
+            setPhone(e.target.value);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <PhoneIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={110}
+        />
+      </FormControl>
+      <div className={styles.buttonWrapper}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={styles.button}
+          size="large"
+          onClick={goBack}
+        >
+          Back
+        </Button>
+
+        <Button
+          variant="contained"
+          color="primary"
+          className={styles.button}
+          size="large"
+          onClick={handleRegistration}
+        >
+          Complete
+        </Button>
+      </div>
     </div>
   );
 };

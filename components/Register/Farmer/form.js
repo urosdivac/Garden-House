@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import Router from 'next/router';
-import axios from 'axios';
 import validator from 'validator';
 import Cookies from 'js-cookie';
 import styles from './form.module.scss';
@@ -16,10 +15,17 @@ import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 
 const form = props => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const {
+    username,
+    setUsername,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+  } = props;
+
   const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -111,7 +117,7 @@ const form = props => {
               </IconButton>
             </InputAdornment>
           }
-          labelWidth={70}
+          labelWidth={75}
         />
       </FormControl>
 
