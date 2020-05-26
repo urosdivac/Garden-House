@@ -12,14 +12,14 @@ const register = () => {
       </Link>
 
       <div className={styles.choiceWrapper}>
-        <Link href="/farmerregistration">
+        <Link href="/farmer">
           <div className={styles.iconWrapper}>
             <PersonIcon className={styles.icon} />
             <p>Register as farmer</p>
           </div>
         </Link>
 
-        <Link href="/register/user">
+        <Link href="/buisness">
           <div className={styles.iconWrapper}>
             <StoreIcon className={styles.icon} />
             <p>Register as buisness</p>

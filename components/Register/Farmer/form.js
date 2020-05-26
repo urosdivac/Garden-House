@@ -5,30 +5,38 @@ import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import Cookies from 'js-cookie';
 import styles from './form.module.scss';
-import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import EmailIcon from '@material-ui/icons/Email';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import InputLabel from '@material-ui/core/InputLabel';
+import IconButton from '@material-ui/core/IconButton';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 
 const form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loginType, setLoginType] = useState('farmer');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  // // Checks if user is logged in
-  // useEffect(() => {
-  //   const cookie = Cookies.get('JWT');
-  //   jwt.verify(cookie, 'secertToken', (err, user) => {
-  //     if (user.isaccepted === 'accepted') {
-  //       Router.push('/');
-  //     }
-  //   });
-  // }, []);
+  // Checks if user is logged in
+  useEffect(() => {
+    const cookie = Cookies.get('JWT');
+    if (cookie) {
+      jwt.verify(cookie, 'secertToken', (err, user) => {
+        if (user.isaccepted === 'accepted') {
+          Router.push('/');
+        }
+      });
+    }
+  }, []);
 
   const handleErrors = () => {
     let errors = 0;
@@ -77,51 +85,74 @@ const form = () => {
         ))}
       </div>
 
-      <TextField
-        id="outlined-basic"
-        label="E-mail"
-        variant="outlined"
-        className={styles.input}
-        error={emailError}
-        value={email}
-        onChange={e => {
-          setEmail(e.target.value);
-          setEmailError(false);
-        }}
-      />
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <AccountCircle />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={70}
+        />
+      </FormControl>
 
-      <TextField
-        id="outlined-basic"
-        label="Password"
-        variant="outlined"
-        type="password"
-        className={styles.input}
-        error={passwordError}
-        value={password}
-        onChange={e => {
-          setPassword(e.target.value);
-          setPasswordError(false);
-        }}
-      />
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          type="password"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <LockOpenIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={70}
+        />
+      </FormControl>
 
-      <div className={styles.radio}>
-        <p>Login as</p>
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">
+          Confirm password
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          type="password"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <LockOpenIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={135}
+        />
+      </FormControl>
 
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender1"
-          value={loginType}
-          onChange={e => setLoginType(e.target.value)}
-        >
-          <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
-          <FormControlLabel
-            value="company"
-            control={<Radio />}
-            label="Company"
-          />
-        </RadioGroup>
-      </div>
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">E-mail</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          type="password"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end">
+                <EmailIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={45}
+        />
+      </FormControl>
 
       <Button
         variant="contained"
@@ -130,7 +161,7 @@ const form = () => {
         size="large"
         onClick={handleLogin}
       >
-        Login
+        Continue
       </Button>
     </div>
   );
