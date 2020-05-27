@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
-import jwt from 'jsonwebtoken';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from './index.module.scss';
@@ -14,13 +13,7 @@ export default function Home() {
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    if (cookie) {
-      jwt.verify(cookie, 'secertToken', (err, user) => {
-        if (user.isaccepted === 'accepted') {
-          setIsLoggedIn(true);
-        }
-      });
-    }
+    if (cookie) setIsLoggedIn(true);
   }, []);
 
   return (

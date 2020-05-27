@@ -23,13 +23,7 @@ const form = () => {
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    if (cookie) {
-      jwt.verify(cookie, 'secertToken', (err, user) => {
-        if (user.isaccepted === 'accepted') {
-          Router.push('/');
-        }
-      });
-    }
+    if (cookie) Router.push('/');
   }, []);
 
   const handleErrors = () => {
@@ -53,7 +47,12 @@ const form = () => {
   const handleLogin = async () => {
     if (handleErrors()) return;
     try {
-      const response = await axios.post('http://localhost:3001/login/user', {
+      let query;
+
+      if (loginType === 'farmer') query = 'https://gardenhouse.tech/login/user';
+      else query = 'https://gardenhouse.tech/login/firm';
+
+      const response = await axios.post(query, {
         email: email,
         password: password,
       });
@@ -64,9 +63,11 @@ const form = () => {
       }
 
       Cookies.set('JWT', response.data.token);
+      setEmail('');
+      setPassword('');
+      Router.push('/');
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
-      console.log(err);
     }
   };
   return (
