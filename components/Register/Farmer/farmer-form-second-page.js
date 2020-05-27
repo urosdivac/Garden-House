@@ -55,7 +55,6 @@ const form = props => {
       ]);
       setFirstNameError(true);
       errors = true;
-      setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
@@ -63,7 +62,6 @@ const form = props => {
       setErrors(prevState => [...prevState, 'Please enter a valid last name!']);
       setLastNameError(true);
       errors = true;
-      setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
@@ -71,7 +69,6 @@ const form = props => {
       setErrors(prevState => [...prevState, 'Please enter a valid birthday!']);
       setBirthdayError(true);
       errors = true;
-      setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
@@ -82,7 +79,6 @@ const form = props => {
       ]);
       setPhoneError(true);
       errors = true;
-      setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
@@ -90,7 +86,6 @@ const form = props => {
       setErrors(prevState => [...prevState, 'Please enter a valid street!']);
       setStreetError(true);
       errors = true;
-      setTimeout(() => setErrors([]), 3000);
       return errors;
     }
 
@@ -103,9 +98,9 @@ const form = props => {
       props.handleRegistration();
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
-      console.log(err);
     }
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.errorWrapper}>
@@ -127,6 +122,7 @@ const form = props => {
           value={firstname}
           onChange={e => {
             setFirstNameError(false);
+            setErrors([]);
             setFirstName(e.target.value);
           }}
           endAdornment={
@@ -149,6 +145,7 @@ const form = props => {
           value={lastname}
           onChange={e => {
             setLastNameError(false);
+            setErrors([]);
             setLastName(e.target.value);
           }}
           endAdornment={
@@ -170,6 +167,7 @@ const form = props => {
         error={birthdayError}
         onChange={e => {
           setBirthdayError(false);
+          setErrors([]);
           setBirthday(e.target.value);
         }}
         type="date"
@@ -189,6 +187,7 @@ const form = props => {
           value={birthlocation}
           onChange={e => {
             setStreetError(false);
+            setErrors([]);
             setStreet(e.target.value);
           }}
           endAdornment={
@@ -213,6 +212,7 @@ const form = props => {
           value={phonenumber}
           onChange={e => {
             setPhoneError(false);
+            setErrors([]);
             setPhonenumber(e.target.value);
           }}
           endAdornment={

@@ -127,7 +127,7 @@ const form = props => {
           value={password}
           onChange={e => {
             setPasswordError(false);
-            setErrors([])
+            setErrors([]);
             setPassword(e.target.value);
           }}
           type="password"

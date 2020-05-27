@@ -5,16 +5,15 @@ import Link from 'next/link';
 import Form from '../components/Register/Farmer/farmer-form-first-page';
 import Form2 from '../components/Register/Farmer/farmer-form-second-page';
 import styles from './register-farmer.module.scss';
-const farmerRegistration = () => {
+
+const buisnessRegistration = () => {
   const [registrationStep, setRegistrationStep] = useState(1);
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
-  const [username, setUsername] = useState('');
+  const [fullname, setfullname] = useState('');
+  const [shortname, setshortname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [birthlocation, setStreet] = useState('');
-  const [phonenumber, setPhonenumber] = useState('');
+  const [foundeddate, setfoundeddate] = useState('');
+  const [location, setlocation] = useState('');
   const [email, setEmail] = useState('');
 
   const changeStep = step => {
@@ -24,13 +23,11 @@ const farmerRegistration = () => {
   const handleRegistration = async () => {
     const query = `https://gardenhouse.tech/register/user`;
     await axios.post(query, {
-      firstname,
-      lastname,
-      username: username.toLowerCase().trim(),
+      fullname,
+      shortname,
       password,
-      birthday,
-      birthlocation,
-      phonenumber,
+      foundeddate,
+      location,
       email: email.toLowerCase().trim(),
     });
   };
@@ -42,8 +39,6 @@ const farmerRegistration = () => {
       {registrationStep === 1 ? (
         <Form
           changeStep={changeStep}
-          username={username}
-          setUsername={setUsername}
           password={password}
           setPassword={setPassword}
           confirmPassword={confirmPassword}
@@ -54,16 +49,14 @@ const farmerRegistration = () => {
       ) : (
         <Form2
           changeStep={changeStep}
-          firstname={firstname}
+          fullname={fullname}
           setFirstName={setFirstName}
-          lastname={lastname}
-          setLastName={setLastName}
-          birthday={birthday}
-          setBirthday={setBirthday}
-          phonenumber={phonenumber}
-          setPhonenumber={setPhonenumber}
-          birthlocation={birthlocation}
-          setStreet={setStreet}
+          shortname={shortname}
+          setshortname={setshortname}
+          foundeddate={foundeddate}
+          setfoundeddate={setfoundeddate}
+          location={location}
+          location={setlocation}
           handleRegistration={handleRegistration}
         />
       )}
@@ -75,4 +68,4 @@ const farmerRegistration = () => {
   );
 };
 
-export default farmerRegistration;
+export default buisnessRegistration;
