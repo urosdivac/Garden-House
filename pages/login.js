@@ -5,7 +5,7 @@ const login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <img src="/assets/Logo.svg" className={styles.logo} />
+        <img src="/assets/Logo.svg" className={styles.logo} alt='logo'/>
       </div>
       <Form />
     </div>

@@ -22,7 +22,7 @@ export default function Home() {
         {isLoggedIn ? null : <Navbar />}
 
         <div className={styles.innerContainer}>
-          <img src="/assets/Logo.svg" className={styles.logo} />
+          <img src="/assets/Logo.svg" className={styles.logo} alt="logo" />
 
           <p className={styles.slogan}>Platform for managing nurseries</p>
 

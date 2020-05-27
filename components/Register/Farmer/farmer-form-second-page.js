@@ -1,9 +1,8 @@
 import {useState, useEffect} from 'react';
 import Router from 'next/router';
-import axios from 'axios';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from './form2.module.scss';
+import styles from './farmer-form-second-page.module.scss';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -18,14 +17,14 @@ import Alert from '@material-ui/lab/Alert';
 
 const form = props => {
   const {
-    firstName,
-    lastName,
-    phone,
-    street,
+    firstname,
+    lastname,
+    phonenumber,
+    birthlocation,
     birthday,
     setFirstName,
     setLastName,
-    setPhone,
+    setPhonenumber,
     setStreet,
     setBirthday,
   } = props;
@@ -49,7 +48,7 @@ const form = props => {
   const handleErrors = () => {
     let errors = false;
 
-    if (validator.isEmpty(firstName)) {
+    if (validator.isEmpty(firstname)) {
       setErrors(prevState => [
         ...prevState,
         'Please enter a valid first name!',
@@ -60,7 +59,7 @@ const form = props => {
       return errors;
     }
 
-    if (validator.isEmpty(lastName)) {
+    if (validator.isEmpty(lastname)) {
       setErrors(prevState => [...prevState, 'Please enter a valid last name!']);
       setLastNameError(true);
       errors = true;
@@ -76,7 +75,7 @@ const form = props => {
       return errors;
     }
 
-    if (validator.isEmpty(phone)) {
+    if (validator.isEmpty(phonenumber)) {
       setErrors(prevState => [
         ...prevState,
         'Please enter a valid phone number!',
@@ -87,7 +86,7 @@ const form = props => {
       return errors;
     }
 
-    if (validator.isEmpty(street)) {
+    if (validator.isEmpty(birthlocation)) {
       setErrors(prevState => [...prevState, 'Please enter a valid street!']);
       setStreetError(true);
       errors = true;
@@ -101,6 +100,7 @@ const form = props => {
   const handleRegistration = async () => {
     try {
       if (handleErrors()) return;
+      props.handleRegistration();
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
       console.log(err);
@@ -124,7 +124,7 @@ const form = props => {
           id="outlined-adornment-password"
           className={styles.input}
           error={firstNameError}
-          value={firstName}
+          value={firstname}
           onChange={e => {
             setFirstNameError(false);
             setFirstName(e.target.value);
@@ -146,7 +146,7 @@ const form = props => {
           id="outlined-adornment-password"
           className={styles.input}
           error={lastNameError}
-          value={lastName}
+          value={lastname}
           onChange={e => {
             setLastNameError(false);
             setLastName(e.target.value);
@@ -186,7 +186,7 @@ const form = props => {
           id="outlined-adornment-password"
           className={styles.input}
           error={streetError}
-          value={street}
+          value={birthlocation}
           onChange={e => {
             setStreetError(false);
             setStreet(e.target.value);
@@ -210,10 +210,10 @@ const form = props => {
           id="outlined-adornment-password"
           className={styles.input}
           error={phoneError}
-          value={phone}
+          value={phonenumber}
           onChange={e => {
             setPhoneError(false);
-            setPhone(e.target.value);
+            setPhonenumber(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
@@ -225,6 +225,7 @@ const form = props => {
           labelWidth={110}
         />
       </FormControl>
+
       <div className={styles.buttonWrapper}>
         <Button
           variant="contained"

@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from './form.module.scss';
+import styles from './farmer-form-first-page.module.scss';
 import EmailIcon from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
