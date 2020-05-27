@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from './farmer-form-first-page.module.scss';
+import styles from '../register.module.scss';
 import EmailIcon from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -127,7 +127,7 @@ const form = props => {
           value={password}
           onChange={e => {
             setPasswordError(false);
-            setErrors([])
+            setErrors([]);
             setPassword(e.target.value);
           }}
           type="password"

@@ -1,9 +1,11 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import Head from 'next/head';
+import Router from 'next/router';
 import Link from 'next/link';
-import Form from '../components/Register/Farmer/farmer-form-first-page';
-import Form2 from '../components/Register/Farmer/farmer-form-second-page';
+import Form from '../components/Register/Buisness/buisness-form-first-page';
+import Form2 from '../components/Register/Buisness/buisness-form-second-page';
 import styles from './register-farmer.module.scss';
 
 const buisnessRegistration = () => {
@@ -20,16 +22,32 @@ const buisnessRegistration = () => {
     setRegistrationStep(step);
   };
 
+  // Checks if user is logged in and redicrects him
+  useEffect(() => {
+    const cookie = Cookies.get('JWT');
+    if (cookie) Router.push('/');
+  }, []);
+
   const handleRegistration = async () => {
-    const query = `https://gardenhouse.tech/register/user`;
-    await axios.post(query, {
-      fullname,
-      shortname,
-      password,
-      foundeddate,
-      location,
-      email: email.toLowerCase().trim(),
-    });
+    try {
+      const query = `https://gardenhouse.tech/register/firm`;
+      const resp = await axios.post(query, {
+        fullname,
+        shortname,
+        password,
+        foundeddate,
+        location,
+        email: email.toLowerCase().trim(),
+      });
+
+      if (resp.status)
+        Cookies.set('JWT', resp.data.data, {
+          expires: 7,
+        });
+      Router.push('/');
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className={styles.container}>
@@ -50,13 +68,13 @@ const buisnessRegistration = () => {
         <Form2
           changeStep={changeStep}
           fullname={fullname}
-          setFirstName={setFirstName}
+          setfullname={setfullname}
           shortname={shortname}
           setshortname={setshortname}
           foundeddate={foundeddate}
           setfoundeddate={setfoundeddate}
           location={location}
-          location={setlocation}
+          setlocation={setlocation}
           handleRegistration={handleRegistration}
         />
       )}

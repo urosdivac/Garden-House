@@ -20,7 +20,7 @@ const register = () => {
           </div>
         </Link>
 
-        <Link href="/buisness">
+        <Link href="/register-buisness">
           <div className={styles.iconWrapper}>
             <StoreIcon className={styles.icon} />
             <p>Register as buisness</p>

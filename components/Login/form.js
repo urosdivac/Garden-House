@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import Cookies from 'js-cookie';
 import styles from './form.module.scss';
@@ -40,7 +39,6 @@ const form = () => {
       errors = true;
     }
 
-    setTimeout(() => setErrors([]), 3000);
     return errors;
   };
 
@@ -89,6 +87,7 @@ const form = () => {
         value={email}
         onChange={e => {
           setEmail(e.target.value);
+          setErrors([]);
           setEmailError(false);
         }}
       />
@@ -103,6 +102,7 @@ const form = () => {
         value={password}
         onChange={e => {
           setPassword(e.target.value);
+          setErrors([]);
           setPasswordError(false);
         }}
       />

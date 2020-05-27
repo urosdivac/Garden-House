@@ -29,13 +29,13 @@
 .button {
   background-color: #30c47e !important;
   width: 10rem;
-  margin-top: 2rem !important;
+  margin: 1rem !important;
   border-radius: 25px !important;
 }
 
 .error {
   margin-bottom: 2rem;
-  animation: moveFromTop 0.1s ease-out;
+  animation: moveFromTop 0.3s ease-out;
 }
 
 @keyframes moveFromTop {

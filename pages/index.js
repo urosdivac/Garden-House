@@ -48,14 +48,13 @@ export default function Home() {
       <Head>
         <title>Garden House</title>
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-
-        <link
           href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap"
           rel="stylesheet"
         ></link>
+        <meta
+          name="Description"
+          content="Garden house is online platform for managing nurseries."
+        ></meta>
       </Head>
     </div>
   );

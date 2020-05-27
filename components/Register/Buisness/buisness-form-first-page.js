@@ -2,10 +2,9 @@ import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from './farmer-form-first-page.module.scss';
+import styles from '../register.module.scss';
 import EmailIcon from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputLabel from '@material-ui/core/InputLabel';
 import IconButton from '@material-ui/core/IconButton';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
@@ -16,8 +15,6 @@ import Alert from '@material-ui/lab/Alert';
 
 const form = props => {
   const {
-    username,
-    setUsername,
     email,
     setEmail,
     password,
@@ -26,7 +23,6 @@ const form = props => {
     setConfirmPassword,
   } = props;
 
-  const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
@@ -45,9 +41,9 @@ const form = props => {
   const handleErrors = () => {
     let errors = false;
 
-    if (validator.isEmpty(username)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid username!']);
-      setUsernameError(true);
+    if (validator.isEmpty(email) || !validator.isEmail(email)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
+      setEmailError(true);
       errors = true;
       return errors;
     }
@@ -62,13 +58,6 @@ const form = props => {
     if (password !== confirmPassword) {
       setErrors(prevState => [...prevState, 'Passwords are not matching!']);
       setConfirmPasswordError(true);
-      errors = true;
-      return errors;
-    }
-
-    if (validator.isEmpty(email) || !validator.isEmail(email)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
-      setEmailError(true);
       errors = true;
       return errors;
     }
@@ -96,25 +85,25 @@ const form = props => {
       </div>
 
       <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">E-mail</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={usernameError}
-          value={username}
+          error={emailError}
+          value={email}
           onChange={e => {
-            setUsernameError(false);
+            setEmailError(false);
             setErrors([]);
-            setUsername(e.target.value);
+            setEmail(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton edge="end">
-                <AccountCircle />
+                <EmailIcon />
               </IconButton>
             </InputAdornment>
           }
-          labelWidth={75}
+          labelWidth={45}
         />
       </FormControl>
 
@@ -165,29 +154,6 @@ const form = props => {
             </InputAdornment>
           }
           labelWidth={135}
-        />
-      </FormControl>
-
-      <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">E-mail</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-password"
-          className={styles.input}
-          error={emailError}
-          value={email}
-          onChange={e => {
-            setEmailError(false);
-            setErrors([]);
-            setEmail(e.target.value);
-          }}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton edge="end">
-                <EmailIcon />
-              </IconButton>
-            </InputAdornment>
-          }
-          labelWidth={45}
         />
       </FormControl>
 
