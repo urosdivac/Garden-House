@@ -6,7 +6,7 @@ const dashboard = () => {
   return (
     <div className={styles.container}>
       <div className={styles.panelWrapper}>
-        <Panel admin={true} />
+        <Panel admin={true} isAdmin={true} />
       </div>
       <div className={styles.contentWrapper}>hi</div>
     </div>

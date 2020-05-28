@@ -4,7 +4,7 @@ import styles from './Panel-Item.module.scss';
 
 const Panel = props => {
   return (
-    <div>
+    <div className={styles.containerWrapper}>
       {props.isActive ? (
         <div className={styles.containerActive}>
           <span className={styles.iconWrapperActive}>{props.icon}</span>
