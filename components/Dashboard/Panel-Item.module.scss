@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.iconWrapper {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.text {
+  font-size: 1.5rem;
+  color: #777;
+}
+
+.icon {
+  font-size: 5rem !important;
+}
+
+.containerActive {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 1rem;
+  border-radius: 5rem;
+  cursor: pointer;
+}
+
+.iconWrapperActive {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.textActive {
+  font-size: 1.5rem;
+  color: black;
+}

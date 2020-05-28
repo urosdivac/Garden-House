@@ -22,7 +22,7 @@ const form = () => {
   // Checks if user is logged in
   useEffect(() => {
     const cookie = Cookies.get('JWT');
-    if (cookie) Router.push('/');
+    if (cookie) Router.push('/dashboard');
   }, []);
 
   const handleErrors = () => {
@@ -60,10 +60,10 @@ const form = () => {
         return;
       }
 
-      Cookies.set('JWT', response.data.token);
+      Cookies.set('JWT', response.data.token, {expires: 7});
       setEmail('');
       setPassword('');
-      Router.push('/');
+      Router.push('/dashboard');
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
     }
