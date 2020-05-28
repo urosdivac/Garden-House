@@ -16,10 +16,15 @@ const Panel = props => {
           />
         </Link>
       </div>
+
       <PanelItem
-        icon={<VerifiedUserIcon className={styles.icon} />}
+        icon={
+          <VerifiedUserIcon
+            className={props.admin ? styles.iconActive : styles.icon}
+          />
+        }
         text="Admin Panel"
-        isActive={true}
+        isActive={props.admin}
       />
 
       <PanelItem

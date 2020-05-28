@@ -3,6 +3,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 80%;
+  margin-left: 0.4rem;
   margin-bottom: 1rem;
   cursor: pointer;
 }
@@ -15,13 +16,17 @@
 .text {
   font-size: 1.5rem;
   color: #777;
+  letter-spacing: 2px;
 }
 
 .icon {
   font-size: 5rem !important;
+  
 }
 
 .containerActive {
+  width: 95%;
+  margin-left: 0.4rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -38,5 +43,6 @@
 
 .textActive {
   font-size: 1.5rem;
-  color: black;
+  color: #1f232a;
+  letter-spacing: 1.5px;
 }
