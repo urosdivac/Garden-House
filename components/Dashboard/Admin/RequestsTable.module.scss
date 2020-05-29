@@ -15,6 +15,10 @@
     font-family: 'Lato', sans-serif;
     letter-spacing: 2px;
   }
+  transition: all 0.2s;
+  &:hover {
+    -webkit-filter: brightness(80%);
+  }
 }
 
 .all {
@@ -47,4 +51,21 @@
   align-items: center;
   width: 100%;
   background-color: #db4537;
+}
+
+.dataFields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :first-child {
+    flex-basis: 5%;
+  }
+}
+
+.dataField {
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }

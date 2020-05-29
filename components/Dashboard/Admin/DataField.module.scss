@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :first-child {
+    flex-basis: 5%;
+  }
+}
+
+.field {
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  min-width: auto;
+  max-width: auto;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.functionWrapper {
+  height: 1.25rem;
+}
+
+.accept {
+  color: #0f9d58;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+
+.accepted {
+  color: #0f9d58;
+}
+
+.decline {
+  color: #db4537;
+  cursor: pointer;
+}
+
+.declined {
+  color: #db4537;
+}
