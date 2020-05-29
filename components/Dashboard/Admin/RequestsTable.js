@@ -17,7 +17,6 @@ const RequestsTable = props => {
           className={styles.fieldContainer}
           onClick={() => {
             props.changeStatusFilter('pending');
-            console.log(props.statusfilter);
           }}
         >
           <div className={styles.pending}>

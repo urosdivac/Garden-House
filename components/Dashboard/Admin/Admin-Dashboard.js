@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import WelcomeHeader from './WelcomeHeader';
 import RequestsTable from './RequestsTable';
 import DataField from './DataField';
-
 import axios from 'axios';
 
 const Admin = () => {
@@ -14,11 +13,24 @@ const Admin = () => {
   const [statusFilter, setStatusFilter] = useState('pending');
   const [filteredData, setFilteredData] = useState([]);
 
+  const newRequests = () => {
+    const arr = data.filter(item => item.isaccepted === 'pending');
+    return arr.length;
+  };
+
   const changeStatusFilter = filter => {
     setStatusFilter(filter);
-    const newFilter = data.forEach(item => {
-      const isit = item.isaccepted === 'pending';
-      console.log(isit);
+
+    if (filter === 'all') {
+      setFilteredData(data);
+      return;
+    }
+
+    setFilteredData([]);
+
+    data.forEach(item => {
+      if (item.isaccepted == filter)
+        setFilteredData(prevState => [...prevState, item]);
     });
   };
 
@@ -34,7 +46,7 @@ const Admin = () => {
     setData([...data.data.data]);
     setFilteredData([...data.data.data]);
   };
-  
+
   useEffect(() => {
     getData();
     getTokenInfo();
@@ -43,7 +55,7 @@ const Admin = () => {
     <div className={styles.container}>
       <WelcomeHeader
         name={token ? token.firstname : null}
-        requestsNumber={data.length}
+        requestsNumber={newRequests()}
       />
       <RequestsTable
         changeStatusFilter={changeStatusFilter}

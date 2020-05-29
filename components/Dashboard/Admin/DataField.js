@@ -1,11 +1,22 @@
-import React from 'react';
+import {useState} from 'react';
 import styles from './DataField.module.scss';
 import CheckIcon from '@material-ui/icons/Check';
 import BlockIcon from '@material-ui/icons/Block';
 import axios from 'axios';
 
 const DataField = props => {
-  const acceptUser = async id => {};
+  const [status, setStatus] = useState(props.isaccepted);
+  
+  const acceptUser = async () => {
+    await axios.post('https://gardenhouse.tech/admin/accept', {id: props.id});
+    setStatus('accepted');
+  };
+
+  const declineUser = async () => {
+    await axios.post('https://gardenhouse.tech/admin/decline', {id: props.id});
+    setStatus('declined');
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.field}>
@@ -33,22 +44,20 @@ const DataField = props => {
         <p>{props.email}</p>
       </div>
       <div className={styles.field}>
-        <p>
-          {props.isaccepted === 'pending' ? (
-            <div className={styles.functionWrapper}>
-              <CheckIcon className={styles.accept} />
-              <BlockIcon className={styles.decline} />
-            </div>
-          ) : null}
+        {status === 'pending' ? (
+          <div className={styles.functionWrapper}>
+            <CheckIcon className={styles.accept} onClick={acceptUser} />
+            <BlockIcon className={styles.decline} onClick={declineUser} />
+          </div>
+        ) : null}
 
-          {props.isaccepted === 'accepted' ? (
-            <p className={styles.accepted}>Accepted</p>
-          ) : null}
+        {status === 'accepted' ? (
+          <p className={styles.accepted}>Accepted</p>
+        ) : null}
 
-          {props.isaccepted === 'declined' ? (
-            <p className={styles.declined}>Declined</p>
-          ) : null}
-        </p>
+        {status === 'declined' ? (
+          <p className={styles.declined}>Declined</p>
+        ) : null}
       </div>
     </div>
   );

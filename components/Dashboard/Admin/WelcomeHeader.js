@@ -9,11 +9,17 @@ const WelcomeMessage = props => {
       <div className={styles.welcomeWrapper}>
         <div className={styles.welcomeTextWrapper}>
           <p className={styles.weclomeHeader}>Welcome back, {props.name}</p>
-
-          <p className={styles.welcomeText}>
-            There were <b>{props.requestsNumber}</b> new requests since your
-            last login
-          </p>
+          {props.requestsNumber === 1 ? (
+            <p className={styles.welcomeText}>
+              There was <b>{props.requestsNumber}</b> new request since your
+              last login
+            </p>
+          ) : (
+            <p className={styles.welcomeText}>
+              There were <b>{props.requestsNumber}</b> new requests since your
+              last login
+            </p>
+          )}
         </div>
 
         <img
