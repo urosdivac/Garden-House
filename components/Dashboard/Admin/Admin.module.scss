@@ -1,10 +1,11 @@
 .container {
   display: flex;
   flex-direction: column;
+  margin-left: 20rem;
 }
 
 .dataWrapper > {
-  :nth-child(odd) {
+  :nth-child(2n) {
     background-color: rgba(255, 255, 255, 0.912);
   }
 }

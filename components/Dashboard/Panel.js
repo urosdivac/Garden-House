@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
+import Cookies from 'js-cookie';
 import styles from './Panel.module.scss';
 import PanelItem from './Panel-Item';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
@@ -13,6 +15,10 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 const Panel = props => {
+  const logout = () => {
+    Cookies.remove('JWT');
+    Router.push('/');
+  };
   return (
     <div className={styles.container}>
       <div className={styles.logoWrapper}>
@@ -110,9 +116,11 @@ const Panel = props => {
         text="Settings"
         isActive={props.settings}
       />
+
       <PanelItem
         icon={<ExitToAppIcon className={styles.icon} />}
         text="Log out"
+        logout={logout}
       />
     </div>
   );

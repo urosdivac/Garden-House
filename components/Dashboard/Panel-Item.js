@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './Panel-Item.module.scss';
 
-
 const Panel = props => {
+  const handleLogOut = () => {
+    if (props.logout) props.logout();
+  };
+  
   return (
-    <div className={styles.containerWrapper}>
+    <div className={styles.containerWrapper} onClick={handleLogOut}>
       {props.isActive ? (
         <div className={styles.containerActive}>
           <span className={styles.iconWrapperActive}>{props.icon}</span>
