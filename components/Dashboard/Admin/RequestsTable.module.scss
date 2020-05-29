@@ -1,0 +1,50 @@
+.fields {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fieldContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 25%;
+  cursor: pointer;
+  p {
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 2px;
+  }
+}
+
+.all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #4286f4;
+}
+
+.pending {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #f4b300;
+}
+
+.accepted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #0f9d58;
+}
+
+.declined {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #db4537;
+}

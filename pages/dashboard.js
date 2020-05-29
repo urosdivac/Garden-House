@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './dashboard.module.scss';
 import Panel from '../components/Dashboard/Panel';
-import Admin from '../components/Dashboard/Admin-Dashboard';
+import Admin from '../components/Dashboard/Admin/Admin-Dashboard';
 
 const dashboard = () => {
   return (
