@@ -2,5 +2,11 @@
   display: flex;
 }
 .panelWrapper {
-  width: 25rem;
+  flex-basis: 20%;
+}
+
+.contentWrapper {
+  height: 100vh;
+  flex-basis: 80%;
+  background-color: rgba(0, 0, 0, 0.055);
 }

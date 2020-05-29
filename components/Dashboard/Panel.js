@@ -32,7 +32,7 @@ const Panel = props => {
               className={props.admin ? styles.iconActive : styles.icon}
             />
           }
-          text="Admin Panel"
+          text="Admin Dashboard"
           isActive={props.admin}
         />
       ) : null}
@@ -116,7 +116,7 @@ const Panel = props => {
       />
 
       <PanelItem
-        icon={<ExitToAppIcon className={styles.icon} />}
+        icon={<ExitToAppIcon className={styles.logout} />}
         text="Log out"
       />
     </div>

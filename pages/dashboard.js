@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './dashboard.module.scss';
 import Panel from '../components/Dashboard/Panel';
+import Admin from '../components/Dashboard/Admin-Dashboard';
 
 const dashboard = () => {
   return (
@@ -8,7 +9,9 @@ const dashboard = () => {
       <div className={styles.panelWrapper}>
         <Panel admin={true} isAdmin={true} />
       </div>
-      <div className={styles.contentWrapper}>hi</div>
+      <div className={styles.contentWrapper}>
+        <Admin />
+      </div>
     </div>
   );
 };

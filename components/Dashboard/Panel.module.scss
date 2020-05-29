@@ -1,13 +1,15 @@
 .container {
   height: 100vh;
-  position: fixed;
   width: 25rem;
   background-color: #eaeff8;
 }
 
 .icon {
   font-size: 3rem !important;
-  color: #282c34 !important;
+  color: #777 !important;
+  &:active {
+    color: #30c47e;
+  }
 }
 
 .active {
@@ -18,6 +20,11 @@
 .iconActive {
   font-size: 3rem !important;
   color: #30c47e !important;
+}
+
+.logout {
+  font-size: 3rem !important;
+  color: #ff5252bb !important;
 }
 
 .logoWrapper {
