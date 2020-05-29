@@ -17,11 +17,7 @@ const Panel = props => {
     <div className={styles.container}>
       <div className={styles.logoWrapper}>
         <Link href="/">
-          <img
-            src="/assets/Logo-Green.svg"
-            className={styles.logo}
-            alt="logo"
-          />
+          <img src="/assets/Logo.svg" className={styles.logo} alt="logo" />
         </Link>
       </div>
 
@@ -114,9 +110,8 @@ const Panel = props => {
         text="Settings"
         isActive={props.settings}
       />
-
       <PanelItem
-        icon={<ExitToAppIcon className={styles.logout} />}
+        icon={<ExitToAppIcon className={styles.icon} />}
         text="Log out"
       />
     </div>
