@@ -6,15 +6,17 @@ import axios from 'axios';
 
 const DataField = props => {
   const [status, setStatus] = useState(props.isaccepted);
-  
+
   const acceptUser = async () => {
     await axios.post('https://gardenhouse.tech/admin/accept', {id: props.id});
     setStatus('accepted');
+    props.getdata();
   };
 
   const declineUser = async () => {
     await axios.post('https://gardenhouse.tech/admin/decline', {id: props.id});
     setStatus('declined');
+    props.getdata();
   };
 
   return (

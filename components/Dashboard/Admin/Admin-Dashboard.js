@@ -10,8 +10,9 @@ import axios from 'axios';
 const Admin = () => {
   const [token, setToken] = useState();
   const [data, setData] = useState([]);
+  const [stats, setStats] = useState({});
   const [statusFilter, setStatusFilter] = useState('pending');
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState();
 
   const newRequests = () => {
     const arr = data.filter(item => item.isaccepted === 'pending');
@@ -47,15 +48,22 @@ const Admin = () => {
     setFilteredData([...data.data.data]);
   };
 
+  const getStats = async () => {
+    const data = await axios.get('https://gardenhouse.tech/admin/stats');
+    setStats([...data.data.data]);
+  };
+
   useEffect(() => {
     getData();
     getTokenInfo();
+    getStats();
   }, []);
   return (
     <div className={styles.container}>
       <WelcomeHeader
         name={token ? token.firstname : null}
         requestsNumber={newRequests()}
+        stats={stats}
       />
       <RequestsTable
         changeStatusFilter={changeStatusFilter}
@@ -71,11 +79,12 @@ const Admin = () => {
                   firstname={item.firstname}
                   lastname={item.lastname}
                   username={item.username}
-                  createdat={new Date(item.created_at).toLocaleDateString()}
+                  createdat={new Date(item.created_at).toLocaleString()}
                   birthday={new Date(item.birthday).toLocaleDateString()}
                   phonenumber={item.phonenumber}
                   email={item.email}
                   isaccepted={item.isaccepted}
+                  getdata={getData}
                 />
               );
             })

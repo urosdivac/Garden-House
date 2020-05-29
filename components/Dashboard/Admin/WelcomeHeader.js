@@ -1,4 +1,5 @@
 import styles from './WelcomeHeader.module.scss';
+import {SimplePieChart} from './Chart';
 
 const WelcomeMessage = props => {
   return (
@@ -27,6 +28,7 @@ const WelcomeMessage = props => {
           className={styles.requests}
           alt="logo"
         />
+        <SimplePieChart />
       </div>
     </div>
   );
