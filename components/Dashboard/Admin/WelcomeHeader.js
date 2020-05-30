@@ -1,5 +1,6 @@
 import styles from './WelcomeHeader.module.scss';
-import {SimplePieChart} from './Chart';
+import Graph from './Graph';
+import Pie from './PieChart';
 
 const WelcomeMessage = props => {
   return (
@@ -31,8 +32,10 @@ const WelcomeMessage = props => {
           />
         </div>
         <div className={styles.statsWrapper}>
-          <SimplePieChart stats={props.stats}/>
+          <Pie stats={props.stats} />
+    
         </div>
+        <Graph />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import styles from './dashboard.module.scss';
 import Panel from '../components/Dashboard/Panel';
 import Admin from '../components/Dashboard/Admin/Admin-Dashboard';
@@ -12,6 +13,9 @@ const dashboard = () => {
       <div className={styles.contentWrapper}>
         <Admin />
       </div>
+      <Head>
+        <title>Admin Dashboard - Garden House</title>
+      </Head>
     </div>
   );
 };

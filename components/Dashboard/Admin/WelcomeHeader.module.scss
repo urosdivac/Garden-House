@@ -15,7 +15,7 @@
 .firstBlock {
   display: flex;
   justify-content: flex-start;
-  width: 80rem;
+  width: 150rem;
   padding-left: 2rem;
   align-items: center;
 }
@@ -23,8 +23,10 @@
 .statsWrapper {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 100%;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
 .welcomeWrapper {
@@ -48,4 +50,19 @@
 .welcomeText {
   font-size: 1.2rem;
   font-family: 'Lato', sans-serif;
+}
+
+.statistics {
+  display: flex;
+  position: relative;
+  bottom: 2rem;
+  flex-direction: column;
+  height: 15rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.statisticsHeader {
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
 }
