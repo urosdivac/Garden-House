@@ -10,7 +10,7 @@ import axios from 'axios';
 const Admin = () => {
   const [token, setToken] = useState();
   const [data, setData] = useState([]);
-  const [stats, setStats] = useState({});
+  const [stats, setStats] = useState([]);
   const [statusFilter, setStatusFilter] = useState('pending');
   const [filteredData, setFilteredData] = useState();
 
@@ -35,6 +35,15 @@ const Admin = () => {
     });
   };
 
+  const updateStats = stat => {
+    const newStat = stats[stat] + 1;
+    const pendingDecrease = stat[stats.length - 1] - 1;
+    const newStatsArr = [...stats];
+    newStatsArr[stat] = newStat;
+    newStatsArr[stats.length - 1] = pendingDecrease;
+    setStats(newStatsArr);
+  };
+
   const getTokenInfo = async () => {
     const cookie = Cookies.get('JWT');
     jwt.verify(cookie, 'secertToken', async (err, decoded) => {
@@ -48,9 +57,17 @@ const Admin = () => {
     setFilteredData([...data.data.data]);
   };
 
-  const getStats = async () => {
-    const data = await axios.get('https://gardenhouse.tech/admin/stats');
-    setStats([...data.data.data]);
+  const getStats = () => {
+    axios.get('https://gardenhouse.tech/admin/stats').then(resp => {
+      const arr = [...resp.data.data];
+      const newArr = [];
+      const sum = arr.reduce((acc, curr) => {
+        newArr.push(curr.count * 1);
+        return acc + curr.count * 1;
+      }, 0);
+      newArr.unshift(sum);
+      setStats(newArr);
+    });
   };
 
   useEffect(() => {
@@ -85,6 +102,7 @@ const Admin = () => {
                   email={item.email}
                   isaccepted={item.isaccepted}
                   getdata={getData}
+                  updatestats={updateStats}
                 />
               );
             })

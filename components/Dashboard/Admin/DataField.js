@@ -11,12 +11,14 @@ const DataField = props => {
     await axios.post('https://gardenhouse.tech/admin/accept', {id: props.id});
     setStatus('accepted');
     props.getdata();
+    props.updatestats(1);
   };
 
   const declineUser = async () => {
     await axios.post('https://gardenhouse.tech/admin/decline', {id: props.id});
     setStatus('declined');
     props.getdata();
+    props.updatestats(2);
   };
 
   return (

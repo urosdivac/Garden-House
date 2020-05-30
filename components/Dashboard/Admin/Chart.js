@@ -1,19 +1,31 @@
 import * as d3 from 'd3';
+import {useState} from 'react';
 
-const data = [1, 2, 3, 4];
+export const SimplePieChart = props => {
+  const [stats, setStats] = useState(props.stats);
+  let colors = [];
 
-export const SimplePieChart = () => {
-  const height = 400;
-  const width = 400;
+  if (stats) {
+    if (stats.length === 3) {
+      colors = ['#4286f4', '#0f9d58', '#db4537'];
+    } else {
+      colors = ['#4286f4', '#db4537', '#0f9d58', '#f4b300'];
+    }
+  }
 
+  const height = 300;
+  const width = 300;
+  const data = props.stats;
   let pie = d3.pie()(data);
 
   return (
-    <svg height={height} width={width}>
-      <g transform={`translate(${width / 2},${height / 2})`}>
-        <Slice pie={pie} />
-      </g>
-    </svg>
+    <div>
+      <svg height={height} width={width}>
+        <g transform={`translate(${width / 2},${height / 2})`}>
+          <Slice pie={pie} colors={colors} />
+        </g>
+      </svg>
+    </div>
   );
 };
 
@@ -22,11 +34,14 @@ const Slice = props => {
 
   let arc = d3.arc().innerRadius(0).outerRadius(100);
 
-  let interpolate = d3.interpolateRgb('#eaaf79', '#bc3358');
-
   return pie.map((slice, index) => {
-    let sliceColor = interpolate(index / (pie.length - 1));
-
-    return <path d={arc(slice)} fill={sliceColor} />;
+    return (
+      <path
+        d={arc(slice)}
+        fill={props.colors[index]}
+        key={index}
+        label={'hi'}
+      />
+    );
   });
 };
