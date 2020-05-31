@@ -33,9 +33,8 @@ const WelcomeMessage = props => {
         </div>
         <div className={styles.statsWrapper}>
           <Pie stats={props.stats} />
-    
+          <Graph stats={props.stats} data={props.data} />
         </div>
-        <Graph />
       </div>
     </div>
   );

@@ -15,18 +15,18 @@
 .firstBlock {
   display: flex;
   justify-content: flex-start;
-  width: 150rem;
+  min-width: 40rem;
   padding-left: 2rem;
   align-items: center;
 }
 
 .statsWrapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .welcomeWrapper {

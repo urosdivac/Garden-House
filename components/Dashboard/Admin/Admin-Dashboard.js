@@ -81,6 +81,7 @@ const Admin = () => {
         name={token ? token.firstname : null}
         requestsNumber={newRequests()}
         stats={stats}
+        data={data}
       />
       <RequestsTable
         changeStatusFilter={changeStatusFilter}

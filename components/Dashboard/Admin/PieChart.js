@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 import Chart from 'chart.js';
-import styles from './Graph.module.scss';
+import styles from './PieChart.module.scss';
 
 const Pie = props => {
   const graph = useRef(null);
@@ -8,9 +8,13 @@ const Pie = props => {
 
   if (props.stats) {
     if (props.stats.length === 3) {
-      colors = ['#0f9d58', '#db4537'];
+      colors = ['rgba(48, 196, 126,0.8)', 'rgba(219, 69, 55,0.8)'];
     } else {
-      colors = ['#0f9d58', '#db4537', '#f4b300'];
+      colors = [
+        'rgba(48, 196, 126,0.8)',
+        'rgba(219, 69, 55,0.8)',
+        'rgba(244, 179, 0,0.8)',
+      ];
     }
   }
 
@@ -30,7 +34,7 @@ const Pie = props => {
     Chart.defaults.global.defaultFontColor = '#777';
 
     new Chart(myChart, {
-      type: 'pie',
+      type: 'doughnut',
       data: {
         labels: ['Accepted', 'Declined', 'Pending'],
         datasets: [
@@ -44,7 +48,9 @@ const Pie = props => {
         title: {
           display: true,
           text: 'Acceptance rate',
-          fontSize: 25,
+          fontSize: 22,
+          fontColor: '#777',
+          fontFamily: 'Lato',
         },
         legend: {
           display: false,
@@ -72,7 +78,7 @@ const Pie = props => {
 
   return (
     <div className={styles.container}>
-      <canvas className={styles.myChart} ref={graph}></canvas>
+      <canvas className={styles.pieChart} ref={graph}></canvas>
     </div>
   );
 };

@@ -2,11 +2,38 @@ import {useRef, useEffect} from 'react';
 import Chart from 'chart.js';
 import styles from './Graph.module.scss';
 
-const Graph = () => {
+const Graph = props => {
   const graph = useRef(null);
+  let colors = [];
+
+  if (props.stats) {
+    if (props.stats.length === 3) {
+      colors = ['#0f9d58', '#db4537'];
+    } else {
+      colors = ['#0f9d58', '#db4537', '#f4b300'];
+    }
+  }
 
   useEffect(() => {
     let myChart = graph.current;
+    let data = [];
+
+    const formatedData = props.data.map(item =>
+      new Date(item.created_at).toLocaleDateString(),
+    );
+    const reversedArr = formatedData.reverse();
+
+    const counts = {};
+    reversedArr.forEach(function (x) {
+      counts[x] = (counts[x] || 0) + 1;
+    });
+
+    if (props.stats.length === 3) {
+      data.unshift(props.stats[1], props.stats[2]);
+    } else {
+      data.unshift(props.stats[1], props.stats[2], props.stats[3]);
+    }
+    console.log(counts);
 
     // Global Options
     Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -14,36 +41,29 @@ const Graph = () => {
     Chart.defaults.global.defaultFontColor = '#777';
 
     new Chart(myChart, {
-      type: 'pie',
+      type: 'line',
       data: {
-        labels: [
-          'Boston',
-          'Worcester',
-          'Springfield',
-          'Lowell',
-          'Cambridge',
-          'New Bedford',
-        ],
+        labels: Object.keys(counts),
         datasets: [
           {
-            label: 'Population',
-            data: [617594, 181045, 153060, 106519, 105162, 95072],
-            //backgroundColor:'green',
-            backgroundColor: ['#30C47E'],
+            data: Object.values(counts),
+            backgroundColor: 'rgba(48, 196, 126,0.6)',
           },
         ],
       },
       options: {
         title: {
           display: true,
-          text: 'Registrations by date',
-          fontSize: 25,
+          text: 'Registration statistics',
+          fontSize: 22,
+          fontColor: '#777',
+          fontFamily: 'Lato',
         },
         legend: {
           display: false,
           position: 'right',
           labels: {
-            fontColor: '#777',
+            fontColor: 'green',
           },
         },
         layout: {
@@ -61,11 +81,11 @@ const Graph = () => {
         maintainAspectRatio: false,
       },
     });
-  }, []);
+  }, [props.stats]);
 
   return (
     <div className={styles.container}>
-      <canvas className={styles.myChart} ref={graph}></canvas>
+      <canvas className={styles.graphChart} ref={graph}></canvas>
     </div>
   );
 };
