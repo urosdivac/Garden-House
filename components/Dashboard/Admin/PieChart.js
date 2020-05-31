@@ -48,15 +48,16 @@ const Pie = props => {
         title: {
           display: true,
           text: 'Acceptance rate',
-          fontSize: 22,
+          fontSize: 24,
           fontColor: '#777',
-          fontFamily: 'Lato',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
         },
         legend: {
           display: false,
           position: 'right',
           labels: {
-            fontColor: '#777',
+            fontColor: 'rgba(0,0,0,0.5)',
           },
         },
         layout: {
@@ -66,9 +67,11 @@ const Pie = props => {
             bottom: 0,
             top: 0,
           },
+          fontFamily: 'Roboto',
         },
         tooltips: {
           enabled: true,
+          fontFamily: 'Roboto',
         },
         responsive: true,
         maintainAspectRatio: false,

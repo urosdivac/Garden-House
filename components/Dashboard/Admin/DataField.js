@@ -42,9 +42,6 @@ const DataField = props => {
         <p>{props.birthday}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.phonenumber}</p>
-      </div>
-      <div className={styles.field}>
         <p>{props.email}</p>
       </div>
       <div className={styles.field}>

@@ -2,9 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
   :first-child {
     flex-basis: 5%;
   }
+  color: #777;
+  font-size: 0.9rem;
 }
 
 .field {
@@ -14,7 +17,6 @@
   min-width: auto;
   max-width: auto;
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .functionWrapper {

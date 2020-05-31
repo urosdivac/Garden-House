@@ -1,11 +1,15 @@
 .headingWrapper {
+  color: #777;
+  height: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  // background-color: #393e46;
 }
 
 .heading {
-  margin-left: 2rem;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  margin-top: 0rem;
   font-size: 1.5rem;
-  font-family: 'Lato', sans-serif;
 }
 
 .requests {
@@ -17,7 +21,15 @@
   justify-content: flex-start;
   min-width: 40rem;
   padding-left: 2rem;
+  color: #777;
   align-items: center;
+}
+
+.pieWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .statsWrapper {
@@ -34,11 +46,12 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  font-family: 'Roboto';
 }
 
 .welcomeTextWrapper {
   display: flex;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto';
   flex-direction: column;
   align-items: flex-start;
 }

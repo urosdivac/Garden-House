@@ -32,7 +32,9 @@ const WelcomeMessage = props => {
           />
         </div>
         <div className={styles.statsWrapper}>
-          <Pie stats={props.stats} />
+          <div className={styles.pieWrapper}>
+            <Pie stats={props.stats} />
+          </div>
           <Graph stats={props.stats} data={props.data} />
         </div>
       </div>

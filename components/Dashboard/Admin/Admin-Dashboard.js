@@ -98,7 +98,7 @@ const Admin = () => {
                   lastname={item.lastname}
                   username={item.username}
                   createdat={new Date(item.created_at).toLocaleString()}
-                  birthday={new Date(item.birthday).toLocaleDateString()}
+                  birthday={new Date(item.birthday).toDateString()}
                   phonenumber={item.phonenumber}
                   email={item.email}
                   isaccepted={item.isaccepted}

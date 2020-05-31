@@ -63,9 +63,7 @@ const RequestsTable = props => {
         <div className={styles.dataField}>
           <p>Birthday</p>
         </div>
-        <div className={styles.dataField}>
-          <p>Phone Number</p>
-        </div>
+
         <div className={styles.dataField}>
           <p>E-mail</p>
         </div>

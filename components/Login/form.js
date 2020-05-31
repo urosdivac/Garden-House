@@ -77,64 +77,68 @@ const form = () => {
           </Alert>
         ))}
       </div>
+        <TextField
+          id="outlined-basic"
+          label="E-mail"
+          variant="outlined"
+          className={styles.input}
+          error={emailError}
+          value={email}
+          onChange={e => {
+            setEmail(e.target.value);
+            setErrors([]);
+            setEmailError(false);
+          }}
+        />
 
-      <TextField
-        id="outlined-basic"
-        label="E-mail"
-        variant="outlined"
-        className={styles.input}
-        error={emailError}
-        value={email}
-        onChange={e => {
-          setEmail(e.target.value);
-          setErrors([]);
-          setEmailError(false);
-        }}
-      />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="password"
+          className={styles.input}
+          error={passwordError}
+          value={password}
+          onChange={e => {
+            setPassword(e.target.value);
+            setErrors([]);
+            setPasswordError(false);
+          }}
+        />
 
-      <TextField
-        id="outlined-basic"
-        label="Password"
-        variant="outlined"
-        type="password"
-        className={styles.input}
-        error={passwordError}
-        value={password}
-        onChange={e => {
-          setPassword(e.target.value);
-          setErrors([]);
-          setPasswordError(false);
-        }}
-      />
+        <div className={styles.radio}>
+          <p>Login as</p>
 
-      <div className={styles.radio}>
-        <p>Login as</p>
+          <RadioGroup
+            row
+            aria-label="gender"
+            name="gender1"
+            value={loginType}
+            onChange={e => setLoginType(e.target.value)}
+          >
+            <FormControlLabel
+              value="farmer"
+              control={<Radio />}
+              label="Farmer"
+            />
+            <FormControlLabel
+              value="company"
+              control={<Radio />}
+              label="Company"
+            />
+          </RadioGroup>
+        </div>
 
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender1"
-          value={loginType}
-          onChange={e => setLoginType(e.target.value)}
+        <Button
+          variant="contained"
+          color="primary"
+          className={styles.button}
+          size="large"
+          onClick={handleLogin}
+          type="submit"
         >
-          <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
-          <FormControlLabel
-            value="company"
-            control={<Radio />}
-            label="Company"
-          />
-        </RadioGroup>
-      </div>
-
-      <Button
-        variant="contained"
-        color="primary"
-        className={styles.button}
-        size="large"
-        onClick={handleLogin}
-      >
-        Login
-      </Button>
+          Login
+        </Button>
     </div>
   );
 };

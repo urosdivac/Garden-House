@@ -17,7 +17,6 @@ const Graph = props => {
   useEffect(() => {
     let myChart = graph.current;
     let data = [];
-
     const formatedData = props.data.map(item =>
       new Date(item.created_at).toLocaleDateString(),
     );
@@ -48,6 +47,7 @@ const Graph = props => {
           {
             data: Object.values(counts),
             backgroundColor: 'rgba(48, 196, 126,0.6)',
+            // backgroundColor: 'rgba(78,204,163,1)',
           },
         ],
       },
@@ -55,9 +55,10 @@ const Graph = props => {
         title: {
           display: true,
           text: 'Registration statistics',
-          fontSize: 22,
+          fontSize: 24,
           fontColor: '#777',
-          fontFamily: 'Lato',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
         },
         legend: {
           display: false,
@@ -65,6 +66,7 @@ const Graph = props => {
           labels: {
             fontColor: 'green',
           },
+          fontFamily: 'Roboto',
         },
         layout: {
           padding: {
@@ -73,15 +75,18 @@ const Graph = props => {
             bottom: 0,
             top: 0,
           },
+          fontFamily: 'Roboto',
         },
         tooltips: {
           enabled: true,
+          fontFamily: 'Roboto',
         },
         responsive: true,
         maintainAspectRatio: false,
+        fontFamily: 'Roboto',
       },
     });
-  }, [props.stats]);
+  }, [props.data, props.stats]);
 
   return (
     <div className={styles.container}>
