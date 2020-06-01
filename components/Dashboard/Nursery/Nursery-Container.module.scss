@@ -11,6 +11,7 @@
   background: #f5f5f5;
   box-shadow: 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
   transition: transform 0.3s;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-8px);

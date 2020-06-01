@@ -8,14 +8,16 @@ import styles from './Modal.module.scss';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
+import axios from 'axios';
 
-export default function TransitionsModal() {
-  const [open, setOpen] = React.useState(true);
+export default function TransitionsModal(props) {
+  const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [address, setAdddress] = useState('');
-  const [length, setLength] = useState();
-  const [width, setWidth] = useState();
-  const [errors, setErrors] = useState([]);
+  const [length, setLength] = useState('');
+  const [width, setWidth] = useState('');
+  const [errors, setErrors] = useState('');
   const [nameError, setNameError] = useState(false);
   const [addressError, setAddressError] = useState(false);
   const [lengthError, setLengthError] = useState(false);
@@ -37,17 +39,56 @@ export default function TransitionsModal() {
 
   const classes = useStyles();
 
+  const checkErrors = () => {
+    if (validator.isEmpty(name)) {
+      setNameError(true);
+      setErrors('Please enter a valid name');
+      return true;
+    }
+
+    if (validator.isEmpty(address)) {
+      setAddressError(true);
+      setErrors('Please enter a valid address');
+      return true;
+    }
+
+    if (validator.isEmpty(length) || !validator.isNumeric(length)) {
+      setLengthError(true);
+      setErrors('Please enter a valid length');
+      return true;
+    }
+
+    if (validator.isEmpty(width) || !validator.isNumeric(width)) {
+      setWidthError(true);
+      setErrors('Please enter a valid width');
+      return true;
+    }
+    return false;
+  };
+
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    setName('');
+    setAdddress('');
+    setLength('');
+    setWidth('');
     setOpen(false);
   };
 
+  const addNursery = () => {
+    if (!checkErrors()) {
+      props.addNursery(name, address, length, width);
+      handleClose();
+    }
+  };
+
   return (
-    <div onClick={handleOpen}>
-      <AddNursery onClick={handleOpen}>react-transition-group</AddNursery>
+    <div>
+      <AddNursery handleopen={handleOpen} />
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -62,6 +103,7 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={styles.container}>
+            {errors ? <Alert severity="error">{errors}</Alert> : null}
             <p id="transition-modal-title" className={styles.heading}>
               Add new nursery
             </p>
@@ -74,6 +116,7 @@ export default function TransitionsModal() {
               value={name}
               onChange={e => {
                 setName(e.target.value);
+                setNameError(false);
               }}
             />
 
@@ -86,6 +129,7 @@ export default function TransitionsModal() {
               value={address}
               onChange={e => {
                 setAdddress(e.target.value);
+                setAddressError(false);
               }}
             />
 
@@ -98,6 +142,7 @@ export default function TransitionsModal() {
               value={length}
               onChange={e => {
                 setLength(e.target.value);
+                setLengthError(false);
               }}
             />
 
@@ -110,13 +155,22 @@ export default function TransitionsModal() {
               value={width}
               onChange={e => {
                 setWidth(e.target.value);
+                setWidthError(false);
               }}
             />
             <div className={styles.buttonContainer}>
-              <Button variant="contained" className={styles.cancel}>
+              <Button
+                variant="contained"
+                className={styles.cancel}
+                onClick={handleClose}
+              >
                 Cancel
               </Button>
-              <Button variant="contained" className={styles.confirm}>
+              <Button
+                variant="contained"
+                className={styles.confirm}
+                onClick={addNursery}
+              >
                 Confirm
               </Button>
             </div>

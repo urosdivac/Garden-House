@@ -5,7 +5,7 @@ import styles from './Add-Nursery.module.scss';
 
 const AddNursery = props => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => props.handleopen()}>
       {props.type ? (
         <Button className={styles.addButton} size="large">
           ADD NURSERY
