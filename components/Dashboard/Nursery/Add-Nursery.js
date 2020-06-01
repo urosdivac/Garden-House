@@ -7,9 +7,15 @@ import styles from './Add-Nursery.module.scss';
 const AddNursery = props => {
   return (
     <div className={styles.container}>
-      <Button className={styles.addButton} size="large">
-        ADD NURSERY
-      </Button>
+      {props.type ? (
+        <Button className={styles.addButton} size="large">
+          ADD NURSERY
+        </Button>
+      ) : (
+        <Button className={styles.addButtonSecond} size="large">
+          +
+        </Button>
+      )}
     </div>
   );
 };

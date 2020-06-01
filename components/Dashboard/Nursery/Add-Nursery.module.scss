@@ -1,7 +1,30 @@
-.container {
-}
-
 .addButton {
   background-color: #4ecca3 !important;
   color: #fff !important;
+  width: 15rem !important;
+  height: 3rem !important;
+  border-radius: 5px !important;
+  transition: all 0.2s !important;
+  letter-spacing: 1.5px !important;
+}
+
+.addButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.addButtonSecond {
+  background-color: #4ecca3 !important;
+  color: #fff !important;
+  font-size: 5rem !important;
+  width: 6rem !important;
+  height: 6rem !important;
+  border-radius: 5rem !important;
+  transition: all 0.2s !important;
+  letter-spacing: 1.5px !important;
+}
+
+.addButtonSecond:hover {
+  transform: scale(1.2);
+  box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
 }
