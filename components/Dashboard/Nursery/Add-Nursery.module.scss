@@ -16,15 +16,20 @@
 .addButtonSecond {
   background-color: #4ecca3 !important;
   color: #fff !important;
-  font-size: 5rem !important;
-  width: 6rem !important;
-  height: 6rem !important;
+  font-size: 3rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
   border-radius: 5rem !important;
   transition: all 0.2s !important;
   letter-spacing: 1.5px !important;
+  // margin: 5rem;
 }
 
 .addButtonSecond:hover {
   transform: scale(1.2);
   box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.addButtonSecondContainer {
+  margin-left: 2rem;
 }

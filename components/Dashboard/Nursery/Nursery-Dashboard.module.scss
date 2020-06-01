@@ -5,9 +5,12 @@
 }
 
 .headerContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   padding-left: 2rem;
   padding-top: 1rem;
-  margin-top: 0rem;
+  padding-bottom: 1rem;
   font-size: 1.5rem;
   color: #777;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -15,8 +18,9 @@
 
 .nurseryContainersContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
   min-height: 80vh;
 }
 
@@ -31,6 +35,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  bottom: 10rem;
+}
+
+.addContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
