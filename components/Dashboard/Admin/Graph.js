@@ -32,7 +32,6 @@ const Graph = props => {
     } else {
       data.unshift(props.stats[1], props.stats[2], props.stats[3]);
     }
-    console.log(counts);
 
     // Global Options
     Chart.defaults.global.defaultFontFamily = 'Lato';

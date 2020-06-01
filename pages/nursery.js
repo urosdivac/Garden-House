@@ -5,29 +5,34 @@ import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 import styles from './dashboard.module.scss';
 import Panel from '../components/Dashboard/Panel';
-import Admin from '../components/Dashboard/Admin/Admin-Dashboard';
+import Nursery from '../components/Dashboard/Nursery/Nursery-Dashboard';
 
 const dashboard = ({data}) => {
   const [token, setToken] = useState();
+
   useEffect(() => {
     const cookie = Cookies.get('JWT');
     jwt.verify(cookie, 'secertToken', async (err, decoded) => {
       setToken(decoded);
     });
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.panelWrapper}>
         <Panel
-          admin={token ? token.isadmin : false}
+          admin={false}
+          isFarmer={token ? !token.isAdmin : false}
+          isCompany={token ? token.shortname : false}
           isAdmin={token ? token.isadmin : false}
+          nursery={true}
         />
       </div>
       <div className={styles.contentWrapper}>
-        <Admin />
+        <Nursery />
       </div>
       <Head>
-        <title>Admin Dashboard - Garden House</title>
+        <title>Nursery - Garden House</title>
       </Head>
     </div>
   );

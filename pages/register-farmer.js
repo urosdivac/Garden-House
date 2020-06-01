@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Form from '../components/Register/Farmer/farmer-form-first-page';
 import Form2 from '../components/Register/Farmer/farmer-form-second-page';
 import styles from './register-farmer.module.scss';
+
 const farmerRegistration = () => {
   const [registrationStep, setRegistrationStep] = useState(1);
   const [firstname, setFirstName] = useState('');

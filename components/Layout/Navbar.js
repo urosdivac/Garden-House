@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import Link from 'next/link';
 import styles from './Navbar.module.scss';
 
