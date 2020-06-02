@@ -9,7 +9,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
-import axios from 'axios';
 
 export default function TransitionsModal(props) {
   const [open, setOpen] = useState(false);
@@ -87,7 +86,7 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-      <AddNursery handleopen={handleOpen} />
+      <AddNursery handleopen={handleOpen} type={props.type} />
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -108,7 +107,6 @@ export default function TransitionsModal(props) {
               Add new nursery
             </p>
             <TextField
-              id="outlined-basic"
               label="Name"
               variant="outlined"
               className={styles.input}
@@ -121,7 +119,6 @@ export default function TransitionsModal(props) {
             />
 
             <TextField
-              id="outlined-basic"
               label="Address"
               variant="outlined"
               className={styles.input}
@@ -134,7 +131,6 @@ export default function TransitionsModal(props) {
             />
 
             <TextField
-              id="outlined-basic"
               label="Length"
               variant="outlined"
               className={styles.input}
@@ -147,7 +143,6 @@ export default function TransitionsModal(props) {
             />
 
             <TextField
-              id="outlined-basic"
               label="Width"
               variant="outlined"
               className={styles.input}

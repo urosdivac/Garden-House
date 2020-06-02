@@ -70,7 +70,7 @@ const Nursery = () => {
           ) : (
             <div className={styles.messageContainer}>
               <p className={styles.message}>You currently have no nurseries.</p>
-              <Modal type={1} />
+              <Modal type={1} addNursery={addNursery} />
             </div>
           )}
         </div>

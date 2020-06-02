@@ -46,7 +46,6 @@ const Graph = props => {
           {
             data: Object.values(counts),
             backgroundColor: 'rgba(48, 196, 126,0.6)',
-            // backgroundColor: 'rgba(78,204,163,1)',
           },
         ],
       },
