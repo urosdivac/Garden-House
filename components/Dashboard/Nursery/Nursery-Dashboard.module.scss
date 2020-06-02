@@ -21,7 +21,6 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 2rem;
-  padding-top: 1rem;
   font-size: 1.5rem;
   color: #777;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -39,10 +38,29 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 80%;
+}
+
+.outerStatsManagerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .availableSpaceContainer {
   font-size: 1.2rem;
+  min-width: 15rem;
+}
+
+.sliderSun {
+  color: rgba(244, 179, 0, 0.9) !important;
+  margin-top: 1rem;
+}
+
+.sliderWater {
+  color: rgba(66, 134, 244, 0.9) !important;
+  margin-top: 1rem;
 }
 
 .water {
@@ -117,4 +135,21 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.confirmButton {
+  margin-top: 3rem !important;
+  margin-bottom: 1rem !important;
+  background-color: #4ecca3 !important;
+  color: #fff !important;
+  width: 15rem !important;
+  height: 3rem !important;
+  border-radius: 5px !important;
+  transition: all 0.2s !important;
+  letter-spacing: 1.5px !important;
+}
+
+.confirmButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
 }

@@ -7,12 +7,90 @@ import axios from 'axios';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
+import Slider from '@material-ui/core/Slider';
+import Button from '@material-ui/core/Button';
 
 const Nursery = props => {
   const [nurseryData, setNurseryData] = useState();
   const [maximumSpace, setMaximumSpace] = useState();
+  const [temperatureLevel, setTemepratureLevel] = useState();
+  const [waterLevel, setWaterLevel] = useState();
   const [token, setToken] = useState();
   const [nurserySucces, setNurserySuccess] = useState(false);
+
+  const temepratureMarks = [
+    {
+      value: 0,
+      label: '0°C',
+    },
+    {
+      value: 5,
+      label: '5°C',
+    },
+    {
+      value: 10,
+      label: '10°C',
+    },
+
+    {
+      value: 15,
+      label: '15°C',
+    },
+    {
+      value: 20,
+      label: '20°C',
+    },
+
+    {
+      value: 25,
+      label: '25°C',
+    },
+  ];
+
+  const waterMarks = [
+    {
+      value: 0,
+      label: '0 L',
+    },
+    {
+      value: 50,
+      label: '50 L',
+    },
+    {
+      value: 100,
+      label: '100 L',
+    },
+
+    {
+      value: 150,
+      label: '150 L',
+    },
+    {
+      value: 200,
+      label: '200 L',
+    },
+  ];
+
+  const confirmChanges = async () => {
+    if (temperatureLevel) {
+      await axios.post('https://gardenhouse.tech/nursery/temeprature', {
+        id: props.id,
+        temeprature: temperatureLevel,
+      });
+    }
+
+    if (waterLevel) {
+      await axios.post('https://gardenhouse.tech/nursery/water', {
+        id: props.id,
+        water: waterLevel,
+      });
+    }
+    getNurseryData();
+  };
+
+  function valuetext(value) {
+    return `${value}°C`;
+  }
 
   const getTokenInfo = async () => {
     const cookie = Cookies.get('JWT');
@@ -24,6 +102,7 @@ const Nursery = props => {
   const getMaximumSpace = () => {
     if (nurseryData) {
       setMaximumSpace(nurseryData.length * 1 * nurseryData.width * 1);
+      setTemepratureLevel(nurseryData.temeprature);
     }
   };
 
@@ -51,30 +130,56 @@ const Nursery = props => {
         </div>
         <div className={styles.statsManagerContainer}>
           {nurseryData ? (
-            <div className={styles.innerStatsManagerContainer}>
-              <div className={styles.availableSpaceContainer}>
-                <p>Available Space</p>
-                <div>
-                  <AllInboxIcon className={styles.space} />
-                  <p>
-                    {nurseryData.available_space} / {maximumSpace}
-                  </p>
+            <div className={styles.outerStatsManagerContainer}>
+              <div className={styles.innerStatsManagerContainer}>
+                <div className={styles.availableSpaceContainer}>
+                  <p>Available Space</p>
+                  <div>
+                    <AllInboxIcon className={styles.space} />
+                    <p>
+                      {nurseryData.available_space} / {maximumSpace}
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.availableSpaceContainer}>
+                  <p>Temeprature</p>
+                  <div>
+                    <WbSunnyIcon className={styles.sun} />
+                    <p>{nurseryData.temeprature}°C</p>
+                  </div>
+                  <Slider
+                    defaultValue={temperatureLevel}
+                    getAriaValueText={valuetext}
+                    aria-labelledby="discrete-slider-custom"
+                    step={1}
+                    valueLabelDisplay="auto"
+                    max={25}
+                    marks={temepratureMarks}
+                    className={styles.sliderSun}
+                    onChange={(e, newValue) => setTemepratureLevel(newValue)}
+                  />
+                </div>
+                <div className={styles.availableSpaceContainer}>
+                  <p>Water Levels</p>
+                  <div>
+                    <InvertColorsIcon className={styles.water} />
+                    <p>{nurseryData.waterlevel} Liters</p>
+                  </div>
+                  <Slider
+                    defaultValue={nurseryData.temeprature}
+                    getAriaValueText={valuetext}
+                    step={1}
+                    valueLabelDisplay="auto"
+                    max={200}
+                    marks={waterMarks}
+                    className={styles.sliderWater}
+                    onChange={(e, newValue) => setWaterLevel(newValue)}
+                  />
                 </div>
               </div>
-              <div className={styles.availableSpaceContainer}>
-                <p>Temeprature</p>
-                <div>
-                  <WbSunnyIcon className={styles.sun} />
-                  <p>{nurseryData.temeprature}°C</p>
-                </div>
-              </div>
-              <div className={styles.availableSpaceContainer}>
-                <p>Water Levels</p>
-                <div>
-                  <InvertColorsIcon className={styles.water} />
-                  <p>{nurseryData.waterlevel} Liters</p>
-                </div>
-              </div>
+              <Button onClick={confirmChanges} className={styles.confirmButton}>
+                Confirm changes
+              </Button>
             </div>
           ) : null}
         </div>
