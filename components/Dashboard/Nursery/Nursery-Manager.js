@@ -9,6 +9,7 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
+import Seedling from './SeedlingContainer';
 
 const Nursery = props => {
   const [nurseryData, setNurseryData] = useState();
@@ -198,6 +199,15 @@ const Nursery = props => {
         </div>
         <div className={styles.seedlingsContainer}>
           <button onClick={() => console.log(seedlings)}>Click me</button>
+          {seedlings.map(seedling => {
+            return (
+              <Seedling
+                harvestdate={seedling.harvest_date}
+                key={seedling.id}
+                id={seedling.id}
+              />
+            );
+          })}
         </div>
       </div>
 
