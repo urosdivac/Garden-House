@@ -6,6 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import NurseryContainer from './Nursery-Container';
 import Modal from './Modal';
+
 const Nursery = () => {
   const [data, setData] = useState([]);
   const [token, setToken] = useState();
@@ -64,6 +65,7 @@ const Nursery = () => {
                   water={nursery.waterlevel}
                   space={nursery.available_space}
                   key={nursery.id}
+                  id={nursery.id}
                 />
               );
             })

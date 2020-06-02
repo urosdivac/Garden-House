@@ -41,6 +41,12 @@
   width: 80%;
 }
 
+.seedlingsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .outerStatsManagerContainer {
   display: flex;
   flex-direction: column;

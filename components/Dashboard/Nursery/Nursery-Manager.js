@@ -13,8 +13,9 @@ import Button from '@material-ui/core/Button';
 const Nursery = props => {
   const [nurseryData, setNurseryData] = useState();
   const [maximumSpace, setMaximumSpace] = useState();
-  const [temperatureLevel, setTemepratureLevel] = useState();
-  const [waterLevel, setWaterLevel] = useState();
+  const [temperatureLevel, setTemepratureLevel] = useState(0);
+  const [seedlings, setSeedlings] = useState([]);
+  const [waterLevel, setWaterLevel] = useState(0);
   const [token, setToken] = useState();
   const [nurserySucces, setNurserySuccess] = useState(false);
 
@@ -99,10 +100,21 @@ const Nursery = props => {
     });
   };
 
+  const getSeedlings = () => {
+    axios
+      .post('https://gardenhouse.tech/seedling/nursery/', {
+        id: props.id,
+      })
+      .then(data => {
+        setSeedlings(data.data.data);
+      });
+  };
+
   const getMaximumSpace = () => {
     if (nurseryData) {
       setMaximumSpace(nurseryData.length * 1 * nurseryData.width * 1);
       setTemepratureLevel(nurseryData.temeprature);
+      setWaterLevel(nurseryData.waterlevel);
     }
   };
 
@@ -120,6 +132,7 @@ const Nursery = props => {
     if (!token) getTokenInfo();
     if (!nurseryData) getNurseryData();
     getMaximumSpace();
+    getSeedlings();
   }, [token, nurseryData]);
 
   return (
@@ -148,8 +161,8 @@ const Nursery = props => {
                     <p>{nurseryData.temeprature}°C</p>
                   </div>
                   <Slider
-                    defaultValue={temperatureLevel}
                     getAriaValueText={valuetext}
+                    value={temperatureLevel}
                     aria-labelledby="discrete-slider-custom"
                     step={1}
                     valueLabelDisplay="auto"
@@ -166,11 +179,11 @@ const Nursery = props => {
                     <p>{nurseryData.waterlevel} Liters</p>
                   </div>
                   <Slider
-                    defaultValue={nurseryData.temeprature}
                     getAriaValueText={valuetext}
-                    step={1}
+                    step={10}
                     valueLabelDisplay="auto"
                     max={200}
+                    value={waterLevel}
                     marks={waterMarks}
                     className={styles.sliderWater}
                     onChange={(e, newValue) => setWaterLevel(newValue)}
@@ -183,8 +196,8 @@ const Nursery = props => {
             </div>
           ) : null}
         </div>
-        <div className={styles.nurseryContainersContainer}>
-          <button onClick={() => console.log(nurseryData)}>Click me</button>
+        <div className={styles.seedlingsContainer}>
+          <button onClick={() => console.log(seedlings)}>Click me</button>
         </div>
       </div>
 
