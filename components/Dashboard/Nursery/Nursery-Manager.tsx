@@ -7,7 +7,7 @@ import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import Slider from '@material-ui/core/Slider';
 import Seedling from './SeedlingContainer';
 import getToken from '../../../src/getToken';
-import SeedlingModal from './SeedlingModal';
+import Dialog from './Dialog';
 const styles = require('./Nursery-Dashboard.module.scss');
 
 interface Props {
@@ -207,7 +207,7 @@ const Nursery = ({id}: Props) => {
 
                 <div className={styles.availableSpaceContainer}>
                   <p>Plant a seedling</p>
-                  <SeedlingModal
+                  <Dialog
                     token={token}
                     nursery={id}
                     getnurserydata={getNurseryData}
