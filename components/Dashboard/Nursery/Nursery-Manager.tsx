@@ -1,7 +1,4 @@
 import {useEffect, useState} from 'react';
-import Cookies from 'js-cookie';
-import jwt from 'jsonwebtoken';
-import styles from './Nursery-Dashboard.module.scss';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
@@ -10,13 +7,29 @@ import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 import Seedling from './SeedlingContainer';
+import getToken from '../../../src/getToken';
+import SeedlingModal from './SeedlingModal';
+const styles = require('./Nursery-Dashboard.module.scss');
 
-const Nursery = props => {
-  const [nurseryData, setNurseryData] = useState();
-  const [maximumSpace, setMaximumSpace] = useState();
-  const [temperatureLevel, setTemepratureLevel] = useState(0);
+interface Props {
+  id: number;
+}
+
+interface NurseryData {
+  width: number;
+  length: number;
+  waterlevel: number;
+  temeprature: number;
+  name: string;
+  available_space: number;
+}
+
+const Nursery = ({id}: Props) => {
+  const [nurseryData, setNurseryData] = useState<NurseryData | undefined>();
+  const [maximumSpace, setMaximumSpace] = useState(0);
+  const [temperature, setTemeprature] = useState<number | number[]>(0);
+  const [waterLevel, setWaterLevel] = useState<number | number[]>(0);
   const [seedlings, setSeedlings] = useState([]);
-  const [waterLevel, setWaterLevel] = useState(0);
   const [token, setToken] = useState();
   const [nurserySucces, setNurserySuccess] = useState(false);
 
@@ -73,17 +86,20 @@ const Nursery = props => {
     },
   ];
 
-  const confirmChanges = async () => {
-    if (temperatureLevel) {
+  const handleTemeprature = async () => {
+    if (temperature) {
       await axios.post('https://gardenhouse.tech/nursery/temeprature', {
-        id: props.id,
-        temeprature: temperatureLevel,
+        id: id,
+        temeprature: temperature,
       });
+      getNurseryData();
     }
+  };
 
+  const handleWater = async () => {
     if (waterLevel) {
       await axios.post('https://gardenhouse.tech/nursery/water', {
-        id: props.id,
+        id: id,
         water: waterLevel,
       });
     }
@@ -94,17 +110,10 @@ const Nursery = props => {
     return `${value}°C`;
   }
 
-  const getTokenInfo = async () => {
-    const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', async (err, decoded) => {
-      setToken(decoded);
-    });
-  };
-
   const getSeedlings = () => {
     axios
       .post('https://gardenhouse.tech/seedling/nursery/', {
-        id: props.id,
+        id: id,
       })
       .then(data => {
         setSeedlings(data.data.data);
@@ -114,7 +123,7 @@ const Nursery = props => {
   const getMaximumSpace = () => {
     if (nurseryData) {
       setMaximumSpace(nurseryData.length * 1 * nurseryData.width * 1);
-      setTemepratureLevel(nurseryData.temeprature);
+      setTemeprature(nurseryData.temeprature);
       setWaterLevel(nurseryData.waterlevel);
     }
   };
@@ -122,7 +131,7 @@ const Nursery = props => {
   const getNurseryData = () => {
     axios
       .post('https://gardenhouse.tech/nursery/id', {
-        id: props.id,
+        id: id,
       })
       .then(data => {
         setNurseryData(data.data.data.rows[0]);
@@ -130,7 +139,7 @@ const Nursery = props => {
   };
 
   useEffect(() => {
-    if (!token) getTokenInfo();
+    if (!token) setToken(getToken());
     if (!nurseryData) getNurseryData();
     getMaximumSpace();
     getSeedlings();
@@ -163,14 +172,17 @@ const Nursery = props => {
                   </div>
                   <Slider
                     getAriaValueText={valuetext}
-                    value={temperatureLevel}
+                    value={temperature}
                     aria-labelledby="discrete-slider-custom"
                     step={1}
                     valueLabelDisplay="auto"
                     max={25}
                     marks={temepratureMarks}
                     className={styles.sliderSun}
-                    onChange={(e, newValue) => setTemepratureLevel(newValue)}
+                    onChange={(e, newValue) => {
+                      setTemeprature(newValue);
+                    }}
+                    onChangeCommitted={() => handleTemeprature()}
                   />
                 </div>
                 <div className={styles.availableSpaceContainer}>
@@ -187,18 +199,25 @@ const Nursery = props => {
                     value={waterLevel}
                     marks={waterMarks}
                     className={styles.sliderWater}
-                    onChange={(e, newValue) => setWaterLevel(newValue)}
+                    onChange={(e, newValue) => {
+                      setWaterLevel(newValue);
+                    }}
+                    onChangeCommitted={() => handleWater()}
                   />
                 </div>
+
+                <div className={styles.availableSpaceContainer}>
+                  <p>Plant new seedling</p>
+                  <SeedlingModal />
+                </div>
               </div>
-              <Button onClick={confirmChanges} className={styles.confirmButton}>
+              {/* <Button onClick={confirmChanges} className={styles.confirmButton}>
                 Confirm changes
-              </Button>
+              </Button> */}
             </div>
           ) : null}
         </div>
         <div className={styles.seedlingsContainer}>
-          <button onClick={() => console.log(seedlings)}>Click me</button>
           {seedlings.map(seedling => {
             return (
               <Seedling

@@ -6,7 +6,6 @@ import styles from './Panel.module.scss';
 import PanelItem from './Panel-Item';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 import LocationCityRoundedIcon from '@material-ui/icons/LocationCityRounded';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
@@ -48,18 +47,6 @@ const Panel = props => {
           }
           text="Nursery"
           isActive={props.nursery}
-        />
-      ) : null}
-
-      {props.isFarmer ? (
-        <PanelItem
-          icon={
-            <FilterVintageIcon
-              className={props.seedling ? styles.iconActive : styles.icon}
-            />
-          }
-          text="Seedlings"
-          isActive={props.seedling}
         />
       ) : null}
 

@@ -38,7 +38,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 
 .seedlingsContainer {
@@ -52,11 +52,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.availableSpaceContainer {
-  font-size: 1.2rem;
-  min-width: 15rem;
 }
 
 .sliderSun {
@@ -133,9 +128,12 @@
 
 .availableSpaceContainer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
+  font-size: 1.2rem;
+  min-width: 15rem;
+  height: 14rem;
   div {
     display: flex;
     justify-content: center;
@@ -145,12 +143,11 @@
 
 .confirmButton {
   margin-top: 3rem !important;
-  margin-bottom: 1rem !important;
   background-color: #4ecca3 !important;
   color: #fff !important;
   width: 15rem !important;
   height: 3rem !important;
-  border-radius: 5px !important;
+  border-radius: 5rem !important;
   transition: all 0.2s !important;
   letter-spacing: 1.5px !important;
 }

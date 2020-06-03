@@ -14,6 +14,7 @@ const SeedlingContainer = props => {
     }
     setPercentage((21 - arr[1] * 1) * 5);
   };
+
   useEffect(() => {
     calculateProgress();
   });
@@ -23,7 +24,7 @@ const SeedlingContainer = props => {
       <p>Harvest time :</p>
       <p>
         {moment(props.harvestdate) >= moment.now()
-          ? moment(props.harvestdate).endOf('minute').fromNow() // in a day
+          ? moment(props.harvestdate).endOf('hour').fromNow() // in a day
           : 'Ready'}
       </p>
 

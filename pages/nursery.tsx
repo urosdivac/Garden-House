@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import Head from 'next/head';
-const styles = require('./dashboard.module.scss');
 import Panel from '../components/Dashboard/Panel';
 import Nursery from '../components/Dashboard/Nursery/Nursery-Dashboard';
 import getToken from '../src/getToken';
+const styles = require('./dashboard.module.scss');
+
 
 const dashboard = () => {
   interface Token {
