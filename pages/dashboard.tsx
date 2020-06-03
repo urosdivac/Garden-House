@@ -1,20 +1,23 @@
 import {useEffect, useState} from 'react';
 import Head from 'next/head';
-import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
-import styles from './dashboard.module.scss';
 import Panel from '../components/Dashboard/Panel';
 import Admin from '../components/Dashboard/Admin/Admin-Dashboard';
+const styles = require('./dashboard.module.scss');
+import getToken from '../src/getToken';
 
-const dashboard = ({data}) => {
-  const [token, setToken] = useState();
+const dashboard = () => {
+  interface Token {
+    isadmin: boolean;
+  }
+
+  const [token, setToken] = useState<Token>();
+
   useEffect(() => {
-    const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', async (err, decoded) => {
-      setToken(decoded);
-    });
+    setToken(getToken());
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.panelWrapper}>

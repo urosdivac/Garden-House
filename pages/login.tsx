@@ -1,4 +1,4 @@
-import styles from './login.module.scss';
+const styles = require('./login.module.scss');
 import Form from '../components/Login/form';
 import Link from 'next/link';
 

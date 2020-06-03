@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from './index.module.scss';
 import Navbar from '../components/Layout/Navbar';
 import FirstBlock from '../components/Homepage/firstBlock';
 import SecondBlock from '../components/Homepage/secondBlock';
+const styles = require('./index.module.scss');
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
 
       <Head>
         <title>Garden House</title>
-     
+
         <meta
           name="Description"
           content="Garden house is online platform for managing nurseries."

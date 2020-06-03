@@ -6,7 +6,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import Form from '../components/Register/Buisness/buisness-form-first-page';
 import Form2 from '../components/Register/Buisness/buisness-form-second-page';
-import styles from './register-farmer.module.scss';
+const styles = require('./register-farmer.module.scss');
 
 const buisnessRegistration = () => {
   const [registrationStep, setRegistrationStep] = useState(1);

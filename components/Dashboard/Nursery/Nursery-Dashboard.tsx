@@ -1,15 +1,21 @@
 import {useEffect, useState} from 'react';
-import Cookies from 'js-cookie';
-import jwt from 'jsonwebtoken';
-import styles from './Nursery-Dashboard.module.scss';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import NurseryContainer from './Nursery-Container';
 import Modal from './Modal';
+import getToken from '../../../src/getToken';
+const styles = require('./Nursery-Dashboard.module.scss');
 
 const Nursery = () => {
+  interface Token {
+    email: string;
+    firstname: string;
+    lastname: string;
+    isadmin: boolean;
+    shortname: string;
+  }
   const [data, setData] = useState([]);
-  const [token, setToken] = useState();
+  const [token, setToken] = useState<Token | undefined>();
   const [nurserySucces, setNurserySuccess] = useState(false);
 
   const getData = async () => {
@@ -19,13 +25,6 @@ const Nursery = () => {
       });
       setData(data.data.data);
     }
-  };
-
-  const getTokenInfo = async () => {
-    const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', async (err, decoded) => {
-      setToken(decoded);
-    });
   };
 
   const addNursery = async (name, address, length, width) => {
@@ -41,7 +40,7 @@ const Nursery = () => {
   };
 
   useEffect(() => {
-    if (!token) getTokenInfo();
+    if (!token) setToken(getToken());
     getData();
   }, [token]);
   return (

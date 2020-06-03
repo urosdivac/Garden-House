@@ -1,9 +1,8 @@
-import {useEffect} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from './register.module.scss';
 import PersonIcon from '@material-ui/icons/Person';
 import StoreIcon from '@material-ui/icons/Store';
+const styles = require('./register.module.scss');
 
 const register = () => {
   return (
