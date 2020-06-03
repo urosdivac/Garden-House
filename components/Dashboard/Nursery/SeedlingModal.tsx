@@ -13,10 +13,17 @@ const styles = require('./Modal.module.scss');
 interface Props {
   nursery: number;
   token: {id: number};
+  getnurserydata: () => void;
+  getseedlings: () => void;
 }
 
-export default function TransitionsModal({nursery, token}: Props) {
-  const [open, setOpen] = useState(true);
+export default function TransitionsModal({
+  nursery,
+  token,
+  getnurserydata,
+  getseedlings,
+}: Props) {
+  const [open, setOpen] = useState(false);
   const [seedlings, setSeedlings] = useState([]);
 
   const useStyles = makeStyles(theme => ({
@@ -49,6 +56,16 @@ export default function TransitionsModal({nursery, token}: Props) {
       {id: token.id},
     );
     setSeedlings(data.data.data);
+    getseedlings();
+  };
+
+  const plantSeedling = async (name, nurseryid, warehouse_id) => {
+    await axios.post('https://gardenhouse.tech/seedling/plant', {
+      name,
+      nurseryid,
+      warehouse_id,
+    });
+    getnurserydata();
   };
 
   useEffect(() => {
@@ -81,21 +98,32 @@ export default function TransitionsModal({nursery, token}: Props) {
             <p id="transition-modal-title" className={styles.heading}>
               Plant a seed
             </p>
-            {seedlings.map((seedling, index) => {
-              return (
-                <div className={styles.seedlingCont} key={index}>
-                  <p>{seedling.name}</p>
-                  <p>x{seedling.count}</p>
-                  <Button
-                    variant="contained"
-                    className={styles.confirm}
-                    onClick={() => console.log(token.id)}
-                  >
-                    Use
-                  </Button>
-                </div>
-              );
-            })}
+            {seedlings.length > 1 ? (
+              seedlings.map((seedling, index) => {
+                return (
+                  <div className={styles.seedlingCont} key={index}>
+                    <p>{seedling.name}</p>
+                    <p>x{seedling.count}</p>
+                    <Button
+                      variant="contained"
+                      className={styles.confirm}
+                      onClick={() => {
+                        plantSeedling(
+                          seedling.name,
+                          nursery,
+                          seedling.warehouse_id,
+                        );
+                        handleClose();
+                      }}
+                    >
+                      Use
+                    </Button>
+                  </div>
+                );
+              })
+            ) : (
+              <p className={styles.emptyParagraph}>You don't have any seedlings!</p>
+            )}
             <div className={styles.buttonContainer}>
               <Button
                 variant="contained"

@@ -207,7 +207,12 @@ const Nursery = ({id}: Props) => {
 
                 <div className={styles.availableSpaceContainer}>
                   <p>Plant a seedling</p>
-                  <SeedlingModal token={token} nursery={id} />
+                  <SeedlingModal
+                    token={token}
+                    nursery={id}
+                    getnurserydata={getNurseryData}
+                    getseedlings={getSeedlings}
+                  />
                 </div>
               </div>
             </div>
