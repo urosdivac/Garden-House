@@ -1,11 +1,16 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import styles from './Add-Nursery.module.scss';
+const styles = require('./Add-Nursery.module.scss');
 
-const AddNursery = props => {
+interface Props {
+  handleopen(): void;
+  type: number;
+}
+
+const AddNursery = ({handleopen, type}: Props) => {
   return (
-    <div className={styles.container} onClick={() => props.handleopen()}>
-      {props.type ? (
+    <div className={styles.container} onClick={() => handleopen()}>
+      {type ? (
         <Button className={styles.addButton} size="large">
           ADD NURSERY
         </Button>

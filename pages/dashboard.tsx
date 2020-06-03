@@ -1,7 +1,5 @@
 import {useEffect, useState} from 'react';
 import Head from 'next/head';
-import jwt from 'jsonwebtoken';
-import Cookies from 'js-cookie';
 import Panel from '../components/Dashboard/Panel';
 import Admin from '../components/Dashboard/Admin/Admin-Dashboard';
 const styles = require('./dashboard.module.scss');

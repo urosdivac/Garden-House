@@ -6,6 +6,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import Form from '../components/Register/Buisness/buisness-form-first-page';
 import Form2 from '../components/Register/Buisness/buisness-form-second-page';
+import getToken from '../src/getToken';
 const styles = require('./register-farmer.module.scss');
 
 const buisnessRegistration = () => {
@@ -24,7 +25,7 @@ const buisnessRegistration = () => {
 
   // Checks if user is logged in and redicrects him
   useEffect(() => {
-    const cookie = Cookies.get('JWT');
+    const cookie = getToken();
     if (cookie) Router.push('/');
   }, []);
 
