@@ -5,7 +5,6 @@ import AllInboxIcon from '@material-ui/icons/AllInbox';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import Slider from '@material-ui/core/Slider';
-import Button from '@material-ui/core/Button';
 import Seedling from './SeedlingContainer';
 import getToken from '../../../src/getToken';
 import SeedlingModal from './SeedlingModal';
@@ -207,13 +206,10 @@ const Nursery = ({id}: Props) => {
                 </div>
 
                 <div className={styles.availableSpaceContainer}>
-                  <p>Plant new seedling</p>
-                  <SeedlingModal />
+                  <p>Plant a seedling</p>
+                  <SeedlingModal token={token} nursery={id} />
                 </div>
               </div>
-              {/* <Button onClick={confirmChanges} className={styles.confirmButton}>
-                Confirm changes
-              </Button> */}
             </div>
           ) : null}
         </div>

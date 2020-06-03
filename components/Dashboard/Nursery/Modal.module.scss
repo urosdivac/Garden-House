@@ -39,6 +39,12 @@
   margin-right: 3rem !important;
 }
 
+.cancelButton {
+  background-color: rgba(219, 69, 55, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+}
+
 .confirm {
   background-color: rgba(48, 196, 126, 0.9) !important;
   color: #fff !important;
@@ -47,16 +53,42 @@
 
 .seedlingButton {
   margin-top: 1rem !important;
-  background-color: #fff !important;
-  color: rgba(219, 69, 55, 0.9) !important;
-  border-radius: 5rem !important;
+  background-color: rgba(48, 196, 126, 0.9) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
   font-size: 0.9rem !important;
   letter-spacing: 2px !important;
-  border: 1px solid rgba(219, 69, 55, 0.9) !important;
   padding: 1rem !important;
+  transition: all 0.2s !important;
+  font-size: 1.2rem !important;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .flower {
-  font-size: 1.5rem !important;
-  color: rgba(219, 69, 55, 0.9) !important;
+  font-size: 2rem !important;
+  color: #fff !important;
+}
+
+.seedlingCont {
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.01);
+  display: inline-flex;
+  padding: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  border-radius: 50px;
+  background: #f1f0f0;
+  box-shadow: 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
+  transition: transform 0.3s;
+  cursor: pointer;
+  p {
+    font-size: 1.5rem;
+    color: #777;
+  }
 }

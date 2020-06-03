@@ -1,17 +1,23 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 const styles = require('./Modal.module.scss');
 
-export default function TransitionsModal() {
-  const [open, setOpen] = useState(false);
-  const [errors, setErrors] = useState('');
+interface Props {
+  nursery: number;
+  token: {id: number};
+}
+
+export default function TransitionsModal({nursery, token}: Props) {
+  const [open, setOpen] = useState(true);
+  const [seedlings, setSeedlings] = useState([]);
 
   const useStyles = makeStyles(theme => ({
     modal: {
@@ -37,10 +43,26 @@ export default function TransitionsModal() {
     setOpen(false);
   };
 
+  const getSeedlings = async () => {
+    const data = await axios.post(
+      'https://gardenhouse.tech/warehouse/seedling',
+      {id: token.id},
+    );
+    setSeedlings(data.data.data);
+  };
+
+  useEffect(() => {
+    getSeedlings();
+  }, []);
+
   return (
     <div>
-      <Button className={styles.seedlingButton} onClick={handleOpen}>
-        <FilterVintageIcon className={styles.flower} />
+      <Button
+        className={styles.seedlingButton}
+        onClick={handleOpen}
+        startIcon={<FilterVintageIcon className={styles.flower} />}
+      >
+        Plant
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -56,21 +78,31 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={styles.container}>
-            {errors ? <Alert severity="error">{errors}</Alert> : null}
             <p id="transition-modal-title" className={styles.heading}>
               Plant a seed
             </p>
-
+            {seedlings.map((seedling, index) => {
+              return (
+                <div className={styles.seedlingCont} key={index}>
+                  <p>{seedling.name}</p>
+                  <p>x{seedling.count}</p>
+                  <Button
+                    variant="contained"
+                    className={styles.confirm}
+                    onClick={() => console.log(token.id)}
+                  >
+                    Use
+                  </Button>
+                </div>
+              );
+            })}
             <div className={styles.buttonContainer}>
               <Button
                 variant="contained"
-                className={styles.cancel}
+                className={styles.cancelButton}
                 onClick={handleClose}
               >
                 Cancel
-              </Button>
-              <Button variant="contained" className={styles.confirm}>
-                Confirm
               </Button>
             </div>
           </div>
