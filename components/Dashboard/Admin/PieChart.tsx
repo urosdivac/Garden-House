@@ -1,36 +1,35 @@
 import {useRef, useEffect} from 'react';
 import Chart from 'chart.js';
-import styles from './Graph.module.scss';
+const styles = require('./PieChart.module.scss');
 
-const Graph = props => {
+interface Props {
+  stats: any[];
+}
+
+const Pie = ({stats}: Props) => {
   const graph = useRef(null);
   let colors = [];
 
-  if (props.stats) {
-    if (props.stats.length === 3) {
-      colors = ['#0f9d58', '#db4537'];
+  if (stats) {
+    if (stats.length === 3) {
+      colors = ['rgba(48, 196, 126,0.8)', 'rgba(219, 69, 55,0.8)'];
     } else {
-      colors = ['#0f9d58', '#db4537', '#f4b300'];
+      colors = [
+        'rgba(48, 196, 126,0.8)',
+        'rgba(219, 69, 55,0.8)',
+        'rgba(244, 179, 0,0.8)',
+      ];
     }
   }
 
   useEffect(() => {
     let myChart = graph.current;
     let data = [];
-    const formatedData = props.data.map(item =>
-      new Date(item.created_at).toLocaleDateString(),
-    );
-    const reversedArr = formatedData.reverse();
 
-    const counts = {};
-    reversedArr.forEach(function (x) {
-      counts[x] = (counts[x] || 0) + 1;
-    });
-
-    if (props.stats.length === 3) {
-      data.unshift(props.stats[1], props.stats[2]);
+    if (stats.length === 3) {
+      data.unshift(stats[1], stats[2]);
     } else {
-      data.unshift(props.stats[1], props.stats[2], props.stats[3]);
+      data.unshift(stats[1], stats[2], stats[3]);
     }
 
     // Global Options
@@ -39,20 +38,20 @@ const Graph = props => {
     Chart.defaults.global.defaultFontColor = '#777';
 
     new Chart(myChart, {
-      type: 'line',
+      type: 'doughnut',
       data: {
-        labels: Object.keys(counts),
+        labels: ['Accepted', 'Declined', 'Pending'],
         datasets: [
           {
-            data: Object.values(counts),
-            backgroundColor: 'rgba(48, 196, 126,0.6)',
+            data: data,
+            backgroundColor: colors,
           },
         ],
       },
       options: {
         title: {
           display: true,
-          text: 'Registration statistics',
+          text: 'Acceptance rate',
           fontSize: 24,
           fontColor: '#777',
           fontFamily: 'Roboto',
@@ -62,9 +61,8 @@ const Graph = props => {
           display: false,
           position: 'right',
           labels: {
-            fontColor: 'green',
+            fontColor: 'rgba(0,0,0,0.5)',
           },
-          fontFamily: 'Roboto',
         },
         layout: {
           padding: {
@@ -81,16 +79,15 @@ const Graph = props => {
         },
         responsive: true,
         maintainAspectRatio: false,
-        fontFamily: 'Roboto',
       },
     });
-  }, [props.data, props.stats]);
+  }, [stats]);
 
   return (
     <div className={styles.container}>
-      <canvas className={styles.graphChart} ref={graph}></canvas>
+      <canvas className={styles.pieChart} ref={graph}></canvas>
     </div>
   );
 };
 
-export default Graph;
+export default Pie;

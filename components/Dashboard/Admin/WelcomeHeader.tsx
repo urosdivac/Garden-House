@@ -1,8 +1,15 @@
-import styles from './WelcomeHeader.module.scss';
 import Graph from './Graph';
 import Pie from './PieChart';
+const styles = require('./WelcomeHeader.module.scss');
 
-const WelcomeMessage = props => {
+interface Props {
+  name: string;
+  requestsNumber: number;
+  stats: any[];
+  data: any[];
+}
+
+const WelcomeMessage = ({name, requestsNumber, stats, data}: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.headingWrapper}>
@@ -11,16 +18,16 @@ const WelcomeMessage = props => {
       <div className={styles.welcomeWrapper}>
         <div className={styles.firstBlock}>
           <div className={styles.welcomeTextWrapper}>
-            <p className={styles.weclomeHeader}>Welcome back, {props.name}</p>
-            {props.requestsNumber === 1 ? (
+            <p className={styles.weclomeHeader}>Welcome back, {name}</p>
+            {requestsNumber === 1 ? (
               <p className={styles.welcomeText}>
-                There was <b>{props.requestsNumber}</b> new request since your
-                last login
+                There was <b>{requestsNumber}</b> new request since your last
+                login
               </p>
             ) : (
               <p className={styles.welcomeText}>
-                There were <b>{props.requestsNumber}</b> new requests since your
-                last login
+                There were <b>{requestsNumber}</b> new requests since your last
+                login
               </p>
             )}
           </div>
@@ -33,9 +40,9 @@ const WelcomeMessage = props => {
         </div>
         <div className={styles.statsWrapper}>
           <div className={styles.pieWrapper}>
-            <Pie stats={props.stats} />
+            <Pie stats={stats} />
           </div>
-          <Graph stats={props.stats} data={props.data} />
+          <Graph stats={stats} data={data} />
         </div>
       </div>
     </div>

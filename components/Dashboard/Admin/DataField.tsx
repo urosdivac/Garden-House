@@ -1,48 +1,73 @@
 import {useState} from 'react';
-import styles from './DataField.module.scss';
 import CheckIcon from '@material-ui/icons/Check';
 import BlockIcon from '@material-ui/icons/Block';
 import axios from 'axios';
+const styles = require('./DataField.module.scss');
 
-const DataField = props => {
-  const [status, setStatus] = useState(props.isaccepted);
+interface Props {
+  isaccepted: string;
+  id: number;
+  firstname: string;
+  lastname: string;
+  createdat: string;
+  phonenumber: string;
+  birthday: string;
+  email: string;
+  username: string;
+  getdata: () => void;
+  updatestats: (value: number) => void;
+}
+
+const DataField = ({
+  isaccepted,
+  id,
+  getdata,
+  updatestats,
+  firstname,
+  lastname,
+  createdat,
+  birthday,
+  email,
+  username,
+}: Props) => {
+  const [status, setStatus] = useState(isaccepted);
 
   const acceptUser = async () => {
-    await axios.post('https://gardenhouse.tech/admin/accept', {id: props.id});
+    await axios.post('https://gardenhouse.tech/admin/accept', {id: id});
     setStatus('accepted');
-    props.getdata();
-    props.updatestats(1);
+    getdata();
+    updatestats(1);
   };
 
   const declineUser = async () => {
-    await axios.post('https://gardenhouse.tech/admin/decline', {id: props.id});
+    await axios.post('https://gardenhouse.tech/admin/decline', {id: id});
     setStatus('declined');
-    props.getdata();
-    props.updatestats(2);
+    getdata();
+    updatestats(2);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.field}>
-        <p>{props.id}</p>
+        <p>{id}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.firstname}</p>
+        <p>{firstname}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.lastname}</p>
+        <p>{lastname}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.username}</p>
+        <p>{username}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.createdat}</p>
+        <p>{createdat}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.birthday}</p>
+        <p>{birthday}</p>
       </div>
       <div className={styles.field}>
-        <p>{props.email}</p>
+        <p>{email}</p>
       </div>
       <div className={styles.field}>
         {status === 'pending' ? (

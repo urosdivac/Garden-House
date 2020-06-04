@@ -1,12 +1,18 @@
-import styles from './RequestsTable.module.scss';
-const RequestsTable = props => {
+const styles = require('./RequestsTable.module.scss');
+
+interface Props {
+  changeStatusFilter: (filter: string) => void;
+  statusfilter: string;
+}
+
+const RequestsTable = ({changeStatusFilter, statusfilter}: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.fields}>
         <div
           className={styles.fieldContainer}
           onClick={() => {
-            props.changeStatusFilter('all');
+            changeStatusFilter('all');
           }}
         >
           <div className={styles.all}>
@@ -16,7 +22,7 @@ const RequestsTable = props => {
         <div
           className={styles.fieldContainer}
           onClick={() => {
-            props.changeStatusFilter('pending');
+            changeStatusFilter('pending');
           }}
         >
           <div className={styles.pending}>
@@ -26,7 +32,7 @@ const RequestsTable = props => {
         <div
           className={styles.fieldContainer}
           onClick={() => {
-            props.changeStatusFilter('accepted');
+            changeStatusFilter('accepted');
           }}
         >
           <div className={styles.accepted}>
@@ -36,7 +42,7 @@ const RequestsTable = props => {
         <div
           className={styles.fieldContainer}
           onClick={() => {
-            props.changeStatusFilter('declined');
+            changeStatusFilter('declined');
           }}
         >
           <div className={styles.declined}>

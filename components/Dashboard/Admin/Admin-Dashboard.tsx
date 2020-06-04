@@ -1,18 +1,18 @@
 import {useState, useEffect} from 'react';
-import styles from './Admin.module.scss';
 import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 import WelcomeHeader from './WelcomeHeader';
 import RequestsTable from './RequestsTable';
 import DataField from './DataField';
 import axios from 'axios';
+const styles = require('./Admin.module.scss');
 
 const Admin = () => {
-  const [token, setToken] = useState();
-  const [data, setData] = useState([]);
+  const [token, setToken] = useState<any>();
+  const [data, setData] = useState<any[]>([]);
   const [stats, setStats] = useState([]);
   const [statusFilter, setStatusFilter] = useState('pending');
-  const [filteredData, setFilteredData] = useState();
+  const [filteredData, setFilteredData] = useState<any[] | undefined>();
 
   const newRequests = () => {
     const arr = data.filter(item => item.isaccepted === 'pending');
