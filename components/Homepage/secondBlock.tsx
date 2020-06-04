@@ -1,10 +1,11 @@
-import React from "react";
-import InvertColorsIcon from "@material-ui/icons/InvertColors";
-import Brightness5Icon from "@material-ui/icons/Brightness5";
-import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import styles from "./secondBlock.module.scss";
-import Card from "./Card";
+import React from 'react';
+import InvertColorsIcon from '@material-ui/icons/InvertColors';
+import Brightness5Icon from '@material-ui/icons/Brightness5';
+import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Card from './Card';
+const styles = require('./secondBlock.module.scss');
+
 
 const secondBlock = () => {
   return (

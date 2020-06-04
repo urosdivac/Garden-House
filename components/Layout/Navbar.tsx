@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-import styles from './Navbar.module.scss';
+const styles = require('./Navbar.module.scss');
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -109,6 +109,10 @@ const Nursery = ({id}: Props) => {
     return `${value}°C`;
   }
 
+  const showAlert = () => {
+    setNurserySuccess(true);
+  };
+
   const getSeedlings = () => {
     axios
       .post('https://gardenhouse.tech/seedling/nursery/', {
@@ -212,6 +216,7 @@ const Nursery = ({id}: Props) => {
                     nursery={id}
                     getnurserydata={getNurseryData}
                     getseedlings={getSeedlings}
+                    showalert={showAlert}
                   />
                 </div>
               </div>
@@ -239,7 +244,7 @@ const Nursery = ({id}: Props) => {
             }}
             className={styles.alert}
           >
-            Nursery successfuly created!
+            Seedling successfully planted!
           </Alert>
         ) : null}
       </div>

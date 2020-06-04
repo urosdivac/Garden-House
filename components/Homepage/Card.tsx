@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Card.module.scss";
+import React from 'react';
+const styles = require('./Card.module.scss');
 
-const Card = (props) => {
+const Card = props => {
   return (
     <div className={styles.container}>
       {props.icon}

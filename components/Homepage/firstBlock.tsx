@@ -1,4 +1,4 @@
-import styles from "./firstBlock.module.scss";
+const styles = require('./firstBlock.module.scss');
 
 const firstBlock = () => {
   return (

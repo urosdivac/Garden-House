@@ -125,6 +125,19 @@
   position: relative;
   margin-top: 1rem;
   right: 2rem;
+  animation: slide 0.3s linear;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    right: -6rem;
+  }
+
+  100% {
+    opacity: 1;
+    right: 2rem;
+  }
 }
 
 .availableSpaceContainer {
@@ -156,4 +169,25 @@
 .confirmButton:hover {
   transform: translateY(-5px);
   box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.containerStyle {
+  height: 20;
+  width: '100%';
+  background-color: '#e0e0de';
+  border-radius: 50;
+  margin: 50;
+}
+
+.fillerStyle {
+  height: '100%';
+  background-color: '#4ecca3';
+  border-radius: 'inherit';
+  text-align: 'center';
+}
+
+.labelStyle {
+  padding: 5;
+  color: 'white';
+  font-weight: 'bold';
 }

@@ -30,6 +30,7 @@ interface Props {
   token: {id: number};
   getnurserydata: () => void;
   getseedlings: () => void;
+  showalert: () => void;
 }
 
 const Transition = React.forwardRef(function Transition(
@@ -44,6 +45,7 @@ export default function FullScreenDialog({
   token,
   getnurserydata,
   getseedlings,
+  showalert,
 }: Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -73,6 +75,7 @@ export default function FullScreenDialog({
       warehouse_id,
     });
     getnurserydata();
+    showalert();
   };
 
   useEffect(() => {
@@ -129,7 +132,7 @@ export default function FullScreenDialog({
                         handleClose();
                       }}
                     >
-                      Use
+                      Plant
                     </Button>
                   </div>
                 );

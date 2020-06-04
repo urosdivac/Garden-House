@@ -3,13 +3,13 @@ import Router from 'next/router';
 import axios from 'axios';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from './form.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
+const styles = require('./form.module.scss');
 
 const form = () => {
   const [email, setEmail] = useState('');
@@ -77,68 +77,64 @@ const form = () => {
           </Alert>
         ))}
       </div>
-        <TextField
-          id="outlined-basic"
-          label="E-mail"
-          variant="outlined"
-          className={styles.input}
-          error={emailError}
-          value={email}
-          onChange={e => {
-            setEmail(e.target.value);
-            setErrors([]);
-            setEmailError(false);
-          }}
-        />
+      <TextField
+        id="outlined-basic"
+        label="E-mail"
+        variant="outlined"
+        className={styles.input}
+        error={emailError}
+        value={email}
+        onChange={e => {
+          setEmail(e.target.value);
+          setErrors([]);
+          setEmailError(false);
+        }}
+      />
 
-        <TextField
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
-          type="password"
-          className={styles.input}
-          error={passwordError}
-          value={password}
-          onChange={e => {
-            setPassword(e.target.value);
-            setErrors([]);
-            setPasswordError(false);
-          }}
-        />
+      <TextField
+        id="outlined-basic"
+        label="Password"
+        variant="outlined"
+        type="password"
+        className={styles.input}
+        error={passwordError}
+        value={password}
+        onChange={e => {
+          setPassword(e.target.value);
+          setErrors([]);
+          setPasswordError(false);
+        }}
+      />
 
-        <div className={styles.radio}>
-          <p>Login as</p>
+      <div className={styles.radio}>
+        <p>Login as</p>
 
-          <RadioGroup
-            row
-            aria-label="gender"
-            name="gender1"
-            value={loginType}
-            onChange={e => setLoginType(e.target.value)}
-          >
-            <FormControlLabel
-              value="farmer"
-              control={<Radio />}
-              label="Farmer"
-            />
-            <FormControlLabel
-              value="company"
-              control={<Radio />}
-              label="Company"
-            />
-          </RadioGroup>
-        </div>
-
-        <Button
-          variant="contained"
-          color="primary"
-          className={styles.button}
-          size="large"
-          onClick={handleLogin}
-          type="submit"
+        <RadioGroup
+          row
+          aria-label="gender"
+          name="gender1"
+          value={loginType}
+          onChange={e => setLoginType(e.target.value)}
         >
-          Login
-        </Button>
+          <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
+          <FormControlLabel
+            value="company"
+            control={<Radio />}
+            label="Company"
+          />
+        </RadioGroup>
+      </div>
+
+      <Button
+        variant="contained"
+        color="primary"
+        className={styles.button}
+        size="large"
+        onClick={handleLogin}
+        type="submit"
+      >
+        Login
+      </Button>
     </div>
   );
 };
