@@ -4,6 +4,7 @@ import axios from 'axios';
 import NurseryContainer from './Nursery-Container';
 import Modal from './Modal';
 import getToken from '../../../src/getToken';
+import Router from 'next/router';
 const styles = require('./Nursery-Dashboard.module.scss');
 
 const Nursery = () => {
@@ -17,7 +18,7 @@ const Nursery = () => {
 
   const [data, setData] = useState([]);
   const [token, setToken] = useState<Token | undefined>();
-  const [nurserySucces, setNurserySuccess] = useState(true);
+  const [nurserySucces, setNurserySuccess] = useState(false);
 
   const getData = async () => {
     if (token) {

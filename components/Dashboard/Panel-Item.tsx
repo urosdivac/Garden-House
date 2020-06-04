@@ -1,29 +1,39 @@
-import React from 'react';
+import Link from 'next/link';
 const styles = require('./Panel-Item.module.scss');
 
-const Panel = props => {
+interface Props {
+  logout?: () => void;
+  icon?: JSX.Element;
+  location: string;
+  isActive?: boolean;
+  text?: string;
+}
+
+const Panel = ({location, icon, logout, isActive, text}: Props) => {
   const handleLogOut = () => {
-    if (props.logout) props.logout();
+    if (logout) logout();
   };
 
   return (
-    <div className={styles.containerWrapper} onClick={handleLogOut}>
-      {props.isActive ? (
-        <div className={styles.containerActive}>
-          <span className={styles.iconWrapperActive}>{props.icon}</span>
-          <span className={styles.textWrapperActive}>
-            <p className={styles.textActive}>{props.text}</p>
-          </span>
-        </div>
-      ) : (
-        <div className={styles.container}>
-          <span className={styles.iconWrapper}>{props.icon}</span>
-          <span className={styles.textWrapper}>
-            <p className={styles.text}>{props.text}</p>
-          </span>
-        </div>
-      )}
-    </div>
+    <Link href={location}>
+      <div className={styles.containerWrapper} onClick={handleLogOut}>
+        {isActive ? (
+          <div className={styles.containerActive}>
+            <span className={styles.iconWrapperActive}>{icon}</span>
+            <span className={styles.textWrapperActive}>
+              <p className={styles.textActive}>{text}</p>
+            </span>
+          </div>
+        ) : (
+          <div className={styles.container}>
+            <span className={styles.iconWrapper}>{icon}</span>
+            <span className={styles.textWrapper}>
+              <p className={styles.text}>{text}</p>
+            </span>
+          </div>
+        )}
+      </div>
+    </Link>
   );
 };
 

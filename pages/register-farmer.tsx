@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
+import Router from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import Form from '../components/Register/Farmer/farmer-form-first-page';
@@ -34,6 +35,7 @@ const farmerRegistration = () => {
       phonenumber,
       email: email.toLowerCase().trim(),
     });
+    Router.push('/');
   };
   return (
     <div className={styles.container}>

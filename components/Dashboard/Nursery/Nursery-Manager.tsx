@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
+import Link from 'next/link';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Slider from '@material-ui/core/Slider';
 import Seedling from './SeedlingContainer';
 import getToken from '../../../src/getToken';
@@ -152,7 +154,14 @@ const Nursery = ({id}: Props) => {
     <div>
       <div className={styles.container}>
         <div className={styles.managerContainer}>
-          {nurseryData ? <p>{nurseryData.name}</p> : null}
+          {nurseryData ? (
+            <Link href="/nursery">
+              <p>
+                <ArrowBackIcon className={styles.backIcon} color="primary" />{' '}
+                {nurseryData.name}
+              </p>
+            </Link>
+          ) : null}
         </div>
         <div className={styles.statsManagerContainer}>
           {nurseryData ? (

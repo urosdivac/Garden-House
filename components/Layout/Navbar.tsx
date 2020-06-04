@@ -7,6 +7,7 @@ const styles = require('./Navbar.module.scss');
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<{isadmin: boolean} | undefined>();
+
   const handleLogout = () => {
     Cookies.remove('JWT');
     setIsLoggedIn(false);
@@ -17,11 +18,11 @@ const Navbar = () => {
     if (cookie) setIsLoggedIn(true);
     setToken(getToken());
   }, []);
-  
+
   return (
     <div className={styles.containerz}>
       {isLoggedIn ? (
-        <Link href={token.isadmin ? '/dashbaord' : '/nursery'}>
+        <Link href={token.isadmin ? '/dashboard' : '/nursery'}>
           <a className={styles.login}>Dashboard</a>
         </Link>
       ) : null}

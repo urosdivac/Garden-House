@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
-import jwt from 'jsonwebtoken';
-import Cookies from 'js-cookie';
+import Router from 'next/router';
 import WelcomeHeader from './WelcomeHeader';
 import RequestsTable from './RequestsTable';
 import DataField from './DataField';
 import axios from 'axios';
+import getToken from '../../../src/getToken';
 const styles = require('./Admin.module.scss');
 
 const Admin = () => {
@@ -44,13 +44,6 @@ const Admin = () => {
     setStats(newStatsArr);
   };
 
-  const getTokenInfo = async () => {
-    const cookie = Cookies.get('JWT');
-    jwt.verify(cookie, 'secertToken', async (err, decoded) => {
-      setToken(decoded);
-    });
-  };
-
   const getData = async () => {
     const data = await axios.get('https://gardenhouse.tech/admin/');
     setData([...data.data.data]);
@@ -72,9 +65,14 @@ const Admin = () => {
 
   useEffect(() => {
     getData();
-    getTokenInfo();
+    if (!token) setToken(getToken());
     getStats();
-  }, []);
+    if (token) {
+      if (!token.isadmin) {
+        Router.push('/');
+      }
+    }
+  }, [token]);
   return (
     <div className={styles.container}>
       <WelcomeHeader

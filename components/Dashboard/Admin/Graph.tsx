@@ -21,7 +21,8 @@ const Graph = ({stats, data}: Props) => {
 
   useEffect(() => {
     let myChart = graph.current;
-    let data = [];
+    let dataArr = [];
+
     const formatedData = data.map(item =>
       new Date(item.created_at).toLocaleDateString(),
     );
@@ -33,9 +34,9 @@ const Graph = ({stats, data}: Props) => {
     });
 
     if (stats.length === 3) {
-      data.unshift(stats[1], stats[2]);
+      dataArr.unshift(stats[1], stats[2]);
     } else {
-      data.unshift(stats[1], stats[2], stats[3]);
+      dataArr.unshift(stats[1], stats[2], stats[3]);
     }
 
     // Global Options
@@ -45,15 +46,19 @@ const Graph = ({stats, data}: Props) => {
 
     new Chart(myChart, {
       type: 'line',
+
       data: {
         labels: Object.keys(counts),
         datasets: [
           {
             data: Object.values(counts),
-            backgroundColor: 'rgba(48, 196, 126,0.6)',
+            backgroundColor: 'rgba(48, 196, 126,0.8)',
+            fill: false,
+            borderColor: 'rgba(48, 196, 126,0.8)',
           },
         ],
       },
+
       options: {
         title: {
           display: true,
@@ -80,10 +85,12 @@ const Graph = ({stats, data}: Props) => {
           },
           fontFamily: 'Roboto',
         },
+
         tooltips: {
           enabled: true,
           fontFamily: 'Roboto',
         },
+
         responsive: true,
         maintainAspectRatio: false,
         fontFamily: 'Roboto',

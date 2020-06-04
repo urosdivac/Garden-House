@@ -19,11 +19,12 @@
 .managerContainer {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   padding-left: 2rem;
   font-size: 1.5rem;
   color: #777;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 5rem;
 }
 
 .statsManagerContainer {
@@ -190,4 +191,13 @@
   padding: 5;
   color: 'white';
   font-weight: 'bold';
+}
+
+.backIcon {
+  font-size: 3rem !important;
+  position: relative;
+  top: 0.85rem;
+  margin-right: 2rem;
+  cursor: pointer;
+  color: #4ecca3 !important;
 }

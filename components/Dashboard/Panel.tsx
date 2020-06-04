@@ -35,6 +35,7 @@ const Panel = props => {
           }
           text="Admin Dashboard"
           isActive={props.admin}
+          location="/dashboard"
         />
       ) : null}
 
@@ -47,6 +48,7 @@ const Panel = props => {
           }
           text="Nursery"
           isActive={props.nursery}
+          location="/nursery"
         />
       ) : null}
 
@@ -59,6 +61,7 @@ const Panel = props => {
           }
           text="Warehouse"
           isActive={props.warehouse}
+          location="/warehouse"
         />
       ) : null}
 
@@ -70,6 +73,7 @@ const Panel = props => {
         }
         text="Shop"
         isActive={props.shop}
+        location="/shop"
       />
 
       <PanelItem
@@ -80,6 +84,7 @@ const Panel = props => {
         }
         text="Orders"
         isActive={props.orders}
+        location="/orders"
       />
 
       {props.isCompany ? (
@@ -91,6 +96,7 @@ const Panel = props => {
           }
           text="Store Items"
           isActive={props.storeItems}
+          location="/items"
         />
       ) : null}
 
@@ -102,12 +108,14 @@ const Panel = props => {
         }
         text="Settings"
         isActive={props.settings}
+        location="/settings"
       />
 
       <PanelItem
         icon={<ExitToAppIcon className={styles.icon} />}
         text="Log out"
         logout={logout}
+        location="/"
       />
     </div>
   );
