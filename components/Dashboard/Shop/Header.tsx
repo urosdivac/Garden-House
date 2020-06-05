@@ -1,11 +1,11 @@
-const styles = require('./Header.module.scss')
+const styles = require('./Header.module.scss');
 
 const Header = () => {
-    return (
-        <div className={styles.container}>
-            Store
-        </div>
-    )
-}
+  return (
+    <div className={styles.container}>
+      <p>Store</p>
+    </div>
+  );
+};
 
-export default Header
+export default Header;
