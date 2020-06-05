@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(66, 134, 244, 0.9);
+  cursor: pointer;
+  transition: all 0.4s;
+
+  p {
+    color: #fff;
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
+.seedlings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(48, 196, 126, 0.9);
+  cursor: pointer;
+  transition: all 0.4s;
+
+  p {
+    color: #fff;
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
+.fertilizers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(244, 179, 0, 0.9);
+  cursor: pointer;
+  transition: all 0.4s;
+
+  p {
+    color: #fff;
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+}

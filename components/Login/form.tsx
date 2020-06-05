@@ -63,7 +63,7 @@ const form = () => {
       Cookies.set('JWT', response.data.token, {expires: 7});
       setEmail('');
       setPassword('');
-      Router.push('/dashboard');
+      Router.push('/nursery');
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
     }
