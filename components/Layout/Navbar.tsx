@@ -7,22 +7,37 @@ const styles = require('./Navbar.module.scss');
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<{isadmin: boolean} | undefined>();
+  const [navigation, setNavigation] = useState('/');
 
   const handleLogout = () => {
     Cookies.remove('JWT');
     setIsLoggedIn(false);
   };
 
+  const getNavigation = () => {
+    if (token) {
+      if (token.isadmin) {
+        setNavigation('/dashboard');
+      } else if (!token.isadmin) {
+        setNavigation('/nursery');
+      } else {
+        setNavigation('/dashboard');
+      }
+    }
+    console.log(token)
+  };
+
   useEffect(() => {
     const cookie = Cookies.get('JWT');
     if (cookie) setIsLoggedIn(true);
-    setToken(getToken());
-  }, []);
+    if (!token) setToken(getToken());
+    getNavigation();
+  }, [token]);
 
   return (
     <div className={styles.containerz}>
       {isLoggedIn ? (
-        <Link href={token.isadmin ? '/dashboard' : '/nursery'}>
+        <Link href={navigation}>
           <a className={styles.login}>Dashboard</a>
         </Link>
       ) : null}

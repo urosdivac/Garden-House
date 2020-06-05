@@ -39,7 +39,7 @@ const Panel = props => {
         />
       ) : null}
 
-      {props.isFarmer ? (
+      {props.isFarmer && !props.isCompany ? (
         <PanelItem
           icon={
             <HomeRoundedIcon
@@ -52,7 +52,7 @@ const Panel = props => {
         />
       ) : null}
 
-      {props.isFarmer ? (
+      {props.isFarmer && !props.isCompany ? (
         <PanelItem
           icon={
             <LocationCityRoundedIcon
