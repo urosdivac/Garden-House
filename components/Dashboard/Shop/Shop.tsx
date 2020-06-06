@@ -16,7 +16,9 @@ const Shop = () => {
   };
 
   const addToCart = (id: number, quantity: number, name: string) => {
-    setCart(prevState => [...prevState, {id, quantity, name}]);
+    const filteredArray = cart.filter(item => item.name !== name);
+    filteredArray.push({id, quantity, name});
+    setCart(filteredArray);
   };
 
   const handleAlert = text => {
