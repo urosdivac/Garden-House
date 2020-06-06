@@ -2,7 +2,7 @@
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.01);
   display: inline-flex;
-  padding: 1.5rem;
+  padding: 2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,4 +16,45 @@
     color: #777;
     letter-spacing: 1.5px;
   }
+}
+
+.button {
+  background-color: #4ecca3 !important;
+  color: #fff !important;
+  width: 12rem !important;
+  height: 3rem !important;
+  border-radius: 5px !important;
+  transition: all 0.2s !important;
+  letter-spacing: 1.5px !important;
+}
+
+.quantityContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  margin: 0;
+  position: relative;
+  bottom: 2rem;
+  font-size: 1.3rem;
+  color: #777;
+  letter-spacing: 1.5px;
+}
+
+.decrease {
+  font-size: 2rem !important;
+  margin-right: 2.5rem;
+  cursor: pointer;
+  border-radius: 5rem !important;
+  background-color: rgba(219, 69, 55, 0.9) !important;
+  color: #fff !important;
+}
+
+.increase {
+  font-size: 2rem !important;
+  margin-left: 2.5rem;
+  cursor: pointer;
+  border-radius: 5rem !important;
+  background-color: rgba(66, 134, 244, 0.9) !important;
+  color: #fff !important;
 }
