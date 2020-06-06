@@ -7,20 +7,29 @@ const styles = require('./ShopItemContainer.module.scss');
 interface Props {
   id: number;
   name: string;
-  quantity: number;
+  quant: number;
   type: string;
   speeduptime?: number;
+  addtocart: (id: number, quantity: number, name: string) => void;
+  handlealert: (text: string) => void;
 }
 
-const ShopItemContainer = ({name, quantity, type, speeduptime}: Props) => {
-  const [cart, setCart] = useState([]);
+const ShopItemContainer = ({
+  id,
+  name,
+  quant,
+  type,
+  speeduptime,
+  addtocart,
+  handlealert,
+}: Props) => {
   const [qty, setQty] = useState(1);
 
   return (
     <div className={styles.container}>
       <p>Name : {name}</p>
       <p>Type : {type}</p>
-      <p>Quantity : {quantity}</p>
+      <p>Quantity : {quant}</p>
       <p>{speeduptime ? `Speedup Time : ${speeduptime}` : null}</p>
       <div className={styles.quantityContainer}>
         <RemoveIcon
@@ -32,7 +41,14 @@ const ShopItemContainer = ({name, quantity, type, speeduptime}: Props) => {
         {qty}
         <AddIcon className={styles.increase} onClick={() => setQty(qty + 1)} />
       </div>
-      <Button className={styles.button} size="large">
+      <Button
+        className={styles.button}
+        size="large"
+        onClick={() => {
+          addtocart(id, qty, name);
+          handlealert(name);
+        }}
+      >
         Add to Cart
       </Button>
     </div>
