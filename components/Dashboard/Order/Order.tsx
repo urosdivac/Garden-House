@@ -38,7 +38,6 @@ const Order = () => {
       if (!token.shortname) {
         query = 'https://gardenhouse.tech/order/user';
         const data = await axios.post(query, {id: token.id});
-        console.log(data);
         setOrders(data.data.data);
         setFilteredData(data.data.data);
       } else {
@@ -131,6 +130,7 @@ const Order = () => {
                   deliverydate={order.delivery_date}
                   orderdate={order.created_at}
                   iscompany={token.shortname}
+                  key={order.id}
                 />
               );
             })

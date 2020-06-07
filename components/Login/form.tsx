@@ -1,6 +1,7 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import Cookies from 'js-cookie';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +12,11 @@ import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 const styles = require('./form.module.scss');
 
+interface Token {
+  isadmin: boolean;
+  shortname: string;
+}
+
 const form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,11 +25,20 @@ const form = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  // Checks if user is logged in
-  useEffect(() => {
-    const cookie = Cookies.get('JWT');
-    if (cookie) Router.push('/dashboard');
-  }, []);
+  const getToken = async () => {
+    const cookie = await Cookies.get('JWT');
+    if (cookie) {
+      jwt.verify(cookie, 'secertToken', async (err, decoded: Token) => {
+        if (decoded.isadmin) {
+          Router.push('/dashboard');
+        } else if (decoded.shortname) {
+          Router.push('/orders');
+        } else {
+          Router.push('/nursery');
+        }
+      });
+    }
+  };
 
   const handleErrors = () => {
     let errors = false;
@@ -60,10 +75,10 @@ const form = () => {
         return;
       }
 
-      Cookies.set('JWT', response.data.token, {expires: 7});
+      Cookies.set('JWT', response.data.token, {expires: 90});
       setEmail('');
       setPassword('');
-      Router.push('/nursery');
+      getToken();
     } catch (err) {
       setErrors(prevState => [...prevState, err.message]);
     }

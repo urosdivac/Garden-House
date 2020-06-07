@@ -28,11 +28,9 @@ const OrderItem = ({id, orderdate, deliverydate, status, iscompany}: Props) => {
 
       <div>
         <p>
-          {deliverydate ? (
-            moment(deliverydate).format('MMMM Do YYYY, h:mm:ss a')
-          ) : (
-            <p>/</p>
-          )}
+          {deliverydate
+            ? moment(deliverydate).format('MMMM Do YYYY, h:mm:ss a')
+            : '/'}
         </p>
       </div>
 
