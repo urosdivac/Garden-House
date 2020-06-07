@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -11,6 +10,13 @@
     color: #777;
     letter-spacing: 2px;
   }
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .flower {
@@ -35,4 +41,8 @@
     transform: translateY(-5px);
     box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
   }
+}
+
+.image {
+  height: 80%;
 }

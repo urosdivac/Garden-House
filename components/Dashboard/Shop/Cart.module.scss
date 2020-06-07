@@ -40,6 +40,7 @@
   color: #fff !important;
   width: 8rem !important;
   margin-top: 4rem !important;
+  margin-right: 2rem !important;
   border-radius: 5rem !important;
 }
 
@@ -47,6 +48,9 @@
   background-color: rgba(48, 196, 126, 0.9) !important;
   color: #fff !important;
   width: 8rem !important;
+  margin-top: 4rem !important;
+  margin-left: 2rem !important;
+  border-radius: 5rem !important;
 }
 
 .seedlingButton {
@@ -148,6 +152,12 @@
 .emptyContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
   justify-content: center;
   align-items: center;
 }

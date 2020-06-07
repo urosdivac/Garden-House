@@ -15,9 +15,9 @@ const Shop = () => {
     setData(data.data.data);
   };
 
-  const addToCart = (id: number, quantity: number, name: string) => {
+  const addToCart = (shopitem_id: number, quantity: number, name: string) => {
     const filteredArray = cart.filter(item => item.name !== name);
-    filteredArray.push({id, quantity, name});
+    filteredArray.push({shopitem_id, quantity, name});
     setCart(filteredArray);
   };
 

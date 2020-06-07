@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import Router from 'next/router';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -53,6 +54,7 @@ export default function FullScreenDialog({cart, setcart}: Props) {
       items: cart,
     });
     setcart([]);
+    Router.push('/successfulorder');
   };
 
   const handleClickOpen = () => {
@@ -114,9 +116,9 @@ export default function FullScreenDialog({cart, setcart}: Props) {
 
                 {cart.map(item => {
                   return (
-                    <div className={styles.itemContainer} key={item.id}>
+                    <div className={styles.itemContainer} key={item.shopitem_id}>
                       <div>
-                        <p>{item.id}</p>
+                        <p>{item.shopitem_id}</p>
                       </div>
 
                       <div>
@@ -129,22 +131,23 @@ export default function FullScreenDialog({cart, setcart}: Props) {
                     </div>
                   );
                 })}
+                <div className={styles.buttonContainer}>
+                  <Button
+                    variant="contained"
+                    className={styles.cancelButton}
+                    onClick={handleClose}
+                  >
+                    Cancel
+                  </Button>
 
-                <Button
-                  variant="contained"
-                  className={styles.cancelButton}
-                  onClick={handleClose}
-                >
-                  Cancel
-                </Button>
-
-                <Button
-                  variant="contained"
-                  className={styles.cancelButton}
-                  onClick={handleClose}
-                >
-                  Cancel
-                </Button>
+                  <Button
+                    variant="contained"
+                    className={styles.confirm}
+                    onClick={sendOrder}
+                  >
+                    Confirm
+                  </Button>
+                </div>
               </div>
             ) : (
               <div className={styles.emptyContainer}>
