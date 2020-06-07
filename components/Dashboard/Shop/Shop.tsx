@@ -30,7 +30,7 @@ const Shop = () => {
   }, []);
   return (
     <div className={styles.container}>
-      <Header cart={cart} />
+      <Header cart={cart} setcart={setCart} />
       {data.map(item => {
         return (
           <ShopItemContainer
@@ -47,13 +47,14 @@ const Shop = () => {
       })}
       <div className={styles.alertContainer}>
         {alerts
-          ? alerts.map(alert => {
+          ? alerts.map((alert, index) => {
               return (
                 <Alert
                   onClose={() => {
                     setAlerts(alerts.filter(item => item !== alert));
                   }}
                   className={styles.alert}
+                  key={index}
                 >
                   {alert} successfuly added to cart!
                 </Alert>

@@ -3,13 +3,14 @@ const styles = require('./Header.module.scss');
 
 interface Props {
   cart: any[];
+  setcart: (value) => void;
 }
 
-const Header = ({cart}:Props) => {
+const Header = ({cart, setcart}: Props) => {
   return (
     <div className={styles.container}>
       <p>Store</p>
-      <Cart cart={cart}/>
+      <Cart cart={cart} setcart={setcart} />
     </div>
   );
 };

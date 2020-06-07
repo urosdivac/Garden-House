@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+
+  p {
+    font-size: 2.5rem;
+    color: #777;
+    letter-spacing: 2px;
+  }
+}
+
+.flower {
+  font-size: 2rem !important;
+  color: #fff !important;
+}
+
+.button {
+  margin-top: 1rem !important;
+  background-color: rgba(244, 179, 0, 1) !important;
+  color: #fff !important;
+  border-radius: 5rem !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 2px !important;
+  padding: 0.7rem 2.5rem !important;
+  transition: all 0.2s !important;
+  font-size: 1.2rem !important;
+  position: relative;
+  top: 1rem;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+  }
+}

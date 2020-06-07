@@ -10,6 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import {TransitionProps} from '@material-ui/core/transitions';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
+import getToken from '../../../src/getToken';
 const styles = require('./Cart.module.scss');
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,11 +35,25 @@ const Transition = React.forwardRef(function Transition(
 
 interface Props {
   cart: any[];
+  setcart: (value) => void;
 }
 
-export default function FullScreenDialog({cart}: Props) {
+interface Token {
+  id: number;
+}
+
+export default function FullScreenDialog({cart, setcart}: Props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(false);
+  const [token, setToken] = useState<Token | undefined>();
+
+  const sendOrder = async () => {
+    await axios.post('https://gardenhouse.tech/order/create', {
+      buyer: token.id,
+      items: cart,
+    });
+    setcart([]);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -48,8 +63,9 @@ export default function FullScreenDialog({cart}: Props) {
     setOpen(false);
   };
 
-  useEffect(() => {}, []);
-
+  useEffect(() => {
+    if (!token) setToken(getToken());
+  }, []);
   return (
     <div>
       <Button
@@ -98,7 +114,7 @@ export default function FullScreenDialog({cart}: Props) {
 
                 {cart.map(item => {
                   return (
-                    <div className={styles.itemContainer}>
+                    <div className={styles.itemContainer} key={item.id}>
                       <div>
                         <p>{item.id}</p>
                       </div>
@@ -121,6 +137,14 @@ export default function FullScreenDialog({cart}: Props) {
                 >
                   Cancel
                 </Button>
+
+                <Button
+                  variant="contained"
+                  className={styles.cancelButton}
+                  onClick={handleClose}
+                >
+                  Cancel
+                </Button>
               </div>
             ) : (
               <div className={styles.emptyContainer}>
@@ -134,16 +158,6 @@ export default function FullScreenDialog({cart}: Props) {
                 </Button>
               </div>
             )}
-
-            {/* <div className={styles.buttonContainer}>
-              <Button
-                variant="contained"
-                className={styles.cancelButton}
-                onClick={handleClose}
-              >
-                Cancel
-              </Button>
-            </div> */}
           </div>
         </div>
       </Dialog>
