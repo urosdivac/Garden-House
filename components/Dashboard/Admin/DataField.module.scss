@@ -5,7 +5,7 @@
   height: 4rem;
   color: #777;
   font-size: 0.9rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
   :first-child {
     flex-basis: 5%;
@@ -19,7 +19,6 @@
   min-width: auto;
   max-width: auto;
   text-align: center;
-
 }
 
 .functionWrapper {
@@ -27,20 +26,20 @@
 }
 
 .accept {
-  color: #0f9d58;
+  color: rgba(48, 196, 126, 1);
   cursor: pointer;
   margin-right: 2rem;
 }
 
 .accepted {
-  color: #0f9d58;
+  color: rgba(48, 196, 126, 1);
 }
 
 .decline {
-  color: #db4537;
+  color: rgba(219, 69, 55, 1);
   cursor: pointer;
 }
 
 .declined {
-  color: #db4537;
+  color: rgba(219, 69, 55, 1);
 }
