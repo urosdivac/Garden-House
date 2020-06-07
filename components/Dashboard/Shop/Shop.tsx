@@ -30,7 +30,7 @@ const Shop = () => {
   }, []);
   return (
     <div className={styles.container}>
-      <Header />
+      <Header cart={cart} />
       {data.map(item => {
         return (
           <ShopItemContainer

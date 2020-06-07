@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 3rem;
+  border-radius: 15px;
+}
+
+.modal {
+  border: 2px solid #000;
+  height: 10rem;
+  width: auto;
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  color: #777;
+}
+
+.input {
+  margin-bottom: 2rem !important;
+  margin-left: 5rem !important;
+  margin-right: 5rem !important;
+  width: 19rem !important;
+}
+
+.cancel {
+  background-color: rgba(219, 69, 55, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+  margin-right: 3rem !important;
+}
+
+.cancelButton {
+  background-color: rgba(219, 69, 55, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+}
+
+.confirm {
+  background-color: rgba(48, 196, 126, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+}
+
+.seedlingButton {
+  margin-top: 1rem !important;
+  background-color: rgba(244, 179, 0, 1) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 2px !important;
+  padding: 0.7rem 2.5rem !important;
+  transition: all 0.2s !important;
+  font-size: 1.2rem !important;
+  position: relative;
+  bottom: 0.5rem;
+  margin-left: 4rem !important;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.flower {
+  font-size: 2rem !important;
+  color: #fff !important;
+}
+
+.emptyParagraph {
+  font-size: 2rem;
+  color: #777;
+}
+
+.seedlingsContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #777;
+  font-size: 1.6rem;
+  background: #f1f0f0;
+  padding: 3rem;
+  box-shadow: 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
+}
+
+.seedlingOuterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
