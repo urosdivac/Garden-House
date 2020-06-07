@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  color: #777;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  height: 4rem;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 20%;
+  }
+}
+
+.accept {
+  color: rgba(48, 196, 126, 1);
+  cursor: pointer;
+}
+
+.decline {
+  color: rgba(219, 69, 55, 1);
+  cursor: pointer;
+}
+
