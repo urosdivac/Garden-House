@@ -79,20 +79,63 @@ export default function FullScreenDialog({cart}: Props) {
         </AppBar>
         <div className={styles.seedlingOuterContainer}>
           <p id="transition-modal-title" className={styles.heading}>
-            Your shopping cart
+            Shopping cart
           </p>
           <div className={styles.seedlingsContainer}>
             {cart.length > 0 ? (
-              cart.map(item => {
-                <div className={styles.itemContainer}>
-                  <p>{item.name}</p>
-                </div>;
-              })
+              <div className={styles.innerContainer}>
+                <div className={styles.labelsContainer}>
+                  <div>
+                    <p>ID</p>
+                  </div>
+                  <div>
+                    <p>Name</p>
+                  </div>
+                  <div>
+                    <p>Quantity</p>
+                  </div>
+                </div>
+
+                {cart.map(item => {
+                  return (
+                    <div className={styles.itemContainer}>
+                      <div>
+                        <p>{item.id}</p>
+                      </div>
+
+                      <div>
+                        <p>{item.name}</p>
+                      </div>
+
+                      <div>
+                        <p>{item.quantity}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <Button
+                  variant="contained"
+                  className={styles.cancelButton}
+                  onClick={handleClose}
+                >
+                  Cancel
+                </Button>
+              </div>
             ) : (
-              <p>Your cart is empty!</p>
+              <div className={styles.emptyContainer}>
+                <p>Your cart is empty!</p>
+                <Button
+                  variant="contained"
+                  className={styles.cancelButton}
+                  onClick={handleClose}
+                >
+                  Cancel
+                </Button>
+              </div>
             )}
 
-            <div className={styles.buttonContainer}>
+            {/* <div className={styles.buttonContainer}>
               <Button
                 variant="contained"
                 className={styles.cancelButton}
@@ -100,7 +143,7 @@ export default function FullScreenDialog({cart}: Props) {
               >
                 Cancel
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </Dialog>
