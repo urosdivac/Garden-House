@@ -1,14 +1,17 @@
+import {useEffect, useState} from 'react';
 const styles = require('./firstBlock.module.scss');
 
 const firstBlock = () => {
-  const mq = window.matchMedia('(max-width: 600px)');
-  let pictureURL: string;
-  if (mq.matches) {
-    pictureURL = '/assets/adminPageMobile.png';
-  } else {
-    pictureURL = '/assets/adminPage.jpg';
-  }
+  const [pictureUrl, setPictureUrl] = useState('');
 
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 600px)');
+    if (mq.matches) {
+      setPictureUrl('/assets/adminPageMobile.png');
+    } else {
+      setPictureUrl('/assets/adminPage.jpg');
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.header}>
@@ -42,7 +45,7 @@ const firstBlock = () => {
         </div>
 
         <div className={styles.rightSide}>
-          <img src={pictureURL} alt="adimin page" className={styles.image} />
+          <img src={pictureUrl} alt="adimin page" className={styles.image} />
         </div>
       </div>
     </div>

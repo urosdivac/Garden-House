@@ -1,32 +1,71 @@
-.container {
-  height: 50rem;
-  background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
-    url("../../public/assets/field3.jpg");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: skewY(-7deg);
-  z-index: -1;
-  margin-top: 10rem;
+@media (min-width: 801px) {
+  .container {
+    height: 50rem;
+    background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
+      url('../../public/assets/field3.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: skewY(-7deg);
+    z-index: -1;
+    margin-top: 10rem;
+  }
+
+  .container > * {
+    transform: skewY(7deg);
+  }
+
+  .innerContainer {
+    display: flex;
+    position: relative;
+    top: 13rem;
+    left: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+  }
+
+  .icon {
+    font-size: 6rem !important;
+    color: #32b361;
+  }
 }
 
-.container > * {
-  transform: skewY(7deg);
-}
+@media (max-width: 800px) {
+  .container {
+    height: 220vh;
+    background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
+      url('../../public/assets/field3Mobile.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: skewY(-7deg);
+    z-index: -1;
+    margin-top: 10rem;
+  }
 
-.innerContainer {
-  display: flex;
-  position: relative;
-  top: 13rem;
-  left: 2rem;
-  justify-content: space-between;
-  align-items: center;
-  width: 65%;
-}
+  .container > * {
+    transform: skewY(7deg);
+  }
 
-.icon {
-  font-size: 6rem !important;
-  color: #32b361;
+  .innerContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .innerContainer > * {
+    margin-top: 2.5rem;
+  }
+
+  .icon {
+    font-size: 6rem !important;
+    color: #32b361;
+  }
 }
