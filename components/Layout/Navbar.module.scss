@@ -1,38 +1,82 @@
-.containerz {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  align-items: center;
-  transform: translateX(-5rem) translateY(2rem);
+@media all and (min-width: 601px) {
+  .containerz {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    transform: translateX(-5rem) translateY(2rem);
+  }
+
+  .login {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .logout {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .login:hover {
+    background-color: #32b361;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.301);
+  }
 }
 
-.login {
-  text-decoration: none;
-  font-size: 1.3rem;
-  color: #fff;
-  padding: 0.7rem 2rem;
-  border: 3px solid #fff;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 700;
-  transition: all 0.2s;
-}
+@media all and (max-width: 600px) {
+  .containerz {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    transform: translateX(-5rem) translateY(2rem);
+    display: none;
+  }
 
-.logout {
-  text-decoration: none;
-  font-size: 1.3rem;
-  color: #fff;
-  padding: 0.7rem 2rem;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+  .login {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
 
-.login:hover {
-  background-color: #32b361;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.301);
+  .logout {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .login:hover {
+    background-color: #32b361;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.301);
+  }
 }

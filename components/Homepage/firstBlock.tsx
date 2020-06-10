@@ -1,6 +1,14 @@
 const styles = require('./firstBlock.module.scss');
 
 const firstBlock = () => {
+  const mq = window.matchMedia('(max-width: 600px)');
+  let pictureURL: string;
+  if (mq.matches) {
+    pictureURL = '/assets/adminPageMobile.png';
+  } else {
+    pictureURL = '/assets/adminPage.jpg';
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.header}>
@@ -34,7 +42,7 @@ const firstBlock = () => {
         </div>
 
         <div className={styles.rightSide}>
-          <img src="/assets/adminPage.jpg" alt="adimin page" />
+          <img src={pictureURL} alt="adimin page" className={styles.image} />
         </div>
       </div>
     </div>

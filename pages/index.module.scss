@@ -1,62 +1,100 @@
-.container {
-  height: 100vh;
-  background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
-    url('../public/coverPhoto.jpeg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  clip-path: ellipse(65% 90% at 52% 10%);
+@media all and (min-width: 801px) {
+  .container {
+    height: 100vh;
+    background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
+      url('../public/coverPhoto.jpeg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    clip-path: ellipse(65% 90% at 52% 10%);
+  }
+
+  .innerContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .logo {
+    background-repeat: no-repeat;
+    height: 7rem;
+    animation: moveInLeft 1s ease-out;
+  }
+
+  .slogan {
+    letter-spacing: 4px;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    animation: moveInRight 1s ease-out;
+  }
+
+  .register {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    background-color: #fff;
+    border-radius: 2rem;
+    color: #777;
+    font-size: 1.2 rem;
+    margin-top: 2rem;
+    transition: all 0.2s;
+  }
 }
 
-.innerContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+@media all and (max-width: 800px) {
+  .container {
+    height: 100vh;
+    background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
+      url('../public/coverPhotoMobile.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    clip-path: ellipse(90% 88% at 52% 10%);
+  }
 
-.logo {
-  background-repeat: no-repeat;
-  height: 20rem;
-  animation: moveInLeft 1s ease-out;
-}
+  .innerContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
-.slogan {
-  letter-spacing: 4px;
-  color: #fff;
-  font-size: 1.3rem;
-  font-weight: 500;
-  animation: moveInRight 1s ease-out;
-}
+  .logo {
+    background-repeat: no-repeat;
+    height: 7rem;
+    animation: moveInLeft 1s ease-out;
+  }
 
-.register {
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 15px 40px;
-  background-color: #fff;
-  border-radius: 2rem;
-  color: #777;
-  font-size: 1.2 rem;
-  margin-top: 2rem;
-  transition: all 0.2s;
-}
+  .slogan {
+    letter-spacing: 4px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    animation: moveInRight 1s ease-out;
+  }
 
-.register:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.register:active {
-  transform: translateY(1px);
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
-}
-
-.hoverz :hover {
-  transform: translateY(50px);
+  .register {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    background-color: #fff;
+    border-radius: 2rem;
+    color: #777;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    transition: all 0.2s;
+  }
 }
 
 @keyframes moveInLeft {

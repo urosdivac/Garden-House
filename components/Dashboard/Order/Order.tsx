@@ -4,7 +4,6 @@ import axios from 'axios';
 import getToken from '../../../src/getToken';
 import OrderItem from './OrderItem';
 const styles = require('./Order.module.scss');
-
 interface Token {
   id?: number;
   shortname?: string;
@@ -12,6 +11,7 @@ interface Token {
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
+  const [couriers, setCouriers] = useState(5);
   const [token, setToken] = useState<Token | undefined>();
   const [statusFilter, setStatusFilter] = useState('declined');
   const [filteredData, setFilteredData] = useState<any[] | undefined>();
@@ -32,6 +32,18 @@ const Order = () => {
     });
   };
 
+  const getAvailableCouriers = async () => {
+    if (token) {
+      if (token.shortname) {
+        const data = await axios.post('https://gardenhouse.tech/courier/', {
+          id: token.id,
+        });
+        setCouriers(data.data.data);
+        console.log(data.data);
+      }
+    }
+  };
+
   const getOrders = async () => {
     let query: string;
     if (token) {
@@ -49,14 +61,42 @@ const Order = () => {
     }
   };
 
+  const cancelOrder = async (id: number) => {
+    await axios.post('https://gardenhouse.tech/order/cancel', {orderid: id});
+    getOrders();
+  };
+
+  const acceptOrder = async (id: number) => {
+    try {
+      const resp = await axios.post('https://gardenhouse.tech/order/acept', {
+        orderid: id,
+        firm: token.id,
+      });
+      console.log(resp);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (!token) setToken(getToken());
     getOrders();
+    if (!couriers) getAvailableCouriers();
   }, [token]);
 
   return (
     <div className={styles.container}>
-      <Heading />
+      <Heading
+        couriers={couriers}
+        shortname={
+          token
+            ? token.hasOwnProperty('shortname')
+              ? token.shortname
+              : null
+            : null
+        }
+      />
+      <button onClick={() => console.log(token)}>Click me</button>
       <div className={styles.fields}>
         <div
           className={styles.fieldContainer}
@@ -131,6 +171,8 @@ const Order = () => {
                   orderdate={order.created_at}
                   iscompany={token.shortname}
                   key={order.id}
+                  cancelorder={cancelOrder}
+                  acceptorder={acceptOrder}
                 />
               );
             })

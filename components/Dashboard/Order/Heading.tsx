@@ -1,9 +1,14 @@
 const styles = require('./Heading.module.scss');
 
-const Heading = () => {
+interface Props {
+  couriers: number;
+  shortname: string;
+}
+
+const Heading = ({couriers, shortname}: Props) => {
   return (
     <div className={styles.container}>
-      <p>Orders</p>
+      <p>Orders {shortname ? `- Available couriers ${couriers} / 5` : null}</p>
     </div>
   );
 };

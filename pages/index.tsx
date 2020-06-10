@@ -31,6 +31,10 @@ export default function Home() {
           name="Description"
           content="Garden house is online platform for managing nurseries."
         ></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
       </Head>
     </div>
   );

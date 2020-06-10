@@ -24,7 +24,6 @@ const Navbar = () => {
         setNavigation('/dashboard');
       }
     }
-    console.log(token)
   };
 
   useEffect(() => {

@@ -9,13 +9,19 @@ interface Props {
   deliverydate?: Date;
   status: string;
   iscompany: string;
+  cancelorder: (id: number) => void;
+  acceptorder: (id: number) => void;
 }
 
-const capitalizeFirstLetter = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-const OrderItem = ({id, orderdate, deliverydate, status, iscompany}: Props) => {
+const OrderItem = ({
+  id,
+  orderdate,
+  deliverydate,
+  status,
+  iscompany,
+  cancelorder,
+  acceptorder,
+}: Props) => {
   return (
     <div className={styles.container}>
       <div>
@@ -35,17 +41,39 @@ const OrderItem = ({id, orderdate, deliverydate, status, iscompany}: Props) => {
       </div>
 
       <div>
-        <p>{capitalizeFirstLetter(status)}</p>
+        {status === 'pending' ? (
+          <p style={{color: 'rgba(244, 179, 0, 1)'}}>Pending</p>
+        ) : null}
+        {status === 'shipping' ? (
+          <p style={{color: 'rgba(48, 196, 126, 1)'}}>Shipping</p>
+        ) : null}
+        {status === 'cancled' ? (
+          <p style={{color: 'rgba(219, 69, 55, 1)'}}>Cancled</p>
+        ) : null}
+
+        {status === 'declined' ? (
+          <p style={{color: 'rgba(219, 69, 55, 1)'}}>Declined</p>
+        ) : null}
       </div>
 
       <div>
         {iscompany ? (
-          <span>
-            <CheckIcon className={styles.accept} />
-            <BlockIcon className={styles.decline} />
-          </span>
+          status === 'pending' ? (
+            <span>
+              <CheckIcon
+                className={styles.accept}
+                onClick={() => acceptorder(id)}
+              />
+              <BlockIcon className={styles.decline} />
+            </span>
+          ) : (
+            '/'
+          )
         ) : !iscompany && status === 'pending' ? (
-          <BlockIcon className={styles.decline} />
+          <BlockIcon
+            className={styles.decline}
+            onClick={() => cancelorder(id)}
+          />
         ) : (
           <p>/</p>
         )}
