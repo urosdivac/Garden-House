@@ -4,7 +4,6 @@ import Head from 'next/head';
 import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
-import './app.scss';
 
 export default function MyApp(props) {
   const {Component, pageProps} = props;
@@ -28,10 +27,6 @@ export default function MyApp(props) {
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1"
         />
       </Head>
       <ThemeProvider theme={theme}>
