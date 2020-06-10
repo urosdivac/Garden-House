@@ -35,7 +35,7 @@
 
 @media (max-width: 800px) {
   .container {
-    height: 220vh;
+    height: 240vh;
     background-image: linear-gradient(45deg, #34e89de0, #0f3443e7),
       url('../../public/assets/field3Mobile.png');
     background-size: cover;
@@ -56,7 +56,6 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    left: 2rem;
     justify-content: center;
     align-items: center;
   }

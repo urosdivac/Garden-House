@@ -22,14 +22,14 @@
 
   .logo {
     background-repeat: no-repeat;
-    height: 7rem;
+    height: 21rem;
     animation: moveInLeft 1s ease-out;
   }
 
   .slogan {
     letter-spacing: 4px;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 500;
     animation: moveInRight 1s ease-out;
   }
@@ -81,17 +81,18 @@
     color: #fff;
     font-size: 1rem;
     font-weight: 500;
+    width: 80%;
     animation: moveInRight 1s ease-out;
   }
 
   .register {
     text-decoration: none;
     text-transform: uppercase;
-    padding: 15px 40px;
+    padding: 13px 30px;
     background-color: #fff;
     border-radius: 2rem;
     color: #777;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-top: 2rem;
     transition: all 0.2s;
   }

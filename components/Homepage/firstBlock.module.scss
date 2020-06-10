@@ -1,4 +1,4 @@
-@media all and (min-width: 601px) {
+@media all and (min-width: 801px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@
   }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 800px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -80,18 +80,22 @@
     color: #777;
     font-size: 1.4rem;
     line-height: 2rem;
-    width: 95%;
-    text-align: center;
+    width: 85%;
   }
 
   .textWrapper {
     width: 25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .text {
     color: #777;
     font-size: 1rem;
-    width: 100%;
+    width: 80%;
     text-align: center;
     line-height: 1.5rem;
   }
@@ -101,6 +105,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
     flex-basis: 30%;
     :nth-child(2) {
       margin-top: 2rem;
@@ -113,7 +118,7 @@
 
   .rightSide img {
     position: relative;
-    height: 14rem;
+    height: 11rem;
     margin-top: 3rem;
   }
 }
