@@ -1,8 +1,9 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '../components/Layout/Navbar';
-import FirstBlock from '../components/Homepage/firstBlock';
-import SecondBlock from '../components/Homepage/secondBlock';
+const FirstBlock = dynamic(import('../components/Homepage/firstBlock'));
+const SecondBlock = dynamic(import('../components/Homepage/secondBlock'));
 const styles = require('./index.module.scss');
 
 export default function Home() {

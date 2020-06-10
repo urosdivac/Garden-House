@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useEffect,useState} from 'react';
 const styles = require('./firstBlock.module.scss');
 
 const firstBlock = () => {
-  const [pictureUrl, setPictureUrl] = useState('');
+  const [pictureUrl,setPictureUrl] = useState('')
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 600px)');
