@@ -28,6 +28,27 @@
   width: 19rem !important;
 }
 
+.speeduptime {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  margin-left: 5rem !important;
+  margin-right: 5rem !important;
+  width: 19rem !important;
+  animation: moveInFromRight 0.6s;
+}
+
+@keyframes moveInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
 .buttonContainer {
   margin-top: 2rem;
 }

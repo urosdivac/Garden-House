@@ -3,33 +3,28 @@ import validator from 'validator';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import {makeStyles} from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 import Alert from '@material-ui/lab/Alert';
-const styles = require('./Modal.module.scss');
+const styles = require('./NewItem.module.scss');
 
-interface Props {
-  type: number;
-  addNursery(
-    name: string,
-    address: string,
-    width: string,
-    length: string,
-  ): void;
-}
+interface Props {}
 
-export default function TransitionsModal({type, addNursery}: Props) {
-  const [open, setOpen] = useState(false);
+export default function TransitionsModal({}: Props) {
+  const [open, setOpen] = useState(true);
   const [name, setName] = useState('');
-  const [address, setAdddress] = useState('');
-  const [length, setLength] = useState('');
-  const [width, setWidth] = useState('');
+  const [type, setType] = useState('');
+  const [speedupTime, setSpeedupTime] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [errors, setErrors] = useState('');
   const [nameError, setNameError] = useState(false);
-  const [addressError, setAddressError] = useState(false);
-  const [lengthError, setLengthError] = useState(false);
-  const [widthError, setWidthError] = useState(false);
+  const [quantityError, setQuantityError] = useState(false);
+  const [speedupTimeError, setSpeedupTimeError] = useState(false);
 
   const useStyles = makeStyles(theme => ({
     modal: {
@@ -45,7 +40,21 @@ export default function TransitionsModal({type, addNursery}: Props) {
     },
   }));
 
+  const useStylesz = makeStyles((theme: Theme) =>
+    createStyles({
+      formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
+    }),
+  );
+
   const classes = useStyles();
+
+  const classez = useStylesz();
 
   const checkErrors = () => {
     if (validator.isEmpty(name)) {
@@ -54,23 +63,18 @@ export default function TransitionsModal({type, addNursery}: Props) {
       return true;
     }
 
-    if (validator.isEmpty(address)) {
-      setAddressError(true);
-      setErrors('Please enter a valid address');
+    if (validator.isEmpty(quantity)) {
+      setQuantityError(true);
+      setErrors('Please enter a valid quantity');
       return true;
     }
 
-    if (validator.isEmpty(length) || !validator.isNumeric(length)) {
-      setLengthError(true);
-      setErrors('Please enter a valid length');
+    if (type === 'fertilizer' && validator.isEmpty(speedupTime)) {
+      setSpeedupTimeError(true);
+      setErrors('Please enter a valid speedup time');
       return true;
     }
 
-    if (validator.isEmpty(width) || !validator.isNumeric(width)) {
-      setWidthError(true);
-      setErrors('Please enter a valid width');
-      return true;
-    }
     return false;
   };
 
@@ -80,22 +84,17 @@ export default function TransitionsModal({type, addNursery}: Props) {
 
   const handleClose = () => {
     setName('');
-    setAdddress('');
-    setLength(undefined);
-    setWidth(undefined);
+    setQuantity('');
     setOpen(false);
   };
 
-  const addNurseryz = () => {
-    if (!checkErrors()) {
-      addNursery(name, address, width, length);
-      handleClose();
-    }
+  const handleChange = (event: React.ChangeEvent<{value: unknown}>) => {
+    setType(event.target.value as string);
   };
 
   return (
     <div>
-      <div className={styles.addButtonSecondContainer}>
+      <div className={styles.addButtonSecondContainer} onClick={handleOpen}>
         <Button className={styles.addButtonSecond} size="large">
           +
         </Button>
@@ -116,7 +115,7 @@ export default function TransitionsModal({type, addNursery}: Props) {
           <div className={styles.container}>
             {errors ? <Alert severity="error">{errors}</Alert> : null}
             <p id="transition-modal-title" className={styles.heading}>
-              Add new nursery
+              Add new item
             </p>
             <TextField
               label="Name"
@@ -131,40 +130,46 @@ export default function TransitionsModal({type, addNursery}: Props) {
             />
 
             <TextField
-              label="Address"
+              label="Quantity"
               variant="outlined"
               className={styles.input}
-              error={addressError}
-              value={address}
+              error={quantityError}
+              value={quantity}
               onChange={e => {
-                setAdddress(e.target.value);
-                setAddressError(false);
+                setQuantity(e.target.value);
+                setQuantityError(false);
               }}
             />
 
-            <TextField
-              label="Length"
-              variant="outlined"
-              className={styles.input}
-              error={lengthError}
-              value={length}
-              onChange={e => {
-                setLength(e.target.value);
-                setLengthError(false);
-              }}
-            />
+            <FormControl variant="outlined" className={classez.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Type
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={type}
+                onChange={handleChange}
+                label="Age"
+              >
+                <MenuItem value={'seedling'}>Seedling</MenuItem>
+                <MenuItem value={'fertilizer'}>Fertilizer</MenuItem>
+              </Select>
+            </FormControl>
 
-            <TextField
-              label="Width"
-              variant="outlined"
-              className={styles.input}
-              error={widthError}
-              value={width}
-              onChange={e => {
-                setWidth(e.target.value);
-                setWidthError(false);
-              }}
-            />
+            {type === 'fertilizer' ? (
+              <TextField
+                label="Speedup Time"
+                variant="outlined"
+                className={styles.speeduptime}
+                error={speedupTimeError}
+                value={speedupTime}
+                onChange={e => {
+                  setSpeedupTime(e.target.value);
+                  setSpeedupTimeError(false);
+                }}
+              />
+            ) : null}
             <div className={styles.buttonContainer}>
               <Button
                 variant="contained"
@@ -173,11 +178,7 @@ export default function TransitionsModal({type, addNursery}: Props) {
               >
                 Cancel
               </Button>
-              <Button
-                variant="contained"
-                className={styles.confirm}
-                onClick={addNurseryz}
-              >
+              <Button variant="contained" className={styles.confirm}>
                 Confirm
               </Button>
             </div>
