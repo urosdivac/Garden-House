@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import Head from 'next/head';
 import Panel from '../components/Dashboard/Panel';
-import Warehouse from '../components/Dashboard/Warehouse/Warehouse';
+import ShopItems from '../components/Dashboard/Shopitem/ShopItems';
 const styles = require('./dashboard.module.scss');
 import getToken from '../src/getToken';
 
@@ -24,11 +24,11 @@ const ShopItem = () => {
           isFarmer={token ? !token.isadmin : false}
           isCompany={token ? token.shortname : false}
           isAdmin={token ? token.isadmin : false}
-          shopitem={true}
+          storeItems={true}
         />
       </div>
       <div className={styles.contentWrapper}>
-        <Warehouse />
+        <ShopItems />
       </div>
       <Head>
         <title>Shop Items - Garden House</title>

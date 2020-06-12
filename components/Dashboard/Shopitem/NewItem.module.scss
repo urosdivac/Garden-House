@@ -1,0 +1,149 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 3rem;
+  border-radius: 15px;
+}
+
+.modal {
+  border: 2px solid #000;
+  height: 10rem;
+  width: auto;
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  color: #777;
+}
+
+.input {
+  margin-bottom: 2rem !important;
+  margin-left: 5rem !important;
+  margin-right: 5rem !important;
+  width: 19rem !important;
+}
+
+.buttonContainer {
+  margin-top: 2rem;
+}
+
+.cancel {
+  background-color: rgba(219, 69, 55, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+  margin-right: 3rem !important;
+}
+
+.cancelButton {
+  background-color: rgba(219, 69, 55, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+}
+
+.confirm {
+  background-color: rgba(48, 196, 126, 0.9) !important;
+  color: #fff !important;
+  width: 8rem !important;
+}
+
+.seedlingButton {
+  margin-top: 1rem !important;
+  background-color: rgba(48, 196, 126, 0.9) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 2px !important;
+  padding: 1rem !important;
+  transition: all 0.2s !important;
+  font-size: 1.2rem !important;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.flower {
+  font-size: 2rem !important;
+  color: #fff !important;
+}
+
+.seedlingCont {
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.01);
+  display: inline-flex;
+  padding: 2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  border-radius: 50px;
+  background: #f1f0f0;
+  box-shadow: 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
+  transition: transform 0.3s;
+
+  p {
+    font-size: 1.5rem;
+    color: #777;
+  }
+}
+
+.emptyParagraph {
+  font-size: 2rem;
+  color: #777;
+}
+
+.seedlingsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.seedlingOuterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.addButton {
+  background-color: #4ecca3 !important;
+  color: #fff !important;
+  width: 15rem !important;
+  height: 3rem !important;
+  border-radius: 5px !important;
+  transition: all 0.2s !important;
+  letter-spacing: 1.5px !important;
+}
+
+.addButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.addButtonSecond {
+  background-color: #4ecca3 !important;
+  color: #fff !important;
+  font-size: 3rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
+  border-radius: 5rem !important;
+  transition: all 0.2s !important;
+  letter-spacing: 1.5px !important;
+  // margin: 5rem;
+}
+
+.addButtonSecond:hover {
+  transform: scale(1.2);
+  box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.addButtonSecondContainer {
+  margin-left: 2rem;
+}
