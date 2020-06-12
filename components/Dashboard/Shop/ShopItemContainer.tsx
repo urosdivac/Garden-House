@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
-import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
+import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
+import EcoIcon from '@material-ui/icons/Eco';
 import StorageIcon from '@material-ui/icons/Storage';
 const styles = require('./ShopItemContainer.module.scss');
 
@@ -39,7 +40,7 @@ const ShopItemContainer = ({
         {type === 'fertilizer' ? (
           <BatteryChargingFullIcon className={styles.fertilizerIcon} />
         ) : (
-          <LocalFloristIcon className={styles.seedlingIcon} />
+          <EcoIcon className={styles.seedlingIcon} />
         )}
         <p> {capitalizeFirstLetter(type)}</p>
       </span>
@@ -47,9 +48,15 @@ const ShopItemContainer = ({
         <StorageIcon className={styles.storageIcon} />
         <p> {quant} quantity</p>
       </span>
-      <div className={styles.speedupTime}>
-        <p>{speeduptime ? `Speedup Time : ${speeduptime} days` : null}</p>
-      </div>
+
+      {speeduptime ? (
+        <span className={styles.iconWrapper}>
+          <HourglassEmptyIcon className={styles.speedupTimeIcon} />
+          <p>{speeduptime} days</p>
+        </span>
+      ) : null}
+
+      <div className={styles.speedupTime}></div>
       <div className={styles.quantityContainer}>
         <RemoveIcon
           className={styles.decrease}

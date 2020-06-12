@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import validator from 'validator';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -11,14 +11,20 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import Alert from '@material-ui/lab/Alert';
+import getToken from '../../../src/getToken';
 import axios from 'axios';
 const styles = require('./NewItem.module.scss');
 
+interface Token {
+  id: number;
+}
+
 export default function TransitionsModal() {
   const [open, setOpen] = useState(true);
+  const [token, setToken] = useState<Token>();
   const [name, setName] = useState('');
   const [type, setType] = useState('');
-  const [speedupTime, setSpeedupTime] = useState('');
+  const [speeduptime, setSpeedupTime] = useState('');
   const [quantity, setQuantity] = useState('');
   const [errors, setErrors] = useState('');
   const [nameError, setNameError] = useState(false);
@@ -68,13 +74,28 @@ export default function TransitionsModal() {
       return true;
     }
 
-    if (type === 'fertilizer' && validator.isEmpty(speedupTime)) {
+    if (type === 'fertilizer' && validator.isEmpty(speeduptime)) {
       setSpeedupTimeError(true);
       setErrors('Please enter a valid speedup time');
       return true;
     }
 
     return false;
+  };
+
+  const addItem = async () => {
+    try {
+      if (checkErrors()) return;
+      await axios.post('https://gardenhouse.tech/shopitem/create', {
+        name,
+        type,
+        quantity,
+        firm: token.id,
+        speeduptime,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleOpen = () => {
@@ -90,6 +111,10 @@ export default function TransitionsModal() {
   const handleChange = (event: React.ChangeEvent<{value: unknown}>) => {
     setType(event.target.value as string);
   };
+
+  useEffect(() => {
+    if (!token) setToken(getToken());
+  }, []);
 
   return (
     <div>
@@ -162,7 +187,7 @@ export default function TransitionsModal() {
                 variant="outlined"
                 className={styles.speeduptime}
                 error={speedupTimeError}
-                value={speedupTime}
+                value={speeduptime}
                 onChange={e => {
                   setSpeedupTime(e.target.value);
                   setSpeedupTimeError(false);
@@ -177,7 +202,11 @@ export default function TransitionsModal() {
               >
                 Cancel
               </Button>
-              <Button variant="contained" className={styles.confirm}>
+              <Button
+                variant="contained"
+                className={styles.confirm}
+                onClick={addItem}
+              >
                 Confirm
               </Button>
             </div>
