@@ -4,7 +4,7 @@ import moment from 'moment';
 import ProgressBar from './ProgressBar';
 
 const SeedlingContainer = props => {
-  const [percentage, setPercentage] = useState(2);
+  const [percentage, setPercentage] = useState(50);
 
   const calculateProgress = date => {
     const totalHours = 480;
@@ -15,13 +15,13 @@ const SeedlingContainer = props => {
 
     const percentageDone = Math.floor((hoursLeft / totalHours) * 100);
 
-    if (percentageDone <= 0) return setPercentage(100);
+    if (percentageDone < 0) return setPercentage(100);
 
     setPercentage(percentageDone);
   };
 
   useEffect(() => {
-    calculateProgress(moment(props.harvestdate).format());
+    calculateProgress(props.harvestdate);
   }, []);
   return (
     <div className={styles.container}>

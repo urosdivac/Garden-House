@@ -7,7 +7,7 @@ const calculateProgress = date => {
 
   const percentageDone = Math.floor((hoursLeft / totalHours) * 100);
 
-  if (percentageDone <= 0) return 100;
+  if (percentageDone < 0) return 100;
 
   return percentageDone;
 };

@@ -114,7 +114,7 @@ export default function FullScreenDialog({
             Plant a seed
           </p>
           <div className={styles.seedlingsContainer}>
-            {seedlings.length > 1 ? (
+            {seedlings.length > 0 ? (
               seedlings.map((seedling, index) => {
                 return (
                   <div className={styles.seedlingCont} key={index}>

@@ -72,7 +72,6 @@ const Order = () => {
         orderid: id,
         firm: token.id,
       });
-      console.log(resp);
     } catch (err) {
       console.log(err);
     }
@@ -96,7 +95,6 @@ const Order = () => {
             : null
         }
       />
-      <button onClick={() => console.log(token)}>Click me</button>
       <div className={styles.fields}>
         <div
           className={styles.fieldContainer}
