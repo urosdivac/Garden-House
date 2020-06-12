@@ -32,12 +32,13 @@ const Shop = () => {
     <div className={styles.container}>
       <Header cart={cart} setcart={setCart} />
       {data.map(item => {
+        console.log(item);
         return (
           <ShopItemContainer
             name={item.name}
             quant={item.quantity}
-            speeduptime={item.speeduptime ? item.speeduptime : null}
-            type={item.speeduptime ? 'Fertilizer' : 'Seedling'}
+            speeduptime={item.speedup_time ? item.speedup_time : null}
+            type={item.type}
             key={item.id}
             id={item.id}
             addtocart={addToCart}

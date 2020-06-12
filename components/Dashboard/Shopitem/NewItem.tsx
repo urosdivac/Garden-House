@@ -11,11 +11,10 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import Alert from '@material-ui/lab/Alert';
+import axios from 'axios';
 const styles = require('./NewItem.module.scss');
 
-interface Props {}
-
-export default function TransitionsModal({}: Props) {
+export default function TransitionsModal() {
   const [open, setOpen] = useState(true);
   const [name, setName] = useState('');
   const [type, setType] = useState('');

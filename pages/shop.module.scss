@@ -1,3 +1,16 @@
 .container {
-  margin-left: 22rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contentWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 100vh;
+}
+
+.nurseryContainersContainer {
+  display: flex;
 }

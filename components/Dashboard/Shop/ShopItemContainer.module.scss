@@ -1,18 +1,17 @@
 .container {
-  height: auto;
+  height: 28rem;
   border: 1px solid rgba(0, 0, 0, 0.01);
   display: inline-flex;
   padding: 2rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin: 3rem;
   border-radius: 50px;
-  background: #f5f5f5;
-  box-shadow: 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
-
+  background: #ffffff;
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
   p {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #777;
     letter-spacing: 1.5px;
   }
@@ -26,6 +25,12 @@
   border-radius: 5px !important;
   transition: all 0.2s !important;
   letter-spacing: 1.5px !important;
+  margin-top: auto !important;
+}
+
+.hr {
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  width: 100%;
 }
 
 .quantityContainer {
@@ -33,12 +38,16 @@
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  margin: 0;
   position: relative;
   bottom: 2rem;
   font-size: 1.3rem;
   color: #777;
   letter-spacing: 1.5px;
+  margin-top: auto !important;
+}
+
+.speedupTime {
+  margin-bottom: 3rem;
 }
 
 .decrease {
@@ -57,4 +66,29 @@
   border-radius: 5rem !important;
   background-color: #f5f5f5 !important;
   color: rgba(66, 134, 244, 0.9) !important;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: auto;
+}
+
+.fertilizerIcon {
+  font-size: 2rem !important;
+  margin-right: 1rem !important;
+  color: rgba(66, 134, 244, 0.9) !important;
+}
+
+.seedlingIcon {
+  font-size: 2rem !important;
+  margin-right: 1rem !important;
+  color: #4ecca3 !important;
+}
+
+.storageIcon {
+  color: rgba(219, 69, 55, 0.9) !important;
+  font-size: 2rem !important;
+  margin-right: 1rem !important;
 }
