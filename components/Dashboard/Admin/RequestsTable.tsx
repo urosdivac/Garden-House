@@ -15,7 +15,9 @@ const RequestsTable = ({changeStatusFilter, statusfilter}: Props) => {
             changeStatusFilter('all');
           }}
         >
-          <div className={styles.all}>
+          <div
+            className={statusfilter === 'all' ? styles.allActive : styles.all}
+          >
             <p>All</p>
           </div>
         </div>
@@ -25,7 +27,11 @@ const RequestsTable = ({changeStatusFilter, statusfilter}: Props) => {
             changeStatusFilter('pending');
           }}
         >
-          <div className={styles.pending}>
+          <div
+            className={
+              statusfilter === 'pending' ? styles.pendingActive : styles.pending
+            }
+          >
             <p>Pending</p>
           </div>
         </div>
@@ -35,7 +41,13 @@ const RequestsTable = ({changeStatusFilter, statusfilter}: Props) => {
             changeStatusFilter('accepted');
           }}
         >
-          <div className={styles.accepted}>
+          <div
+            className={
+              statusfilter === 'accepted'
+                ? styles.acceptedActive
+                : styles.accepted
+            }
+          >
             <p>Accepted</p>
           </div>
         </div>
@@ -45,15 +57,18 @@ const RequestsTable = ({changeStatusFilter, statusfilter}: Props) => {
             changeStatusFilter('declined');
           }}
         >
-          <div className={styles.declined}>
+          <div
+            className={
+              statusfilter === 'declined'
+                ? styles.declinedActive
+                : styles.declined
+            }
+          >
             <p>Declined</p>
           </div>
         </div>
       </div>
       <div className={styles.dataFields}>
-        <div className={styles.dataField}>
-          <p>ID</p>
-        </div>
         <div className={styles.dataField}>
           <p>First Name</p>
         </div>
@@ -64,7 +79,7 @@ const RequestsTable = ({changeStatusFilter, statusfilter}: Props) => {
           <p>Username</p>
         </div>
         <div className={styles.dataField}>
-          <p>Created at</p>
+          <p>Registered at</p>
         </div>
         <div className={styles.dataField}>
           <p>Birthday</p>

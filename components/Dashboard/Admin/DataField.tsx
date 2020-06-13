@@ -49,9 +49,6 @@ const DataField = ({
   return (
     <div className={styles.container}>
       <div className={styles.field}>
-        <p>{id}</p>
-      </div>
-      <div className={styles.field}>
         <p>{firstname}</p>
       </div>
       <div className={styles.field}>

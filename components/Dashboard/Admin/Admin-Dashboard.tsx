@@ -11,7 +11,7 @@ const Admin = () => {
   const [token, setToken] = useState<any>();
   const [data, setData] = useState<any[]>([]);
   const [stats, setStats] = useState([]);
-  const [statusFilter, setStatusFilter] = useState('pending');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [filteredData, setFilteredData] = useState<any[] | undefined>();
 
   const newRequests = () => {

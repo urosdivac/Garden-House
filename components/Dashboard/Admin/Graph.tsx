@@ -52,16 +52,16 @@ const Graph = ({stats, data}: Props) => {
         datasets: [
           {
             data: Object.values(counts),
-            backgroundColor: 'rgba(48, 196, 126,0.8)',
-            fill: false,
-            borderColor: 'rgba(48, 196, 126,0.8)',
+            backgroundColor: 'rgba(255, 99, 132,0.3)',
+            fill: true,
+            borderColor: '#FF6384',
           },
         ],
       },
 
       options: {
         title: {
-          display: true,
+          display: false,
           text: 'Registration statistics',
           fontSize: 24,
           fontColor: '#777',

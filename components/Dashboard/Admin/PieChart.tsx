@@ -50,7 +50,7 @@ const Pie = ({stats}: Props) => {
       },
       options: {
         title: {
-          display: true,
+          display: false,
           text: 'Acceptance rate',
           fontSize: 24,
           fontColor: '#777',
