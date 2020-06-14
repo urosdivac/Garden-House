@@ -35,7 +35,8 @@ const farmerRegistration = () => {
       phonenumber,
       email: email.toLowerCase().trim(),
     });
-    Router.push('/');
+    
+    Router.push('/registrationcompleted');
   };
   return (
     <div className={styles.container}>

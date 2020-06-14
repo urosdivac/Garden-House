@@ -32,7 +32,7 @@ const buisnessRegistration = () => {
   const handleRegistration = async () => {
     try {
       const query = `https://gardenhouse.tech/register/firm`;
-      const resp = await axios.post(query, {
+      await axios.post(query, {
         fullname,
         shortname,
         password,
@@ -40,12 +40,7 @@ const buisnessRegistration = () => {
         location,
         email: email.toLowerCase().trim(),
       });
-
-      if (resp.status)
-        Cookies.set('JWT', resp.data.data, {
-          expires: 7,
-        });
-      Router.push('/');
+      Router.push('/registrationcompleted');
     } catch (err) {
       console.log(err);
     }

@@ -2,21 +2,34 @@ const styles = require('./Filters.module.scss');
 
 interface Props {
   setfilter: (filter) => void;
+  filter: string;
 }
 
-const Filters = ({setfilter}: Props) => {
+const Filters = ({setfilter, filter}: Props) => {
   return (
     <div className={styles.container}>
-      <div className={styles.all} onClick={() => setfilter('all')}>
+      <div
+        className={filter === 'all' ? styles.allActive : styles.all}
+        onClick={() => setfilter('all')}
+      >
         <p>All</p>
       </div>
 
-      <div className={styles.seedlings} onClick={() => setfilter('seedling')}>
+      <div
+        className={
+          filter === 'seedling' ? styles.seedlingsActive : styles.seedlings
+        }
+        onClick={() => setfilter('seedling')}
+      >
         <p>Seedlings</p>
       </div>
 
       <div
-        className={styles.fertilizers}
+        className={
+          filter === 'fertilizer'
+            ? styles.fertilizersActive
+            : styles.fertilizers
+        }
         onClick={() => setfilter('fertilizer')}
       >
         <p>Fertilizers</p>

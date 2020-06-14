@@ -21,7 +21,7 @@ const Data = ({type, name, quantity, speeduptime}: Props) => {
         <p>{quantity}</p>
       </div>
       <div>
-        <p>{speeduptime ? speeduptime : '/'}</p>
+        <p>{speeduptime ? speeduptime : ''}</p>
       </div>
     </div>
   );

@@ -18,28 +18,6 @@ const WelcomeMessage = ({name, requestsNumber, stats, data}: Props) => {
       <div className={styles.headingWrapper}>
         <p className={styles.heading}>Admin dashboard</p>
       </div>
-      {/* <div className={styles.welcomeMessageWrapper}>
-        <div className={styles.welcomeTextWrapper}>
-          <p className={styles.weclomeHeader}>Welcome back, {name}</p>
-          {requestsNumber === 1 ? (
-            <p className={styles.welcomeText}>
-              There was <b>{requestsNumber}</b> new request since your last
-              login
-            </p>
-          ) : (
-            <p className={styles.welcomeText}>
-              There were <b>{requestsNumber}</b> new requests since your last
-              login
-            </p>
-          )}
-        </div>
-
-        <img
-          src="/assets/requests.svg"
-          className={styles.requests}
-          alt="logo"
-        />
-      </div> */}
       <div className={styles.chartsWrapper}>
         <div className={styles.graphWrapper}>
           <div className={styles.graphTitleWrapper}>

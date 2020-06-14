@@ -12,6 +12,10 @@
   }
 }
 
+.logo {
+  position: relative;
+}
+
 .innerContainer {
   display: flex;
   flex-direction: column;
@@ -45,4 +49,9 @@
 
 .image {
   height: 80%;
+  margin-top: 4rem;
+}
+
+.adminMessage {
+  font-size: 1.2rem !important;
 }

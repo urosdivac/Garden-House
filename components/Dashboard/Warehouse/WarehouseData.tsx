@@ -50,33 +50,35 @@ const WarehouseData = () => {
 
   return (
     <div className={styles.container}>
-      <Filters setfilter={handleSetFilter} />
-      <Fields />
+      <Filters setfilter={handleSetFilter} filter={filter} />
+      <div className={styles.warehouseDataContainer}>
+        <Fields />
 
-      {filter === 'all' || (filter === 'seedling' && seedlings.length > 0)
-        ? seedlings.map(seedling => {
-            return (
-              <Data
-                name={seedling.name}
-                type="Seedling"
-                quantity={seedling.count}
-              />
-            );
-          })
-        : null}
+        {filter === 'all' || (filter === 'seedling' && seedlings.length > 0)
+          ? seedlings.map(seedling => {
+              return (
+                <Data
+                  name={seedling.name}
+                  type="Seedling"
+                  quantity={seedling.count}
+                />
+              );
+            })
+          : null}
 
-      {filter === 'all' || (filter === 'fertilizer' && fertilizers.length > 0)
-        ? fertilizers.map(fertilizer => {
-            return (
-              <Data
-                name={fertilizer.name}
-                type="Fertilizer"
-                quantity={fertilizer.count}
-                speeduptime={fertilizer.speedup_time}
-              />
-            );
-          })
-        : null}
+        {filter === 'all' || (filter === 'fertilizer' && fertilizers.length > 0)
+          ? fertilizers.map(fertilizer => {
+              return (
+                <Data
+                  name={fertilizer.name}
+                  type="Fertilizer"
+                  quantity={fertilizer.count}
+                  speeduptime={fertilizer.speedup_time}
+                />
+              );
+            })
+          : null}
+      </div>
     </div>
   );
 };
