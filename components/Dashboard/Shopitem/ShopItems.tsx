@@ -20,6 +20,11 @@ const ShopItems = () => {
     setItems(data.data.data);
   };
 
+  const filterItems = id => {
+    const filteredArray = items.filter(item => item.id !== id);
+    setItems(filteredArray);
+  };
+
   useEffect(() => {
     if (!token) setToken(getToken());
     if (token) getItems();
@@ -50,6 +55,7 @@ const ShopItems = () => {
                     id={item.id}
                     type={item.type}
                     quantity={item.quantity}
+                    filteritems={filterItems}
                   />
                 );
               })

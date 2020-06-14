@@ -4,6 +4,13 @@
   align-items: center;
   width: 100%;
   text-align: center;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  :nth-child(3) {
+    position: relative;
+    left: 1.5rem;
+  }
 }
 
 .fieldContainer {
@@ -11,8 +18,81 @@
   justify-content: center;
   align-items: center;
   flex-basis: 33%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
 
   p {
-    text-align: center;
+    color: #777;
+    letter-spacing: 1px;
+  }
+}
+
+.fertilizerIcon {
+  font-size: 2rem !important;
+  color: rgba(66, 134, 244, 0.9) !important;
+  margin-right: 1rem !important;
+}
+
+.seedlingIcon {
+  font-size: 2rem !important;
+  color: #4ecca3 !important;
+  margin-right: 1rem !important;
+}
+
+.removeIconContainer {
+  flex-basis: 1% !important;
+}
+
+.removeIcon {
+  font-size: 2rem !important;
+  color: rgba(219, 69, 55, 0.9) !important;
+  cursor: pointer;
+  position: relative;
+  right: 2rem;
+  transition: all 0.2s !important;
+
+  &:hover {
+    background-color: rgba(219, 69, 55, 0.9) !important;
+    color: #fff !important;
+    border-radius: 5rem !important;
+    transform: scale(1.2) !important;
+  }
+}
+
+.confirmContainer {
+  flex-basis: 1.6%;
+  div {
+    animation: moveInFromRight linear 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translateX(-8rem) translateY(-1.5rem);
+    :first-child {
+      color: #4ecca3;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+
+    :nth-child(2) {
+      color: #777;
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes moveInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-8rem) translateY(-1.5rem);
   }
 }

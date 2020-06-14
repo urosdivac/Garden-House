@@ -13,6 +13,10 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgb(240, 243, 246);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .labelContainer {
@@ -20,8 +24,10 @@
   justify-content: center;
   align-items: center;
   flex-basis: 33%;
+
   p {
     text-align: center;
+    color: #777;
   }
 }
 
