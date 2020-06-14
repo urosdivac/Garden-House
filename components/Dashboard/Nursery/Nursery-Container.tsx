@@ -23,7 +23,7 @@ const NurseryContainer = ({id, name, water, temeprature, space}: Props) => {
         </div>
         <div className={styles.iconContainer}>
           <WbSunnyIcon className={styles.sun} />
-          <p>Temeprature : {temeprature} °C</p>
+          <p>Temprature : {temeprature} °C</p>
         </div>
 
         <div className={styles.iconContainer}>

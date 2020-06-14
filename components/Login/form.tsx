@@ -10,6 +10,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
+import EmailIcon from '@material-ui/icons/Email';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+
 const styles = require('./form.module.scss');
 
 interface Token {
@@ -37,6 +44,12 @@ const form = () => {
           Router.push('/nursery');
         }
       });
+    }
+  };
+
+  const handleEnter = e => {
+    if (e.key == 'Enter') {
+      handleLogin();
     }
   };
 
@@ -92,34 +105,51 @@ const form = () => {
           </Alert>
         ))}
       </div>
-      <TextField
-        id="outlined-basic"
-        label="E-mail"
-        variant="outlined"
-        className={styles.input}
-        error={emailError}
-        value={email}
-        onChange={e => {
-          setEmail(e.target.value);
-          setErrors([]);
-          setEmailError(false);
-        }}
-      />
 
-      <TextField
-        id="outlined-basic"
-        label="Password"
-        variant="outlined"
-        type="password"
-        className={styles.input}
-        error={passwordError}
-        value={password}
-        onChange={e => {
-          setPassword(e.target.value);
-          setErrors([]);
-          setPasswordError(false);
-        }}
-      />
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Email</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          error={emailError}
+          value={email}
+          onKeyPress={handleEnter}
+          onChange={e => {
+            setEmail(e.target.value);
+            setErrors([]);
+            setEmailError(false);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <EmailIcon />
+            </InputAdornment>
+          }
+          labelWidth={45}
+        />
+      </FormControl>
+
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          type="password"
+          error={passwordError}
+          value={password}
+          onKeyPress={handleEnter}
+          onChange={e => {
+            setPassword(e.target.value);
+            setErrors([]);
+            setPasswordError(false);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <LockOpenIcon />
+            </InputAdornment>
+          }
+          labelWidth={70}
+        />
+      </FormControl>
 
       <div className={styles.radio}>
         <p>Login as</p>

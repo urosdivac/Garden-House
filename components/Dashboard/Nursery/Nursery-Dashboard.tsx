@@ -18,6 +18,7 @@ const Nursery = () => {
   const [data, setData] = useState([]);
   const [token, setToken] = useState<Token | undefined>();
   const [nurserySucces, setNurserySuccess] = useState(false);
+  const [nurseryAlerts, setNurseryAlerts] = useState([]);
 
   const getData = async () => {
     if (token) {
@@ -25,6 +26,11 @@ const Nursery = () => {
         email: token.email,
       });
       setData(data.data.data);
+      const dataArray = data.data.data;
+      const unmaintainedNurseries = dataArray.filter(item => {
+        return item.temeprature < 7 || item.waterlevel < 50;
+      });
+      setNurseryAlerts(unmaintainedNurseries);
     }
   };
 
@@ -43,7 +49,7 @@ const Nursery = () => {
   useEffect(() => {
     if (!token) setToken(getToken());
     getData();
-  }, [token]);
+  }, [token, nurseryAlerts]);
   return (
     <div>
       <div className={styles.container}>
@@ -89,6 +95,20 @@ const Nursery = () => {
             Nursery successfuly created!
           </Alert>
         ) : null}
+
+        {nurseryAlerts.length > 0
+          ? nurseryAlerts.map(alert => (
+              <Alert
+                severity="error"
+                onClose={() => {
+                  setNurserySuccess(false);
+                }}
+                className={styles.alert}
+              >
+                {alert.name} requires maintenance!
+              </Alert>
+            ))
+          : null}
       </div>
     </div>
   );

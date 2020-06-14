@@ -157,7 +157,7 @@ const Nursery = ({id}: Props) => {
           {nurseryData ? (
             <Link href="/nursery">
               <p>
-                <ArrowBackIcon className={styles.backIcon} color="primary" />{' '}
+                <ArrowBackIcon className={styles.backIcon} color="primary" />
                 {nurseryData.name}
               </p>
             </Link>
@@ -177,7 +177,7 @@ const Nursery = ({id}: Props) => {
                   </div>
                 </div>
                 <div className={styles.availableSpaceContainer}>
-                  <p>Temeprature</p>
+                  <p>Temprature</p>
                   <div>
                     <WbSunnyIcon className={styles.sun} />
                     <p>{nurseryData.temeprature}°C</p>
