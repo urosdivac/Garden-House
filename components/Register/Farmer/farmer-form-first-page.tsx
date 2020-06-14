@@ -2,19 +2,21 @@ import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from '../register.module.scss';
 import EmailIcon from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputLabel from '@material-ui/core/InputLabel';
-import IconButton from '@material-ui/core/IconButton';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
+const styles = require('../register.module.scss');
 
 const form = props => {
   const {
+    username,
+    setUsername,
     email,
     setEmail,
     password,
@@ -23,6 +25,7 @@ const form = props => {
     setConfirmPassword,
   } = props;
 
+  const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
@@ -41,9 +44,9 @@ const form = props => {
   const handleErrors = () => {
     let errors = false;
 
-    if (validator.isEmpty(email) || !validator.isEmail(email)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
-      setEmailError(true);
+    if (validator.isEmpty(username)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid username!']);
+      setUsernameError(true);
       errors = true;
       return errors;
     }
@@ -62,7 +65,20 @@ const form = props => {
       return errors;
     }
 
+    if (validator.isEmpty(email) || !validator.isEmail(email)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid email!']);
+      setEmailError(true);
+      errors = true;
+      return errors;
+    }
+
     return errors;
+  };
+
+  const handleEnter = e => {
+    if (e.key == 'Enter') {
+      handleRegistration();
+    }
   };
 
   const handleRegistration = async () => {
@@ -85,25 +101,24 @@ const form = props => {
       </div>
 
       <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">E-mail</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={emailError}
-          value={email}
+          error={usernameError}
+          value={username}
+          onKeyPress={handleEnter}
           onChange={e => {
-            setEmailError(false);
+            setUsernameError(false);
             setErrors([]);
-            setEmail(e.target.value);
+            setUsername(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton edge="end">
-                <EmailIcon />
-              </IconButton>
+              <AccountCircle />
             </InputAdornment>
           }
-          labelWidth={45}
+          labelWidth={75}
         />
       </FormControl>
 
@@ -114,6 +129,7 @@ const form = props => {
           className={styles.input}
           error={passwordError}
           value={password}
+          onKeyPress={handleEnter}
           onChange={e => {
             setPasswordError(false);
             setErrors([]);
@@ -122,9 +138,7 @@ const form = props => {
           type="password"
           endAdornment={
             <InputAdornment position="end">
-              <IconButton edge="end">
-                <LockOpenIcon />
-              </IconButton>
+              <LockOpenIcon />
             </InputAdornment>
           }
           labelWidth={70}
@@ -140,6 +154,7 @@ const form = props => {
           className={styles.input}
           error={confirmPasswordError}
           value={confirmPassword}
+          onKeyPress={handleEnter}
           onChange={e => {
             setConfirmPasswordError(false);
             setErrors([]);
@@ -148,12 +163,32 @@ const form = props => {
           type="password"
           endAdornment={
             <InputAdornment position="end">
-              <IconButton edge="end">
-                <LockOpenIcon />
-              </IconButton>
+              <LockOpenIcon />
             </InputAdornment>
           }
           labelWidth={135}
+        />
+      </FormControl>
+
+      <FormControl variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">E-mail</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          className={styles.input}
+          error={emailError}
+          value={email}
+          onKeyPress={handleEnter}
+          onChange={e => {
+            setEmailError(false);
+            setErrors([]);
+            setEmail(e.target.value);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <EmailIcon />
+            </InputAdornment>
+          }
+          labelWidth={45}
         />
       </FormControl>
 

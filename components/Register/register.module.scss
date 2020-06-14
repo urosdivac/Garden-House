@@ -7,6 +7,19 @@
   background-color: rgba(237, 237, 237, 0.8);
   justify-content: center;
   align-items: center;
+  animation: moveInFromBottom 0.4s;
+}
+
+@keyframes moveInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(6rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
 }
 
 .input {

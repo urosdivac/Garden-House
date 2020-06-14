@@ -2,40 +2,36 @@ import {useState, useEffect} from 'react';
 import Router from 'next/router';
 import validator from 'validator';
 import Cookies from 'js-cookie';
-import styles from '../register.module.scss';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputLabel from '@material-ui/core/InputLabel';
-import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
-import PhoneIcon from '@material-ui/icons/Phone';
 import Alert from '@material-ui/lab/Alert';
+const styles = require('../register.module.scss');
 
 const form = props => {
   const {
-    firstname,
-    lastname,
-    phonenumber,
-    birthlocation,
-    birthday,
-    setFirstName,
-    setLastName,
-    setPhonenumber,
-    setStreet,
-    setBirthday,
+    fullname,
+    shortname,
+    location,
+    foundeddate,
+    setfullname,
+    setshortname,
+    setlocation,
+    setfoundeddate,
   } = props;
-  const [firstNameError, setFirstNameError] = useState(false);
-  const [lastNameError, setLastNameError] = useState(false);
-  const [birthdayError, setBirthdayError] = useState(false);
-  const [streetError, setStreetError] = useState(false);
-  const [phoneError, setPhoneError] = useState(false);
+
+  const [fullNameError, setFullNameError] = useState(false);
+  const [shortNameError, setShortNameError] = useState(false);
+  const [locationError, setLocationErropr] = useState(false);
+  const [foundedDateError, setFoundedDateError] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  // Checks if user is logged in
+  // Checks if user is logged in and redicrects him
   useEffect(() => {
     const cookie = Cookies.get('JWT');
     if (cookie) Router.push('/');
@@ -48,48 +44,44 @@ const form = props => {
   const handleErrors = () => {
     let errors = false;
 
-    if (validator.isEmpty(firstname)) {
+    if (validator.isEmpty(fullname)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid full name!']);
+      setFullNameError(true);
+      errors = true;
+      return errors;
+    }
+
+    if (validator.isEmpty(shortname)) {
       setErrors(prevState => [
         ...prevState,
-        'Please enter a valid first name!',
+        'Please enter a valid short name!',
       ]);
-      setFirstNameError(true);
+      setShortNameError(true);
       errors = true;
       return errors;
     }
 
-    if (validator.isEmpty(lastname)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid last name!']);
-      setLastNameError(true);
+    if (validator.isEmpty(foundeddate)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid date!']);
+      setFoundedDateError(true);
       errors = true;
       return errors;
     }
 
-    if (validator.isEmpty(birthday)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid birthday!']);
-      setBirthdayError(true);
-      errors = true;
-      return errors;
-    }
-
-    if (validator.isEmpty(phonenumber)) {
-      setErrors(prevState => [
-        ...prevState,
-        'Please enter a valid phone number!',
-      ]);
-      setPhoneError(true);
-      errors = true;
-      return errors;
-    }
-
-    if (validator.isEmpty(birthlocation)) {
-      setErrors(prevState => [...prevState, 'Please enter a valid street!']);
-      setStreetError(true);
+    if (validator.isEmpty(location)) {
+      setErrors(prevState => [...prevState, 'Please enter a valid location!']);
+      setLocationErropr(true);
       errors = true;
       return errors;
     }
 
     return errors;
+  };
+
+  const handleEnter = e => {
+    if (e.key == 'Enter') {
+      handleRegistration();
+    }
   };
 
   const handleRegistration = async () => {
@@ -112,24 +104,21 @@ const form = props => {
       </div>
 
       <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">
-          First Name
-        </InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">Full Name</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={firstNameError}
-          value={firstname}
+          error={fullNameError}
+          value={fullname}
+          onKeyPress={handleEnter}
           onChange={e => {
-            setFirstNameError(false);
+            setFullNameError(false);
             setErrors([]);
-            setFirstName(e.target.value);
+            setfullname(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton edge="end">
-                <AccountCircle />
-              </IconButton>
+              <AccountCircle />
             </InputAdornment>
           }
           labelWidth={80}
@@ -137,22 +126,23 @@ const form = props => {
       </FormControl>
 
       <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">Last Name</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">
+          Short Name
+        </InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={lastNameError}
-          value={lastname}
+          error={shortNameError}
+          value={shortname}
+          onKeyPress={handleEnter}
           onChange={e => {
-            setLastNameError(false);
+            setShortNameError(false);
             setErrors([]);
-            setLastName(e.target.value);
+            setshortname(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton edge="end">
-                <AccountCircle />
-              </IconButton>
+              <AccountCircle />
             </InputAdornment>
           }
           labelWidth={80}
@@ -162,13 +152,14 @@ const form = props => {
       <TextField
         id="date"
         className={styles.input}
-        label="Birthday"
-        value={birthday}
-        error={birthdayError}
+        label="Founded date"
+        value={foundeddate}
+        error={foundedDateError}
+        onKeyPress={handleEnter}
         onChange={e => {
-          setBirthdayError(false);
+          setFoundedDateError(false);
           setErrors([]);
-          setBirthday(e.target.value);
+          setfoundeddate(e.target.value);
         }}
         type="date"
         variant="outlined"
@@ -179,50 +170,24 @@ const form = props => {
       />
 
       <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">Street</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">Location</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           className={styles.input}
-          error={streetError}
-          value={birthlocation}
+          error={locationError}
+          value={location}
+          onKeyPress={handleEnter}
           onChange={e => {
-            setStreetError(false);
+            setLocationErropr(false);
             setErrors([]);
-            setStreet(e.target.value);
+            setlocation(e.target.value);
           }}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton edge="end">
-                <HomeIcon />
-              </IconButton>
+              <HomeIcon />
             </InputAdornment>
           }
           labelWidth={42}
-        />
-      </FormControl>
-
-      <FormControl variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">
-          Phone Number
-        </InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-password"
-          className={styles.input}
-          error={phoneError}
-          value={phonenumber}
-          onChange={e => {
-            setPhoneError(false);
-            setErrors([]);
-            setPhonenumber(e.target.value);
-          }}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton edge="end">
-                <PhoneIcon />
-              </IconButton>
-            </InputAdornment>
-          }
-          labelWidth={110}
         />
       </FormControl>
 
