@@ -1,0 +1,31 @@
+.container {
+  margin-left: 21rem;
+}
+
+.innerContainer {
+  width: 90%;
+  margin-top: 3rem;
+  margin-left: 3rem;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.labelContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 33%;
+  p {
+    text-align: center;
+  }
+}
+
+.itemListContainer {
+  display: flex;
+  flex-direction: column;
+}

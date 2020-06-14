@@ -20,7 +20,7 @@ interface Token {
 }
 
 export default function TransitionsModal() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [token, setToken] = useState<Token>();
   const [name, setName] = useState('');
   const [type, setType] = useState('');

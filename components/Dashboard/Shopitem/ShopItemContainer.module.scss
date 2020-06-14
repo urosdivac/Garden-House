@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.fieldContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 33%;
+
+  p {
+    text-align: center;
+  }
+}
