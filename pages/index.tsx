@@ -8,12 +8,12 @@ const SecondBlock = dynamic(import('../components/Homepage/secondBlock'));
 const styles = require('./index.module.scss');
 
 export default function Home() {
-  let isMobile = true;
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    if (window.innerWidth > 800) isMobile = false;
+    if (window.innerWidth > 800) setIsMobile(false);
   });
-  
+
   return (
     <div>
       <div className={styles.container}>
