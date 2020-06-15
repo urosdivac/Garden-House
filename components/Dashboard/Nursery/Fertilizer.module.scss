@@ -58,7 +58,7 @@
   border-radius: 90px !important;
   font-size: 0.9rem !important;
   letter-spacing: 2px !important;
-  padding: 1rem !important;
+  padding: 0.5rem 1rem !important;
   font-size: 0.8rem !important;
 
   &:hover {
@@ -75,7 +75,7 @@
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.01);
   display: inline-flex;
-  padding: 2rem;
+  padding: 3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -85,7 +85,7 @@
   box-shadow: 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #777;
   }
 }
@@ -107,4 +107,34 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.speedupTimeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hourGlassIcon {
+  color: rgba(244, 179, 0, 1) !important;
+  font-size: 2rem !important;
+  margin-right: 0.7rem !important;
+}
+
+.quantityIcon {
+  color: rgba(219, 69, 55, 1) !important;
+  font-size: 2rem !important;
+  margin-right: 0.7rem !important;
+}
+
+.quantityContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 }

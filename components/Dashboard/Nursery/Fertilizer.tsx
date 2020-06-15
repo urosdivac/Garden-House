@@ -9,7 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import {TransitionProps} from '@material-ui/core/transitions';
+import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
+import AllInboxIcon from '@material-ui/icons/AllInbox';
 import getToken from '../../../src/getToken';
 const styles = require('./Fertilizer.module.scss');
 
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
   id: number;
   showalert: () => void;
+  getnurserydata: () => void;
 }
 
 interface Token {
@@ -42,7 +45,11 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({id, showalert}: Props) {
+export default function FullScreenDialog({
+  id,
+  showalert,
+  getnurserydata,
+}: Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [fertilizers, setFertilizers] = useState([]);
@@ -65,10 +72,12 @@ export default function FullScreenDialog({id, showalert}: Props) {
   };
 
   const useFertilizer = async fertilizerId => {
-    await axios.post('https://gardenhouse.tech/fertilizer/use', {
+     await axios.post('https://gardenhouse.tech/fertilizer/use', {
       seedling: id,
       id: fertilizerId,
     });
+    getnurserydata();
+    handleClose();
     showalert();
   };
 
@@ -114,12 +123,19 @@ export default function FullScreenDialog({id, showalert}: Props) {
                 return (
                   <div className={styles.seedlingCont} key={index}>
                     <p>{fertilizer.name}</p>
-                    <p>x{fertilizer.count}</p>
+                    <span className={styles.speedupTimeContainer}>
+                      <HourglassEmptyIcon className={styles.hourGlassIcon} />
+                      {`${fertilizer.speedup_time} days`}
+                    </span>
+                    <span className={styles.quantityContainer}>
+                      <AllInboxIcon className={styles.quantityIcon} />
+                      {`x${fertilizer.count}`}
+                    </span>
                     <Button
                       variant="contained"
                       className={styles.confirm}
                       onClick={() => {
-                        useFertilizer(fertilizer.id);
+                        useFertilizer(fertilizer.ids[0]);
                         handleClose();
                       }}
                     >

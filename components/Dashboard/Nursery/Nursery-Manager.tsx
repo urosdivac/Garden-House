@@ -33,6 +33,7 @@ const Nursery = ({id}: Props) => {
   const [seedlings, setSeedlings] = useState([]);
   const [token, setToken] = useState();
   const [nurserySucces, setNurserySuccess] = useState(false);
+  const [fertilizerSuccess, setFertilizerSuccess] = useState(false);
 
   const temepratureMarks = [
     {
@@ -113,6 +114,10 @@ const Nursery = ({id}: Props) => {
 
   const showAlert = () => {
     setNurserySuccess(true);
+  };
+
+  const showFertilizerAlert = () => {
+    setFertilizerSuccess(true);
   };
 
   const getSeedlings = () => {
@@ -241,6 +246,8 @@ const Nursery = ({id}: Props) => {
                 id={seedling.id}
                 name={seedling.name}
                 transplant_date={seedling.transplant_date}
+                getnurserydata={getNurseryData}
+                fertilizerAlert={showFertilizerAlert}
               />
             );
           })}
@@ -256,6 +263,17 @@ const Nursery = ({id}: Props) => {
             className={styles.alert}
           >
             Seedling successfully planted!
+          </Alert>
+        ) : null}
+
+        {fertilizerSuccess ? (
+          <Alert
+            onClose={() => {
+              setFertilizerSuccess(false);
+            }}
+            className={styles.alert}
+          >
+            Fertilizer successfully applied!
           </Alert>
         ) : null}
       </div>

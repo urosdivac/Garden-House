@@ -7,7 +7,7 @@ const styles = require('./SeedlingContainer.module.scss');
 
 const SeedlingContainer = props => {
   const [percentage, setPercentage] = useState(50);
-  
+
   const isReady = new Date(props.harvestdate).getTime() >= new Date().getTime();
 
   const calculateProgress = date => {
@@ -41,7 +41,11 @@ const SeedlingContainer = props => {
       <ProgressBar completed={percentage} />
 
       {isReady ? (
-        <Fertilizer id={props.id} showalert={props.showalert} />
+        <Fertilizer
+          id={props.id}
+          showalert={props.fertilizerAlert}
+          getnurserydata={props.getnurserydata}
+        />
       ) : props.transplant_date ? (
         <Button
           variant="contained"
