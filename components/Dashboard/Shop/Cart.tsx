@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
       position: 'relative',
-      backgroundColor: 'rgba(48, 196, 126, 0.9)',
+      backgroundImage: 'linear-gradient(45deg, #34e89de0, #0f3443e7)',
     },
     title: {
       marginLeft: theme.spacing(2),
@@ -116,7 +116,10 @@ export default function FullScreenDialog({cart, setcart}: Props) {
 
                 {cart.map(item => {
                   return (
-                    <div className={styles.itemContainer} key={item.shopitem_id}>
+                    <div
+                      className={styles.itemContainer}
+                      key={item.shopitem_id}
+                    >
                       <div>
                         <p>{item.shopitem_id}</p>
                       </div>

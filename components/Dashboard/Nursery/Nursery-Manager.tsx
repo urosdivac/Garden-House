@@ -239,6 +239,8 @@ const Nursery = ({id}: Props) => {
                 harvestdate={seedling.harvest_date}
                 key={seedling.id}
                 id={seedling.id}
+                name={seedling.name}
+                transplant_date={seedling.transplant_date}
               />
             );
           })}

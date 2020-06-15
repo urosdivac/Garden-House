@@ -9,8 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import {TransitionProps} from '@material-ui/core/transitions';
-import FilterVintageIcon from '@material-ui/icons/FilterVintage';
-const styles = require('./Modal.module.scss');
+import FlashOnIcon from '@material-ui/icons/FlashOn';
+import getToken from '../../../src/getToken';
+const styles = require('./Fertilizer.module.scss');
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,11 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  nursery: number;
-  token: {id: number};
-  getnurserydata: () => void;
-  getseedlings: () => void;
+  id: number;
   showalert: () => void;
+}
+
+interface Token {
+  id: number;
 }
 
 const Transition = React.forwardRef(function Transition(
@@ -40,16 +42,11 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({
-  nursery,
-  token,
-  getnurserydata,
-  getseedlings,
-  showalert,
-}: Props) {
+export default function FullScreenDialog({id, showalert}: Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [seedlings, setSeedlings] = useState([]);
+  const [fertilizers, setFertilizers] = useState([]);
+  const [token, setToken] = useState<Token | undefined>();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,37 +56,35 @@ export default function FullScreenDialog({
     setOpen(false);
   };
 
-  const getSeedlings = async () => {
+  const getFertilizers = async () => {
     const data = await axios.post(
-      'https://gardenhouse.tech/warehouse/seedling',
+      'https://gardenhouse.tech/warehouse/fertilizer',
       {id: token.id},
     );
-    setSeedlings(data.data.data);
-    getseedlings();
+    setFertilizers(data.data.data);
   };
 
-  const plantSeedling = async (name, nurseryid, warehouse_id) => {
-    await axios.post('https://gardenhouse.tech/seedling/plant', {
-      name,
-      nurseryid,
-      warehouse_id,
+  const useFertilizer = async fertilizerId => {
+    await axios.post('https://gardenhouse.tech/fertilizer/use', {
+      seedling: id,
+      id: fertilizerId,
     });
-    getnurserydata();
     showalert();
   };
 
   useEffect(() => {
-    getSeedlings();
-  }, []);
+    if (!token) setToken(getToken());
+    if (token) getFertilizers();
+  }, [token]);
 
   return (
     <div>
       <Button
         className={styles.seedlingButton}
         onClick={handleClickOpen}
-        startIcon={<FilterVintageIcon className={styles.flower} />}
+        startIcon={<FlashOnIcon className={styles.flower} />}
       >
-        Plant
+        Use Fertilizer
       </Button>
       <Dialog
         fullScreen
@@ -111,35 +106,31 @@ export default function FullScreenDialog({
         </AppBar>
         <div className={styles.seedlingOuterContainer}>
           <p id="transition-modal-title" className={styles.heading}>
-            Plant a seed
+            Use a fertilizer
           </p>
           <div className={styles.seedlingsContainer}>
-            {seedlings.length > 0 ? (
-              seedlings.map((seedling, index) => {
+            {fertilizers.length > 0 ? (
+              fertilizers.map((fertilizer, index) => {
                 return (
                   <div className={styles.seedlingCont} key={index}>
-                    <p>{seedling.name}</p>
-                    <p>x{seedling.count}</p>
+                    <p>{fertilizer.name}</p>
+                    <p>x{fertilizer.count}</p>
                     <Button
                       variant="contained"
                       className={styles.confirm}
                       onClick={() => {
-                        plantSeedling(
-                          seedling.name,
-                          nursery,
-                          seedling.warehouse_id,
-                        );
+                        useFertilizer(fertilizer.id);
                         handleClose();
                       }}
                     >
-                      Plant
+                      Use
                     </Button>
                   </div>
                 );
               })
             ) : (
               <p className={styles.emptyParagraph}>
-                You don't have any seedlings!
+                You don't have any fertilizers!
               </p>
             )}
           </div>
