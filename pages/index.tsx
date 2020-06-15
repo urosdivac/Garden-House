@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,19 +8,31 @@ const SecondBlock = dynamic(import('../components/Homepage/secondBlock'));
 const styles = require('./index.module.scss');
 
 export default function Home() {
+  let isMobile = true;
+
+  useEffect(() => {
+    if (window.innerWidth > 800) isMobile = false;
+  });
+  
   return (
     <div>
       <div className={styles.container}>
-        <Navbar />
+        {isMobile ? null : <Navbar />}
 
         <div className={styles.innerContainer}>
           <img src="/assets/Logo.svg" className={styles.logo} alt="logo" />
 
           <p className={styles.slogan}>Platform for managing nurseries</p>
 
-          <Link href="/register">
-            <a className={styles.register}>Get started</a>
-          </Link>
+          {isMobile ? (
+            <Link href="/register" prefetch={false}>
+              <a className={styles.register}>Get started</a>
+            </Link>
+          ) : (
+            <Link href="/register">
+              <a className={styles.register}>Get started</a>
+            </Link>
+          )}
         </div>
       </div>
       <FirstBlock />
