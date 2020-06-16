@@ -55,25 +55,27 @@ const WarehouseData = () => {
         <Fields />
 
         {filter === 'all' || (filter === 'seedling' && seedlings.length > 0)
-          ? seedlings.map(seedling => {
+          ? seedlings.map((seedling, index) => {
               return (
                 <Data
                   name={seedling.name}
                   type="Seedling"
                   quantity={seedling.count}
+                  key={index}
                 />
               );
             })
           : null}
 
         {filter === 'all' || (filter === 'fertilizer' && fertilizers.length > 0)
-          ? fertilizers.map(fertilizer => {
+          ? fertilizers.map((fertilizer, index) => {
               return (
                 <Data
                   name={fertilizer.name}
                   type="Fertilizer"
                   quantity={fertilizer.count}
                   speeduptime={fertilizer.speedup_time}
+                  key={index}
                 />
               );
             })

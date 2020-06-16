@@ -1,11 +1,14 @@
 .container {
   display: flex;
-  width: 100%;
+  width: 90%;
   justify-content: space-around;
   align-items: center;
   color: #777;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   height: 4rem;
+  margin-left: 3rem;
   div {
     display: flex;
     justify-content: center;

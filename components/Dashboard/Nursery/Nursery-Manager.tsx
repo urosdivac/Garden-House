@@ -248,6 +248,8 @@ const Nursery = ({id}: Props) => {
                 transplant_date={seedling.transplant_date}
                 getnurserydata={getNurseryData}
                 fertilizerAlert={showFertilizerAlert}
+                nurseryid={id}
+                getseedlings={getSeedlings}
               />
             );
           })}

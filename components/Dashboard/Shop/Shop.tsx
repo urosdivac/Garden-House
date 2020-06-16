@@ -32,7 +32,6 @@ const Shop = () => {
     <div className={styles.container}>
       <Header cart={cart} setcart={setCart} />
       {data.map(item => {
-        console.log(item);
         return (
           <ShopItemContainer
             name={item.name}

@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import moment from 'moment';
 import ProgressBar from './ProgressBar';
 import Fertilizer from './Fertilizer';
+import axios from 'axios';
 const styles = require('./SeedlingContainer.module.scss');
 
 const SeedlingContainer = props => {
@@ -21,9 +22,17 @@ const SeedlingContainer = props => {
 
     const percentageDone = Math.floor((hoursLeft / totalHours) * 100);
 
-    if (percentageDone < 0) return setPercentage(100);
+    if (percentageDone < 0 || percentageDone > 100) return setPercentage(100);
 
     setPercentage(percentageDone);
+  };
+
+  const harvestSeedling = async () => {
+    await axios.post('https://gardenhouse.tech/seedling/harvest', {
+      id: props.id,
+      nurseryid: props.nurseryid,
+    });
+    props.getseedlings();
   };
 
   useEffect(() => {
@@ -51,12 +60,17 @@ const SeedlingContainer = props => {
           variant="contained"
           color="primary"
           disabled={true}
-          className={styles.seedlingButton}
+          className={styles.harvestButton}
         >
-          Harvesting
+          Harvesting...
         </Button>
       ) : (
-        <Button variant="contained" color="primary" className={styles.button}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={styles.harvestButton}
+          onClick={harvestSeedling}
+        >
           Harvest
         </Button>
       )}

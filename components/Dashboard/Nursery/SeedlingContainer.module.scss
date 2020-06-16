@@ -3,6 +3,8 @@
   border: 1px solid rgba(0, 0, 0, 0.01);
   display: inline-flex;
   padding: 2rem;
+  width: 16rem;
+  height: 26rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -30,6 +32,12 @@
 .fertilizerButton {
   background-color: rgba(66, 134, 244, 1) !important;
   border-radius: 5rem !important;
+}
+
+.harvestButton {
+  background-color: rgba(244, 179, 0, 1) !important;
+  border-radius: 5rem !important;
+  width: 9rem !important;
 }
 
 .seedlingButton {

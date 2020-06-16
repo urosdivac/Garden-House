@@ -13,7 +13,7 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   const [couriers, setCouriers] = useState(5);
   const [token, setToken] = useState<Token | undefined>();
-  const [statusFilter, setStatusFilter] = useState('declined');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [filteredData, setFilteredData] = useState<any[] | undefined>();
 
   const changeStatusFilter = filter => {
@@ -39,7 +39,6 @@ const Order = () => {
           id: token.id,
         });
         setCouriers(data.data.data);
-        console.log(data.data);
       }
     }
   };
@@ -68,7 +67,7 @@ const Order = () => {
 
   const acceptOrder = async (id: number) => {
     try {
-      const resp = await axios.post('https://gardenhouse.tech/order/acept', {
+      await axios.post('https://gardenhouse.tech/order/acept', {
         orderid: id,
         firm: token.id,
       });
@@ -102,12 +101,16 @@ const Order = () => {
             changeStatusFilter('all');
           }}
         >
-          <div className={styles.all}>
+          <div
+            className={statusFilter === 'all' ? styles.allActive : styles.all}
+          >
             <p>All</p>
           </div>
         </div>
         <div
-          className={styles.fieldContainer}
+          className={
+            statusFilter === 'pending' ? styles.pendingActive : styles.pending
+          }
           onClick={() => {
             changeStatusFilter('pending');
           }}
@@ -117,7 +120,11 @@ const Order = () => {
           </div>
         </div>
         <div
-          className={styles.fieldContainer}
+          className={
+            statusFilter === 'accepted'
+              ? styles.acceptedActive
+              : styles.accepted
+          }
           onClick={() => {
             changeStatusFilter('accepted');
           }}
@@ -127,7 +134,11 @@ const Order = () => {
           </div>
         </div>
         <div
-          className={styles.fieldContainer}
+          className={
+            statusFilter === 'declined'
+              ? styles.declinedActive
+              : styles.declined
+          }
           onClick={() => {
             changeStatusFilter('declined');
           }}

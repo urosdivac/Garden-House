@@ -4,12 +4,20 @@
 
 .labelsContainer {
   display: flex;
-  width: 100%;
+  width: 90%;
   justify-content: space-around;
   color: #777;
   font-size: 1rem;
   letter-spacing: 1.5px;
+  margin-left: 3rem;
+  margin-top: 4rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 5rem;
+  border-top-right-radius: 5rem;
+  background-color: rgb(240, 243, 246);
 
   div {
     display: flex;
@@ -21,9 +29,12 @@
 
 .fields {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around !important;
+  position: relative;
+  top: 3rem;
+  left: 6rem;
+  width: 34rem;
   div {
-    width: 100%;
     cursor: pointer;
   }
 }
@@ -32,13 +43,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   transition: all 0.2s;
-  border-bottom: 2px solid rgba(66, 134, 244, 1);
-
+  height: 2rem;
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
   p {
     color: rgba(66, 134, 244, 1);
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1rem;
     letter-spacing: 3px;
   }
@@ -53,17 +66,39 @@
   }
 }
 
+.allActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  background-color: rgba(66, 134, 244, 1);
+  border-radius: 5rem;
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
+
+  p {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+}
+
 .pending {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  border-bottom: 2px solid rgba(244, 179, 0, 1);
   transition: all 0.2s;
-
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
   p {
     color: rgba(244, 179, 0, 1);
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1rem;
     letter-spacing: 3px;
   }
@@ -78,17 +113,38 @@
   }
 }
 
+.pendingActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(244, 179, 0, 1);
+  border-radius: 5rem;
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
+  p {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+}
+
 .accepted {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   transition: all 0.2s;
-  border-bottom: 2px solid rgba(48, 196, 126, 1);
-
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
   p {
     color: rgba(48, 196, 126, 1);
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1rem;
     letter-spacing: 3px;
   }
@@ -103,17 +159,39 @@
   }
 }
 
+.acceptedActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: all 0.2s;
+  background-color: rgba(48, 196, 126, 1);
+  border-radius: 5rem;
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
+  p {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+}
+
 .declined {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   transition: all 0.2s;
-  border-bottom: 2px solid rgba(219, 69, 55, 1);
-
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
   p {
     color: rgba(219, 69, 55, 1);
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1rem;
     letter-spacing: 3px;
   }
@@ -125,5 +203,25 @@
     p {
       color: #fff;
     }
+  }
+}
+
+.declinedActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: all 0.2s;
+  background-color: rgba(219, 69, 55, 1);
+  border-radius: 5rem;
+  padding: 0rem 2rem !important;
+  height: 2rem !important;
+  width: 8rem !important;
+  margin-right: 0.1rem !important;
+  p {
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #fff;
   }
 }
