@@ -11,6 +11,7 @@ interface Props {
   iscompany: string;
   cancelorder: (id: number) => void;
   acceptorder: (id: number) => void;
+  declineorder: (id: number) => void;
 }
 
 const OrderItem = ({
@@ -21,6 +22,7 @@ const OrderItem = ({
   iscompany,
   cancelorder,
   acceptorder,
+  declineorder,
 }: Props) => {
   return (
     <div className={styles.container}>
@@ -64,7 +66,10 @@ const OrderItem = ({
                 className={styles.accept}
                 onClick={() => acceptorder(id)}
               />
-              <BlockIcon className={styles.decline} />
+              <BlockIcon
+                className={styles.decline}
+                onClick={() => declineorder(id)}
+              />
             </span>
           ) : (
             '/'

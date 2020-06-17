@@ -39,6 +39,7 @@ const Order = () => {
           id: token.id,
         });
         setCouriers(data.data.data);
+        console.log(couriers);
       }
     }
   };
@@ -65,12 +66,20 @@ const Order = () => {
     getOrders();
   };
 
+  const declineOrder = async (id: number) => {
+    await axios.post('https://gardenhouse.tech/order/decline', {
+      orderid: id,
+    });
+    getOrders();
+  };
+
   const acceptOrder = async (id: number) => {
     try {
       await axios.post('https://gardenhouse.tech/order/acept', {
         orderid: id,
         firm: token.id,
       });
+      getOrders();
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +88,7 @@ const Order = () => {
   useEffect(() => {
     if (!token) setToken(getToken());
     getOrders();
-    if (!couriers) getAvailableCouriers();
+    getAvailableCouriers();
   }, [token]);
 
   return (
@@ -182,6 +191,7 @@ const Order = () => {
                   key={order.id}
                   cancelorder={cancelOrder}
                   acceptorder={acceptOrder}
+                  declineorder={declineOrder}
                 />
               );
             })
